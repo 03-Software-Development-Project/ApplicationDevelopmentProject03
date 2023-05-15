@@ -2,9 +2,9 @@
   "name": "expressapp",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon -x 'node app.js || touch app.js'"
   },
   "keywords": [],
   "author": "",
