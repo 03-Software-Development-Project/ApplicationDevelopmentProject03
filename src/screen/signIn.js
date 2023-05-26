@@ -2,8 +2,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import CustomInput from '../components/customInput/customInput';
 import CustomButton from '../components/customButton/custromButton';
-import dotenv from 'dotenv';
-dotenv.config();
+// import dotenv from 'dotenv';
+// dotenv.config();
 
 export class SignIn extends Component {
   /**
@@ -44,7 +44,7 @@ export class SignIn extends Component {
     }
 
     try {
-      const apiLogin = process.env.API_LOGIN;
+      const apiLogin = 'http://192.168.1.18:3000/api/data';
       const response = await fetch(apiLogin);
       const data = await response.json();
 
