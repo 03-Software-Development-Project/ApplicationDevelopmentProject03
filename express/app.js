@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const admin = require('firebase-admin');
 const serviceAccount = require('./react-native-project-5704c-firebase-adminsdk-zp6q5-d1c17a79a8.json'); // Path to the private key file
-
+const {PORT} = require('../env');
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
 });
@@ -15,16 +15,16 @@ app.get('/api/data', (req, res) => {
   const collectionRef = db.collection('testing'); // Replace with the name of your collection
   collectionRef
     .get()
-    .then((snapshot) => {
+    .then(snapshot => {
       const data = [];
-      snapshot.forEach((doc) => {
+      snapshot.forEach(doc => {
         data.push(doc.data());
       });
       res.json(data);
     })
-    .catch((error) => {
+    .catch(error => {
       console.error('Error getting documents: ', error);
-      res.status(500).json({ error: 'Failed to retrieve data.' });
+      res.status(500).json({error: 'Failed to retrieve data.'});
     });
 });
 
@@ -35,24 +35,30 @@ app.post('/api/data', (req, res) => {
   const newData = req.body;
 
   // Ensure newData is a valid JavaScript object
-  if (typeof newData === 'object' && !Array.isArray(newData) && newData !== null) {
+  if (
+    typeof newData === 'object' &&
+    !Array.isArray(newData) &&
+    newData !== null
+  ) {
     collectionRef
       .add(newData)
       .then(() => {
-        res.status(200).json({ message: 'Data added successfully.' });
+        res.status(200).json({message: 'Data added successfully.'});
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error adding data: ', error);
-        res.status(500).json({ error: 'Failed to add data.' });
+        res.status(500).json({error: 'Failed to add data.'});
       });
   } else {
-    res.status(400).json({ error: 'Invalid data format.' });
+    res.status(400).json({error: 'Invalid data format.'});
   }
 });
 
 // Start the Express server
-app.listen(3000, () => {
-  console.log('Express app listening on port 3000');
+app.listen(PORT, () => {
+  console.log(
+    `Express app listening on http://192.168.100.26:${PORT}/api/data`,
+  );
 });
 
 module.exports = app;
