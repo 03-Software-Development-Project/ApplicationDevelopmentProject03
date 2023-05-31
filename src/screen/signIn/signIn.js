@@ -19,7 +19,7 @@ export class SignIn extends Component {
       password: '',
     };
     this.loginButton = this.loginButton.bind(this);
-    this.forgotPasswordBtn = this.forgotPasswordBtn.bind(this);
+    // this.forgotPasswordBtn = this.forgotPasswordBtn.bind(this);
   }
 
   /**

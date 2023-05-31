@@ -9,7 +9,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import SignIn from './src/screen/signIn';
-import Home from './src/components/home/home';
+import Home from './src/screen/home/home';
 import {StyleSheet, View} from 'react-native';
 
 // const Stack = createStackNavigator();
@@ -25,19 +25,16 @@ const Stack = createNativeStackNavigator();
 
 function MyStack() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={SignIn} />
-      {/* <Stack.Screen name="Notifications" component={Notifications} />
-      <Stack.Screen name="Profile" component={Profile} />
-      <Stack.Screen name="Settings" component={Settings} /> */}
-    </Stack.Navigator>
+    <NavigationContainer>
+      <SignIn />
+    </NavigationContainer>
   );
 }
 
 function App(): JSX.Element {
   return (
     <View style={styles.root}>
-      <SignIn />
+      <MyStack />
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>
