@@ -9,6 +9,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import SignIn from './src/screen/signIn';
+import Register from './src/screen/register';
 import Home from './src/components/home/home';
 import {StyleSheet, View} from 'react-native';
 
