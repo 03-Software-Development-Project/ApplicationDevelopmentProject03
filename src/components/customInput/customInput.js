@@ -2,11 +2,24 @@ import {StyleSheet, View, TextInput, Text} from 'react-native';
 import React, {Component} from 'react';
 
 export class CustomInput extends Component {
+  /**
+   * ANCHOR This is a React Native component that renders a text input field with a label and displays the
+   * input value below it.
+   * @returns A React Native component that renders a View containing a TextInput and a Text component.
+   * The TextInput has props for value, onChangeText, placeholder, and secureTextEntry, which are
+   * passed down from the parent component. The Text component displays the current value of the
+   * TextInput.
+   */
   render() {
     return (
       <View>
         <View style={styles.container}>
-          <TextInput
+          <TextInput // <NavigationContainer>
+            //   <Stack.Navigator initialRouteName="Home">
+            //     <Stack.Screen name="Home" component={HomeScreen} />
+            //     <Stack.Screen name="Details" component={DetailsScreen} />
+            //   </Stack.Navigator>
+            // </NavigationContainer>
             value={this.props.value}
             onChangeText={this.props.onChangeText}
             placeholder={this.props.placeholder}
