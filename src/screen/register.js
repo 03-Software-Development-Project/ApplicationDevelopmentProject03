@@ -1,25 +1,34 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
-import { signUpUser } from '../components/function/function';
+import { signUpUser } from '../component/function';
 
 
-const Register = () => {
-  const[email, setEmail] = useState('')
-  const[password, setPassword] = useState('')
-
-  const handleSignUp = () => {
-    signUpUser(email, password)     
+export class Register extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: '',
+      password: '',
+    };
+    this.handleSignUp = this.handleSignUp.bind(this);
   }
 
-  return (
-    <View style={style.container}>
-      <TextInput style={style.textInput} placeholder='Email' value={email} onChangeText={text => setEmail(text)}></TextInput>
-      <TextInput style={style.textInput} placeholder='Password' value={password} onChangeText={text => setPassword(text)}></TextInput>
-      <TouchableOpacity style={[style.button, style.textInput]} onPress={handleSignUp}>
-        <Text style={style.text}>Sign Up</Text>
-      </TouchableOpacity>
-    </View>
-  );
+  handleSignUp() {                  
+    const {email, password} = this.state;
+    signUpUser(email, password)   
+  }
+
+  render() {
+    return (
+      <View style={style.container}>
+        <TextInput style={style.textInput} placeholder='Email' value={this.state.email} onChangeText={text => this.setState({email: text})}></TextInput>
+        <TextInput style={style.textInput} placeholder='Password' value={this.state.password} onChangeText={text => this.setState({password: text})}></TextInput>
+        <TouchableOpacity style={[style.button, style.textInput]} onPress={this.handleSignUp}>
+          <Text style={style.text}>Sign Up</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 };
 
 const style = StyleSheet.create({
