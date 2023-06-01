@@ -1,11 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
-import CustomInput from '../components/customInput/customInput';
-import CustomButton from '../components/customButton/custromButton';
-const {API_LOGIN} = require('../../env');
+import CustomInput from '../../components/customInput/customInput';
+import CustomButton from '../../components/customButton/custromButton';
+const {API_LOGIN} = require('../../../env');
 export class SignIn extends Component {
   /**
-   * ANCHOR This is a constructor function that initializes the state with empty username and password fields
+   *  This is a constructor function that initializes the state with empty username and password fields
    * and binds two methods to the component.
    * @param props - props is an object that contains properties passed down from a parent component to
    * this component. It can include data, functions, or other values that are needed by the component.
