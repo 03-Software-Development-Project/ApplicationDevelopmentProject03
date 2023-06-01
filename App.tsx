@@ -11,6 +11,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SignIn from './src/screen/signIn';
 import Home from './src/screen/home/home';
 import {StyleSheet, View, Text, Button, TextInput} from 'react-native';
+import Register from './src/screen/register';
 
 // const AppStack = () => (
 //   <Stack.Navigator>
