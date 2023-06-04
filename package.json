@@ -10,11 +10,15 @@
     "test": "jest"
   },
   "dependencies": {
+    "@firebase/firestore": "^3.12.1",
+    "@react-native-firebase/app": "^17.5.0",
+    "@react-native-firebase/auth": "^17.5.0",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
     "@react-navigation/stack": "^6.3.16",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "firebase": "^9.22.1",
     "firebase-admin": "^11.8.0",
     "os": "^0.1.2",
     "path": "^0.12.7",
