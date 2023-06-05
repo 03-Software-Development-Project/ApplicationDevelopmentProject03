@@ -14,7 +14,12 @@ export class CustomInput extends Component {
     return (
       <View>
         <View style={styles.container}>
-          <TextInput
+          <TextInput // <NavigationContainer>
+            //   <Stack.Navigator initialRouteName="Home">
+            //     <Stack.Screen name="Home" component={HomeScreen} />
+            //     <Stack.Screen name="Details" component={DetailsScreen} />
+            //   </Stack.Navigator>
+            // </NavigationContainer>
             value={this.props.value}
             onChangeText={this.props.onChangeText}
             placeholder={this.props.placeholder}

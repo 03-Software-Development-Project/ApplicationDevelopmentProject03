@@ -5,11 +5,12 @@
  * @format
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import SignIn from './src/screen/signIn/signIn';
 import Home from './src/screen/home/home';
+
 import {StyleSheet, View, Text, Button} from 'react-native';
 
 function HomeScreen({navigation}) {
@@ -43,25 +44,50 @@ function DetailsScreen({navigation}) {
 
 const Stack = createNativeStackNavigator();
 
+
 function App(): JSX.Element {
+  const [num1, setNum1] = useState('0');
+  const [num2, setNum2] = useState('0');
+  const [result, setResult] = useState('');
+  const handleAverage = () => {
+    const sum = parseFloat(num1) / (parseFloat(num2) * parseFloat(num2));
+    console.log(num1, num2);
+    setResult(sum.toString());
+  };
   return (
     // <View style={styles.root}>
     //   <SignIn />
     // </View>
+
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
+
   );
 }
 
 const styles = StyleSheet.create({
   root: {
+    justifyContent: 'center',
     flex: 1,
     backgroundColor: '#F9FBFC',
     marginHorizontal: 15,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+  },
+  textInputLabel: {
+    margin: 15,
+  },
+  center: {
+    alignSelf: 'center',
   },
 });
 
