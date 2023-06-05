@@ -10,7 +10,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
 import SignIn from './src/screen/signIn/signIn';
 import Home from './src/screen/home/home';
-
+import Register from './src/screen/register/register';
 import {StyleSheet, View, Text, Button} from 'react-native';
 import Question from './src/screen/question/question';
 function HomeScreen({navigation}) {
@@ -44,7 +44,6 @@ function DetailsScreen({navigation}) {
 
 const Stack = createNativeStackNavigator();
 
-
 function App(): JSX.Element {
   const [num1, setNum1] = useState('0');
   const [num2, setNum2] = useState('0');
@@ -55,27 +54,8 @@ function App(): JSX.Element {
     setResult(sum.toString());
   };
   return (
-    // <View style={styles.root}>
-    //   <SignIn />
-    // </View>
-<<<<<<< HEAD
-
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
-
-=======
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="Home" component={HomeScreen} />
-    //     <Stack.Screen name="Details" component={DetailsScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
     <View style={styles.root}>
-      <Question />
+      <Register />
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>
@@ -83,7 +63,15 @@ function App(): JSX.Element {
     //     <Stack.Screen name="Details" component={DetailsScreen} />
     //   </Stack.Navigator>
     // </NavigationContainer>
->>>>>>> 7c78cd3 (testing)
+    // <View style={styles.root}>
+    //   <Question />
+    // </View>
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen name="Home" component={HomeScreen} />
+    //     <Stack.Screen name="Details" component={DetailsScreen} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
   );
 }
 

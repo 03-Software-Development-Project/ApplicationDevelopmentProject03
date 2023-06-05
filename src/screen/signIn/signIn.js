@@ -8,7 +8,6 @@ import validator from 'validator';
 the user presses the "Login" button, and it renders a form with email and password inputs and a
 login button. */
 class SignIn extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
