@@ -11,7 +11,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import SignIn from './src/screen/signIn/signIn';
 import Home from './src/screen/home/home';
 import {StyleSheet, View, Text, Button} from 'react-native';
-
+import Question from './src/screen/question/question';
 function HomeScreen({navigation}) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -48,12 +48,21 @@ function App(): JSX.Element {
     // <View style={styles.root}>
     //   <SignIn />
     // </View>
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen name="Home" component={HomeScreen} />
+    //     <Stack.Screen name="Details" component={DetailsScreen} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
+    <View style={styles.root}>
+      <Question />
+    </View>
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen name="Home" component={HomeScreen} />
+    //     <Stack.Screen name="Details" component={DetailsScreen} />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
   );
 }
 
