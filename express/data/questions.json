@@ -1,0 +1,145 @@
+[
+  {
+    "id": 390,
+    "question": "MySQL supports different Character Sets, which command is used to display all of them?",
+    "answers": [
+      {"id": "A", "text": "SHOW;  ;"},
+      {"id": "B", "text": "None Of The Mentioned"},
+      {"id": "C", "text": "CHARACTER SET;"},
+      {"id": "D", "text": "SHOW CHARACTER SET"}
+    ],
+    "correct_answer": "answer_d_correct",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 1024,
+    "question": "What does the COPY instruction do in a Dockerfile?",
+    "answers": [
+      {"id": "A", "text": "COPY makes a copy of your Dockerfile"},
+      {
+        "id": "B",
+        "text": "COPY adds files from your Docker client’s current directory"
+      },
+      {"id": "C", "text": "COPY creates a copy of your running container"},
+      {"id": "D", "text": "COPY creates a copy of your image"}
+    ],
+    "correct_answer": "answer_b_correct",
+    "tags": ["Docker"],
+    "category": "Docker",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 542,
+    "question": "Why do we need HTML5 Server-Sent Events?",
+    "answers": [
+      {
+        "id": "A",
+        "text": "Server-Sent Events (SSE) is a recent HTML5 specification in combination with the EventSource API designed for streaming updates."
+      },
+      {
+        "id": "B",
+        "text": "Server-Sent Events (SSE) is a recent HTML5 specification in combination with the EventSource API designed for getting POST and GET request."
+      }
+    ],
+    "correct_answer": "answer_a_correct",
+    "tags": ["HTML"],
+    "category": "Code",
+    "difficulty": "Hard"
+  },
+  {
+    "id": 223,
+    "question": "Which keyword is used with the UPDATE command to change the value?",
+    "answers": [
+      {"id": "A", "text": "CHANGE"},
+      {"id": "B", "text": "MODIFY"},
+      {"id": "C", "text": "ADD"},
+      {"id": "D", "text": "SET"}
+    ],
+    "correct_answer": "answer_d_correct",
+    "tags": ["MySQL"],
+    "category": "Linux",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 93,
+    "question": "Which of the following is used to set cookies?",
+    "answers": [
+      {"id": "A", "text": "setcookie() function"},
+      {"id": "B", "text": "$_COOKIE variable"},
+      {"id": "C", "text": "$HTTP_COOKIE_VARS variable"},
+      {"id": "D", "text": "isset() function"}
+    ],
+    "correct_answer": "answer_a_correct",
+    "tags": ["PHP"],
+    "category": "",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 371,
+    "question": "Null is used as a place holder for optional fields",
+    "answers": [
+      {"id": "A", "text": "True"},
+      {"id": "B", "text": "False"}
+    ],
+    "correct_answer": "answer_a_correct",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 678,
+    "question": "In which directory by default user home directories are created?",
+    "answers": [
+      {"id": "A", "text": "/home"},
+      {"id": "B", "text": "/usr"},
+      {"id": "C", "text": "/tmp"},
+      {"id": "D", "text": "/etc"},
+      {"id": "E", "text": "/user"}
+    ],
+    "correct_answer": "answer_a_correct",
+    "tags": ["BASH", "Linux"],
+    "category": "Linux",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 635,
+    "question": "In which PHP version was 'Final' introduced ?",
+    "answers": [
+      {"id": "A", "text": "'final' was introduced in PHP5."},
+      {"id": "B", "text": "'final' was introduced in PHP7."},
+      {"id": "C", "text": "'final' was introduced in PHP6."}
+    ],
+    "correct_answer": "answer_a_correct",
+    "tags": ["PHP"],
+    "category": "Code",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 368,
+    "question": "MySQL supports user defined functions",
+    "answers": [
+      {"id": "A", "text": "True"},
+      {"id": "B", "text": "False"}
+    ],
+    "correct_answer": "answer_a_correct",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 833,
+    "question": "________is the enterprise-grade cluster management solution from Docker. It manages your whole cluster from a single place.",
+    "answers": [
+      {"id": "A", "text": "Docker Swarm"},
+      {"id": "B", "text": "Docker Compose"},
+      {"id": "C", "text": "Docker Universal Control Plane"},
+      {"id": "D", "text": "Docker Hub"}
+    ],
+    "correct_answer": "answer_c_correct",
+    "tags": ["Docker"],
+    "category": "Docker",
+    "difficulty": "Medium"
+  }
+]
