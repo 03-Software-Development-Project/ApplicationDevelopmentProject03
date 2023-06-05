@@ -7,6 +7,7 @@ import 'firebase/compat/firestore';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
+
   apiKey: "AIzaSyA_2yzshz3tYjoF5su2wzq0xWYIHgCgGoc",
   authDomain: "registertest-18acc.firebaseapp.com",
   projectId: "registertest-18acc",
@@ -20,3 +21,4 @@ firebase.initializeApp(firebaseConfig);
 
 
 export default firebase;
+
