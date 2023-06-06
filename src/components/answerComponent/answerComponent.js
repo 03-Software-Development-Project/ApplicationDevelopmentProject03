@@ -2,24 +2,43 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 class AnswerComponent extends Component {
+  //   render() {
+  //     const {answers} = this.props;
+  //     const handlePress = () => {
+  //       const {id} = this.props.answers;
+  //       console.warn('Clicked Answer', `ID: ${id}`);
+  //     };
+  //     return (
+  //       <View style={styles.answerContainer}>
+  //         <TouchableOpacity onPress={handlePress}>
+  //           <Text style={styles.answerText}>
+  //             {answers.id}: {answers.text}
+  //           </Text>
+  //         </TouchableOpacity>
+  //       </View>
+  //     );
+  //   }
+  // }
+  handlePress = () => {
+    const {answer, onAnswerSelect} = this.props;
+    console.log(this.props);
+    onAnswerSelect(answer.id);
+  };
+
   render() {
-    const {answers} = this.props;
-    const handlePress = () => {
-      const {id} = this.props.answers;
-      console.warn('Clicked Answer', `ID: ${id}`);
-    };
+    const {answer} = this.props;
+
     return (
       <View style={styles.answerContainer}>
-        <TouchableOpacity onPress={handlePress}>
+        <TouchableOpacity onPress={this.handlePress}>
           <Text style={styles.answerText}>
-            {answers.id}: {answers.text}
+            {answer.id}: {answer.text}
           </Text>
         </TouchableOpacity>
       </View>
     );
   }
 }
-
 export default AnswerComponent;
 
 const styles = StyleSheet.create({
