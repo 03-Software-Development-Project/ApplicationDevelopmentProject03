@@ -9,39 +9,97 @@ async function saveDataAsJSON(data, filename) {
     console.error(`Error saving data as ${filename}:`, error);
   }
 }
+function splitName(fullName) {
+  const names = fullName.split(' ');
+  const firstName = names[0];
+  const lastName = names.slice(1).join(' ');
+
+  return {
+    firstName: firstName,
+    lastName: lastName,
+  };
+}
 
 function transformData(data) {
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Mapping of letters
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
   return data.map(item => {
     const {id, question, answers, correct_answers, tags, category, difficulty} =
       item;
-    const transformedAnswers = Object.entries(answers)
-      .filter(([key, value]) => key.startsWith('answer_') && value !== null)
-      .map(([key, value]) => ({
-        id: alphabet[key.split('_')[1].charCodeAt(0) - 97], // Convert "answer_a" to "A"
-        text: value,
-      }));
 
-    const transformedCorrectAnswer = Object.entries(correct_answers).find(
-      ([key, value]) => key.startsWith('answer_') && value === 'true',
-    );
+    const transformedAnswers = transformAnswers(answers);
+    const correctAnswerId = getCorrectAnswerId(correct_answers);
 
     return {
       id,
       question,
       answers: transformedAnswers,
-      correct_answer: transformedCorrectAnswer
-        ? transformedCorrectAnswer[0]
-        : null,
-      tags: tags.map(tag => tag.name),
+      correct_answer: correctAnswerId,
+      tags: transformTags(tags),
       category,
       difficulty,
     };
   });
 }
 
+function transformAnswers(answers) {
+  return Object.entries(answers)
+    .filter(([key, value]) => value !== null)
+    .map(([key, value]) => ({
+      id: key.split('_')[1].toUpperCase(),
+      text: value,
+    }));
+}
+
+function getCorrectAnswerId(correct_answers) {
+  const transformedCorrectAnswer = Object.entries(correct_answers).find(
+    ([key, value]) => value === 'true',
+  );
+
+  return transformedCorrectAnswer
+    ? transformedCorrectAnswer[0].split('_')[1].toUpperCase()
+    : null;
+}
+
+function transformTags(tags) {
+  return tags.map(tag => tag.name);
+}
+
+// function transformData(data) {
+//   const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+//   return data.map(item => {
+//     const {id, question, answers, correct_answers, tags, category, difficulty} =
+//       item;
+
+//     const transformedAnswers = Object.entries(answers)
+//       .filter(([key, value]) => value !== null)
+//       .map(([key, value]) => ({
+//         id: key.split('_')[1].toUpperCase(),
+//         text: value,
+//       }));
+
+//     const transformedCorrectAnswer = Object.entries(correct_answers).find(
+//       ([key, value]) => value === 'true',
+//     );
+
+//     const correctAnswerId = transformedCorrectAnswer
+//       ? transformedCorrectAnswer[0].split('_')[1].toUpperCase()
+//       : null;
+
+//     return {
+//       id,
+//       question,
+//       answers: transformedAnswers,
+//       correct_answer: correctAnswerId,
+//       tags: tags.map(tag => tag.name),
+//       category,
+//       difficulty,
+//     };
+//   });
+// }
 module.exports = {
   saveDataAsJSON,
   transformData,
+  splitName,
 };
