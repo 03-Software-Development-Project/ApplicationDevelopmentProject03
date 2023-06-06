@@ -8,61 +8,30 @@
 import React, {useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import SignIn from './src/screen/signIn/signIn';
-import Home from './src/screen/home/home';
-import Register from './src/screen/register/register';
+import SignInScreen from './src/screen/signIn/signInScreen';
+import HomeScreen from './src/screen/home/homeScreen';
+import RegisterScreen from './src/screen/register/registerScreen';
 import {StyleSheet, View, Text, Button} from 'react-native';
-import Question from './src/screen/question/question';
-function HomeScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
-      />
-    </View>
-  );
-}
-function DetailsScreen({navigation}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      <Button
-        title="Go back to first screen in stack"
-        onPress={() => navigation.popToTop()}
-      />
-    </View>
-  );
-}
-
+import QuestionScreen from './src/screen/question/questionScreen';
+import ClassScreen from './src/screen/class/classScreen';
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
-  const [num1, setNum1] = useState('0');
-  const [num2, setNum2] = useState('0');
-  const [result, setResult] = useState('');
-  const handleAverage = () => {
-    const sum = parseFloat(num1) / (parseFloat(num2) * parseFloat(num2));
-    console.log(num1, num2);
-    setResult(sum.toString());
-  };
   return (
+    // <View style={styles.root}>
+    //   <Register />
+    // </View>
     <View style={styles.root}>
-      <Register />
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Question">
+          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="SignIn" component={SignInScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Question" component={QuestionScreen} />
+          <Stack.Screen name="Class" component={ClassScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </View>
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="Home" component={HomeScreen} />
-    //     <Stack.Screen name="Details" component={DetailsScreen} />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
     // <View style={styles.root}>
     //   <Question />
     // </View>
