@@ -1,1 +1,1 @@
-export {default} from './signIn';
+export {default} from './signInScreen';

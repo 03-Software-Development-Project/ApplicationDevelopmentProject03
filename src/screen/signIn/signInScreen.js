@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import React, {Component} from 'react';
 import CustomInput from '../../components/customInput/customInput';
 import CustomButton from '../../components/customButton/custromButton';
@@ -7,12 +7,13 @@ import validator from 'validator';
 /* The `SignIn` class component defines a method `signInWithEmailAndPassword` that is triggered when
 the user presses the "Login" button, and it renders a form with email and password inputs and a
 login button. */
-class SignIn extends Component {
+class SignInScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       password: '',
+      error: '',
     };
   }
 
@@ -34,13 +35,20 @@ class SignIn extends Component {
     try {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       console.warn('Signed in successfully!');
+      this.props.navigation.navigate('Home');
+
       // Redirect to the home page or perform any necessary actions
     } catch (error) {
-      console.error('Sign-in error:', error);
+      // console.error('Sign-in error:', error);
+
+      this.setState({error: 'Invalid email or password'});
     }
   };
 
   render() {
+    const {navigation} = this.props;
+    const {error} = this.state;
+
     return (
       <View style={styles.container}>
         <Text style={styles.text}>Sign In</Text>
@@ -53,19 +61,28 @@ class SignIn extends Component {
           secureTextEntry
           onChangeText={text => this.setState({password: text})}
         />
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+        {/* Updated to use 'error' instead of 'this.error' */}
         <CustomButton onPress={this.signInWithEmailAndPassword} text="Login" />
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <Text>Go to Register</Text>
+        </TouchableOpacity>
       </View>
     );
   }
 }
 
-export default SignIn;
+export default SignInScreen;
 
 const styles = StyleSheet.create({
   container: {
     marginVertical: 10,
   },
   text: {
+    marginVertical: 10,
+  },
+  errorText: {
+    color: 'red',
     marginVertical: 10,
   },
 });

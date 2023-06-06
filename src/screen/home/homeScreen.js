@@ -1,7 +1,7 @@
 import {Text, StyleSheet, View} from 'react-native';
 import React, {Component} from 'react';
-
-export default class home extends Component {
+import ClassScreen from '../class/classScreen';
+export default class HomeScreen extends Component {
   render() {
     return (
       <View>

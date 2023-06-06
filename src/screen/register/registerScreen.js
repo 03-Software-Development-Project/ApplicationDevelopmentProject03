@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {signUpUser} from '../../components/function/fileUtils';
 
-export class Register extends Component {
+export class RegisterScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,6 +24,7 @@ export class Register extends Component {
   }
 
   render() {
+    const {navigation} = this.props;
     return (
       <View style={style.container}>
         <TextInput
@@ -42,6 +43,10 @@ export class Register extends Component {
           style={[style.button, style.textInput]}
           onPress={this.handleSignUp}>
           <Text style={style.text}>Sign Up</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate('SignIn')}>
+          <Text>Go to Login</Text>
         </TouchableOpacity>
       </View>
     );
@@ -73,4 +78,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default Register;
+export default RegisterScreen;
