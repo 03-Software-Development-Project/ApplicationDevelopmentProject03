@@ -1,144 +1,331 @@
 [
   {
-    "id": 390,
-    "question": "MySQL supports different Character Sets, which command is used to display all of them?",
-    "answers": [
-      {"id": "A", "text": "SHOW;  ;"},
-      {"id": "B", "text": "None Of The Mentioned"},
-      {"id": "C", "text": "CHARACTER SET;"},
-      {"id": "D", "text": "SHOW CHARACTER SET"}
-    ],
-    "correct_answer": "answer_d_correct",
-    "tags": ["MySQL"],
-    "category": "SQL",
-    "difficulty": "Easy"
-  },
-  {
-    "id": 1024,
-    "question": "What does the COPY instruction do in a Dockerfile?",
-    "answers": [
-      {"id": "A", "text": "COPY makes a copy of your Dockerfile"},
-      {
-        "id": "B",
-        "text": "COPY adds files from your Docker client’s current directory"
-      },
-      {"id": "C", "text": "COPY creates a copy of your running container"},
-      {"id": "D", "text": "COPY creates a copy of your image"}
-    ],
-    "correct_answer": "answer_b_correct",
-    "tags": ["Docker"],
-    "category": "Docker",
-    "difficulty": "Easy"
-  },
-  {
-    "id": 542,
-    "question": "Why do we need HTML5 Server-Sent Events?",
+    "id": 1058,
+    "question": "What is Laravel?",
     "answers": [
       {
         "id": "A",
-        "text": "Server-Sent Events (SSE) is a recent HTML5 specification in combination with the EventSource API designed for streaming updates."
+        "text": "Laravel is an open-source widely used PHP framework."
       },
       {
         "id": "B",
-        "text": "Server-Sent Events (SSE) is a recent HTML5 specification in combination with the EventSource API designed for getting POST and GET request."
+        "text": "Laravel is an open-source widely used JavaScript framework."
+      },
+      {
+        "id": "C",
+        "text": "Laravel is an open-source widely used Python framework."
+      },
+      {
+        "id": "D",
+        "text": "Laravel is an open-source widely used Ruby framework."
       }
     ],
-    "correct_answer": "answer_a_correct",
-    "tags": ["HTML"],
+    "correct_answer": "A",
+    "tags": ["Laravel"],
     "category": "Code",
-    "difficulty": "Hard"
+    "difficulty": "Easy"
   },
   {
-    "id": 223,
-    "question": "Which keyword is used with the UPDATE command to change the value?",
+    "id": 907,
+    "question": "This volume type can be used to share contents within containers in a pod, but will not persist beyond the life of a pod.",
     "answers": [
-      {"id": "A", "text": "CHANGE"},
-      {"id": "B", "text": "MODIFY"},
-      {"id": "C", "text": "ADD"},
-      {"id": "D", "text": "SET"}
+      {"id": "A", "text": "EmptyDir"},
+      {"id": "B", "text": "Local"},
+      {"id": "C", "text": "ConfigMap"},
+      {"id": "D", "text": "FlexVolume"}
     ],
-    "correct_answer": "answer_d_correct",
+    "correct_answer": "A",
+    "tags": ["Kubernetes"],
+    "category": "DevOps",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 741,
+    "question": "How to show metrics for a given pod and its containers in Kubernetes?",
+    "answers": [
+      {"id": "A", "text": "kubectl resources pod POD_NAME --containers"},
+      {"id": "B", "text": "kubectl top POD_NAME --containers"},
+      {"id": "C", "text": "kubectl status pod POD_NAME --containers"},
+      {"id": "D", "text": "kubectl top pod POD_NAME --containers"}
+    ],
+    "correct_answer": "D",
+    "tags": ["Kubernetes"],
+    "category": "Linux",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 391,
+    "question": "Which one is the correct declaration for choosing the 'Character Set' other than default?",
+    "answers": [
+      {"id": "A", "text": "Varchar(20);"},
+      {"id": "B", "text": "None Of The Mentioned"},
+      {"id": "C", "text": "Varchar(20) Character Set;"},
+      {"id": "D", "text": "Varchar(20) Character Set Utf8;"}
+    ],
+    "correct_answer": "D",
     "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 342,
+    "question": "What are Shortcodes in WordPress and how we can use it?",
+    "answers": [
+      {
+        "id": "A",
+        "text": "Shortcodes is a specific code that is used to do control loop."
+      },
+      {
+        "id": "B",
+        "text": "Shortcodes is a specific code that is used to do recursion."
+      },
+      {
+        "id": "C",
+        "text": "Shortcodes is a specific code that is used to do several tasks with less effort. Also, it is synonymous with the shortcut."
+      }
+    ],
+    "correct_answer": "C",
+    "tags": ["WordPress"],
+    "category": "CMS",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 402,
+    "question": "If you want to undo a GRANT, you should use",
+    "answers": [
+      {"id": "A", "text": "REVOKE"},
+      {"id": "B", "text": "UNGRANT"},
+      {"id": "C", "text": "UNDO"},
+      {"id": "D", "text": "DELETE"},
+      {"id": "E", "text": "REMOVE"}
+    ],
+    "correct_answer": "A",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 900,
+    "question": "To program additional authentication logic besides available authenticator modules, _______________ can be used.",
+    "answers": [
+      {"id": "A", "text": "WebHook Authentication"},
+      {"id": "B", "text": "Keystone Password"},
+      {"id": "C", "text": "Authentication Proxy"},
+      {"id": "D", "text": "OpenID Connect Tokens"}
+    ],
+    "correct_answer": "C",
+    "tags": ["Kubernetes"],
+    "category": "DevOps",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 376,
+    "question": "The syntax for adding a new column to an existing table is ALTER TABLE `table_name` ADD COLUMN `column_name` `data_type`;",
+    "answers": [
+      {"id": "A", "text": "True"},
+      {"id": "B", "text": "False"}
+    ],
+    "correct_answer": "A",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 997,
+    "question": "Is JavaScript case-sensitive?",
+    "answers": [
+      {"id": "A", "text": "True"},
+      {"id": "B", "text": "False"}
+    ],
+    "correct_answer": "A",
+    "tags": ["JavaScript"],
+    "category": "Code",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 811,
+    "question": "How to delete a stopped container?",
+    "answers": [
+      {"id": "A", "text": "$ docker ---rm <container id>"},
+      {"id": "B", "text": "$ docker rm -n <container id>"},
+      {"id": "C", "text": "$ docker rm <container id>"}
+    ],
+    "correct_answer": "C",
+    "tags": ["Docker"],
+    "category": "Docker",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 1020,
+    "question": "Which Process Runs On Kubernetes Master Node?",
+    "answers": [
+      {
+        "id": "A",
+        "text": "Kube-cli-proxy process runs on Kubernetes master node."
+      },
+      {
+        "id": "B",
+        "text": "Kube-cli-server process runs on Kubernetes master node."
+      },
+      {
+        "id": "C",
+        "text": "Kube-apiserver process runs on Kubernetes master node."
+      }
+    ],
+    "correct_answer": "C",
+    "tags": ["Kubernetes"],
+    "category": "DevOps",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 665,
+    "question": "Choose the correct usage of ‘cd’ to move into the parent directory.",
+    "answers": [
+      {"id": "A", "text": "cd"},
+      {"id": "B", "text": "cd .."},
+      {"id": "C", "text": "cd ."},
+      {"id": "D", "text": "cd/"},
+      {"id": "E", "text": "None of the above"},
+      {"id": "F", "text": "cd.."}
+    ],
+    "correct_answer": "B",
+    "tags": ["BASH"],
     "category": "Linux",
     "difficulty": "Easy"
   },
   {
-    "id": 93,
-    "question": "Which of the following is used to set cookies?",
+    "id": 91,
+    "question": "Which of the following variable is used to get user's browser and operating system details in PHP?",
     "answers": [
-      {"id": "A", "text": "setcookie() function"},
-      {"id": "B", "text": "$_COOKIE variable"},
-      {"id": "C", "text": "$HTTP_COOKIE_VARS variable"},
-      {"id": "D", "text": "isset() function"}
+      {"id": "A", "text": "AGENT"},
+      {"id": "B", "text": "USER"},
+      {"id": "C", "text": "HTTP_USER_AGENT"},
+      {"id": "D", "text": "None of the above."}
     ],
-    "correct_answer": "answer_a_correct",
+    "correct_answer": "C",
     "tags": ["PHP"],
     "category": "",
     "difficulty": "Medium"
   },
   {
-    "id": 371,
-    "question": "Null is used as a place holder for optional fields",
+    "id": 566,
+    "question": "When you need to obtain the ASCII value of a character which of the following function you'll need to use in PHP?",
     "answers": [
-      {"id": "A", "text": "True"},
-      {"id": "B", "text": "False"}
+      {"id": "A", "text": "chr( );"},
+      {"id": "B", "text": "val( );"},
+      {"id": "C", "text": "ord( );"},
+      {"id": "D", "text": ".asc( );"}
     ],
-    "correct_answer": "answer_a_correct",
-    "tags": ["MySQL"],
-    "category": "SQL",
-    "difficulty": "Easy"
-  },
-  {
-    "id": 678,
-    "question": "In which directory by default user home directories are created?",
-    "answers": [
-      {"id": "A", "text": "/home"},
-      {"id": "B", "text": "/usr"},
-      {"id": "C", "text": "/tmp"},
-      {"id": "D", "text": "/etc"},
-      {"id": "E", "text": "/user"}
-    ],
-    "correct_answer": "answer_a_correct",
-    "tags": ["BASH", "Linux"],
-    "category": "Linux",
-    "difficulty": "Easy"
-  },
-  {
-    "id": 635,
-    "question": "In which PHP version was 'Final' introduced ?",
-    "answers": [
-      {"id": "A", "text": "'final' was introduced in PHP5."},
-      {"id": "B", "text": "'final' was introduced in PHP7."},
-      {"id": "C", "text": "'final' was introduced in PHP6."}
-    ],
-    "correct_answer": "answer_a_correct",
+    "correct_answer": "C",
     "tags": ["PHP"],
     "category": "Code",
     "difficulty": "Medium"
   },
   {
-    "id": 368,
-    "question": "MySQL supports user defined functions",
+    "id": 757,
+    "question": "Which of the following is correct about constants?",
     "answers": [
-      {"id": "A", "text": "True"},
-      {"id": "B", "text": "False"}
+      {
+        "id": "A",
+        "text": "To define a constant you have to use define() function."
+      },
+      {
+        "id": "B",
+        "text": "To retrieve the value of a constant, you have to simply specify its name."
+      },
+      {"id": "C", "text": "Both of the mentioned answers."},
+      {"id": "D", "text": "None of the mentioned answers."}
     ],
-    "correct_answer": "answer_a_correct",
+    "correct_answer": "C",
+    "tags": ["PHP"],
+    "category": "Code",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 792,
+    "question": "What is Hypervisor?",
+    "answers": [
+      {
+        "id": "A",
+        "text": "A hypervisor is a software that makes virtualization possible. It is also called Virtual Machine Monitor."
+      },
+      {
+        "id": "B",
+        "text": "A hypervisor is a hardware that makes optimization possible. It is also called Virtual Machine Monitor."
+      },
+      {
+        "id": "C",
+        "text": "A hypervisor is a software that makes optimization possible. It is also called Virtual Machine Monitor."
+      }
+    ],
+    "correct_answer": "A",
+    "tags": ["Docker"],
+    "category": "Docker",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 1028,
+    "question": "How to retrieve the join token for manager nodes in Docker Swarm?",
+    "answers": [
+      {"id": "A", "text": "docker get join-token manager"},
+      {"id": "B", "text": "docker print join-token manager"},
+      {"id": "C", "text": "docker swarm join-token manager"},
+      {"id": "D", "text": "docker swarm token manager"}
+    ],
+    "correct_answer": "C",
+    "tags": ["Docker"],
+    "category": "",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 227,
+    "question": "Which SQL statement is used to extract data from the database?",
+    "answers": [
+      {"id": "A", "text": "SELECT"},
+      {"id": "B", "text": "ACCESS"},
+      {"id": "C", "text": "OPEN"},
+      {"id": "D", "text": "GET"},
+      {"id": "E", "text": "ACQUIRE"}
+    ],
+    "correct_answer": "A",
     "tags": ["MySQL"],
     "category": "SQL",
     "difficulty": "Easy"
   },
   {
-    "id": 833,
-    "question": "________is the enterprise-grade cluster management solution from Docker. It manages your whole cluster from a single place.",
+    "id": 579,
+    "question": "____________ function in PHP Returns a list of response headers sent (or ready to send)",
     "answers": [
-      {"id": "A", "text": "Docker Swarm"},
-      {"id": "B", "text": "Docker Compose"},
-      {"id": "C", "text": "Docker Universal Control Plane"},
-      {"id": "D", "text": "Docker Hub"}
+      {"id": "A", "text": "header()"},
+      {"id": "B", "text": "header_send()"},
+      {"id": "C", "text": "header_sent()"},
+      {"id": "D", "text": "headers_list()"}
     ],
-    "correct_answer": "answer_c_correct",
-    "tags": ["Docker"],
+    "correct_answer": "D",
+    "tags": ["PHP"],
+    "category": "Code",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 963,
+    "question": "Select all true statements for a node in Kubernetes?",
+    "answers": [
+      {
+        "id": "A",
+        "text": "A node is a worker machine in Kubernetes, previously known as a minion"
+      },
+      {
+        "id": "B",
+        "text": "Each node contains the services necessary to run pods and is managed by the master components"
+      },
+      {
+        "id": "C",
+        "text": "A node may be a VM or physical machine, depending on the cluster."
+      },
+      {"id": "D", "text": "There is only one node in each Kubernetes cluster"}
+    ],
+    "correct_answer": "A",
+    "tags": ["Kubernetes"],
     "category": "Docker",
     "difficulty": "Medium"
   }
