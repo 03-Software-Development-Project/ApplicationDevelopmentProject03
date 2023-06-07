@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const axios = require('axios');
 const {PORT, IP, API_QUESTION_TOKEN} = require('../env');
-const {saveDataAsJSON, transformData, splitName} = require('./fileUtils');
+const {saveDataAsJSON, transformData} = require('./fileUtils');
 
 app.get('/api/questions', async (req, res) => {
   /* This code block is defining the API endpoint URL and a set of parameters for making an HTTP GET
