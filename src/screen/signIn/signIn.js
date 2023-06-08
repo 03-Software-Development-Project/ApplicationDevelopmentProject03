@@ -2,13 +2,12 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {Component} from 'react';
 import CustomInput from '../../components/customInput/customInput';
 import CustomButton from '../../components/customButton/custromButton';
-import firebase from '../../../firebase';
+import auth from '@react-native-firebase/auth';
 import validator from 'validator';
 /* The `SignIn` class component defines a method `signInWithEmailAndPassword` that is triggered when
 the user presses the "Login" button, and it renders a form with email and password inputs and a
 login button. */
 class SignIn extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -33,7 +32,7 @@ class SignIn extends Component {
       return;
     }
     try {
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      await auth().signInWithEmailAndPassword(email, password);
       console.warn('Signed in successfully!');
       // Redirect to the home page or perform any necessary actions
     } catch (error) {
