@@ -1,25 +1,20 @@
-import React, {Component} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
-import {signUpUser} from '../components/function/function';
+import React, {Component} from 'react'
+import {StyleSheet, Text, View, TextInput, TouchableOpacity} from 'react-native'
+import {signUpUser} from '../components/function/function'
+
 export class Register extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       email: '',
       password: '',
-    };
-    this.handleSignUp = this.handleSignUp.bind(this);
+    }
+    this.handleSignUp = this.handleSignUp.bind(this)
   }
 
   handleSignUp() {
-    const {email, password} = this.state;
-    signUpUser(email, password);
+    const {email, password} = this.state
+    signUpUser(email, password)
   }
 
   render() {
@@ -29,19 +24,21 @@ export class Register extends Component {
           style={style.textInput}
           placeholder="Email"
           value={this.state.email}
-          onChangeText={text => this.setState({email: text})}></TextInput>
+          onChangeText={(text) => this.setState({email: text})}
+        />
         <TextInput
           style={style.textInput}
           placeholder="Password"
           value={this.state.password}
-          onChangeText={text => this.setState({password: text})}></TextInput>
+          onChangeText={(text) => this.setState({password: text})}
+        />
         <TouchableOpacity
           style={[style.button, style.textInput]}
           onPress={this.handleSignUp}>
           <Text style={style.text}>Sign Up</Text>
         </TouchableOpacity>
       </View>
-    );
+    )
   }
 }
 
@@ -68,6 +65,6 @@ const style = StyleSheet.create({
     fontWeight: '700',
     fontSize: 20,
   },
-});
+})
 
-export default Register;
+export default Register

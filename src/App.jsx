@@ -5,13 +5,12 @@
  * @format
  */
 
-import React, {useState} from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {NavigationContainer} from '@react-navigation/native';
-import SignIn from './src/screen/signIn/signIn';
-import Home from './src/screen/home/home';
-
-import {StyleSheet, View, Text, Button} from 'react-native';
+import React, {useState} from 'react'
+import {createNativeStackNavigator} from '@react-navigation/native-stack'
+import {NavigationContainer} from '@react-navigation/native'
+import {StyleSheet, View, Text, Button} from 'react-native'
+import SignIn from './src/screen/signIn/signIn'
+import Home from './src/screen/home/home'
 
 function HomeScreen({navigation}) {
   return (
@@ -22,7 +21,7 @@ function HomeScreen({navigation}) {
         onPress={() => navigation.navigate('Details')}
       />
     </View>
-  );
+  )
 }
 function DetailsScreen({navigation}) {
   return (
@@ -32,28 +31,33 @@ function DetailsScreen({navigation}) {
         title="Go to Details... again"
         onPress={() => navigation.push('Details')}
       />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
+      <Button
+        title="Go to Home"
+        onPress={() => navigation.navigate('Home')}
+      />
+      <Button
+        title="Go back"
+        onPress={() => navigation.goBack()}
+      />
       <Button
         title="Go back to first screen in stack"
         onPress={() => navigation.popToTop()}
       />
     </View>
-  );
+  )
 }
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator()
 
-
-function App(): JSX.Element {
-  const [num1, setNum1] = useState('0');
-  const [num2, setNum2] = useState('0');
-  const [result, setResult] = useState('');
+function App() {
+  const [num1, setNum1] = useState('0')
+  const [num2, setNum2] = useState('0')
+  const [result, setResult] = useState('')
   const handleAverage = () => {
-    const sum = parseFloat(num1) / (parseFloat(num2) * parseFloat(num2));
-    console.log(num1, num2);
-    setResult(sum.toString());
-  };
+    const sum = parseFloat(num1) / (parseFloat(num2) * parseFloat(num2))
+    console.log(num1, num2)
+    setResult(sum.toString())
+  }
   return (
     // <View style={styles.root}>
     //   <SignIn />
@@ -61,12 +65,17 @@ function App(): JSX.Element {
 
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+        />
+        <Stack.Screen
+          name="Details"
+          component={DetailsScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
-
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -89,6 +98,6 @@ const styles = StyleSheet.create({
   center: {
     alignSelf: 'center',
   },
-});
+})
 
-export default App;
+export default App

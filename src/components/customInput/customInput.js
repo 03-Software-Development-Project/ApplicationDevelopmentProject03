@@ -1,5 +1,5 @@
-import {StyleSheet, View, TextInput, Text} from 'react-native';
-import React, {Component} from 'react';
+import {StyleSheet, View, TextInput, Text} from 'react-native'
+import React, {Component} from 'react'
 
 export class CustomInput extends Component {
   /**
@@ -31,11 +31,11 @@ export class CustomInput extends Component {
           <Text>{this.props.value}</Text>
         </View>
       </View>
-    );
+    )
   }
 }
 
-export default CustomInput;
+export default CustomInput
 
 const styles = StyleSheet.create({
   container: {
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   input: {},
-});
+})

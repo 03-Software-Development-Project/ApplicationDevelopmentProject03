@@ -1,1 +1,1 @@
-export {defaults} from './customInput';
+export {defaults} from './customInput'

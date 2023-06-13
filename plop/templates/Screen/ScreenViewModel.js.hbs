@@ -1,0 +1,16 @@
+class
+{{viewModelName}}
+{ static instance = null; updateData = null; constructor() { if ({{viewModelName}}.instance) {
+return
+{{viewModelName}}.instance; }
+
+{{viewModelName}}.instance = this; // Your view model initialization code here } static
+getInstance() { if (!{{viewModelName}}.instance) {
+{{viewModelName}}.instance = new
+{{viewModelName}}(); } return
+{{viewModelName}}.instance; } initialize() { // Initialization logic for the view model }
+setUpdateData(updateData) { // Set the updateData function from the screen component this.updateData
+= updateData; } doSomething() { // Example function that performs some action // You can add your
+own functionality here // Update the data state in the screen component const newData = 'New data
+from view model'; this.updateData(newData); } } export default
+{{viewModelName}}.getInstance();
