@@ -1,13 +1,18 @@
 import {StyleSheet, View} from 'react-native';
 import React, {Component} from 'react';
-import {QUESTION_LIMIT, DESIREDDIFFICULTY} from '../../../env';
+import {
+  QUESTION_LIMIT,
+  // DESIRED_DIFFICULTY,
+  PASS_THRESHOLD,
+  SELECTED_QUESTION_POINTS as selectedQuestion,
+} from '../../../env';
 import QuestionComponent from '../../components/questionComponent/questionComponent';
 
 // This is the data list
 const questionData = require('../../../express/data/questions.json');
 
 // Define the desired difficulty level
-const desiredDifficulty = DESIREDDIFFICULTY.medium; // Replace with the desired difficulty level ('Easy', 'Medium', or 'Hard')
+const desiredDifficulty = selectedQuestion.difficulty; // Replace with the desired difficulty level ('Easy', 'Medium', or 'Hard')
 // Filter the question data based on the desired difficulty level
 
 /* `const filteredQuestions` is creating a new array that contains only the questions from the
@@ -42,22 +47,53 @@ class QuestionScreen extends Component {
     super(props);
     this.state = {
       currentQuestionIndex: 0,
+      correctAnswers: 0,
     };
   }
 
-  /* `handleAnswerSelect` is a function that is called when a user selects an answer to a question. It
-takes in the `selectedAnswerId` as a parameter, which is the ID of the answer that the user
-selected. */
   handleAnswerSelect = selectedAnswerId => {
-    const {currentQuestionIndex} = this.state;
-    console.log('currentQuestionIndex;', currentQuestionIndex);
+    const {currentQuestionIndex, correctAnswers} = this.state;
+    const currentQuestion = limitedQuestions[currentQuestionIndex];
+    const selectedAnswer = currentQuestion.answers.find(
+      answer => answer.id === selectedAnswerId,
+    );
+
+    if (
+      selectedAnswer &&
+      selectedAnswer.id === currentQuestion.correct_answer
+    ) {
+      // Increment the counter for correct answers
+      this.setState({correctAnswers: correctAnswers + 1});
+    }
+
     // Navigate to the next question or home screen
     if (currentQuestionIndex < limitedQuestions.length - 1) {
       this.setState({currentQuestionIndex: currentQuestionIndex + 1});
     } else {
-      // All questions answered, navigate to the home screen
+      // All questions answered, determine if the user has passed the test
+      const passThreshold = PASS_THRESHOLD; // Define the pass threshold as half of the total questions
+      const hasPassed = correctAnswers >= passThreshold;
+      const totalPoints = correctAnswers * selectedQuestion.point;
+      console.log(`Total points: ${totalPoints} points`);
+      if (hasPassed) {
+        // Perform actions for passing the test
+        console.log('Passed the test!');
+        console.log(
+          '============================================================',
+        );
+      } else {
+        // Perform actions for failing the test
+        console.log('Failed the test!');
+        console.log(
+          '============================================================',
+        );
+      }
+
+      // Reset the current question index and correct answers counter
+
+      // Navigate to the home screen
       this.props.navigation.navigate('Home'); // Replace 'Home' with the desired screen name
-      this.setState({currentQuestionIndex: 0});
+      this.setState({currentQuestionIndex: 0, correctAnswers: 0});
     }
   };
 
