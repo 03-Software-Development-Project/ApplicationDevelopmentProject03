@@ -1,103 +1,68 @@
 [
   {
-    "id": 1058,
-    "question": "What is Laravel?",
+    "id": 369,
+    "question": "Which of the following is a valid aggregate function",
     "answers": [
-      {
-        "id": "A",
-        "text": "Laravel is an open-source widely used PHP framework."
-      },
-      {
-        "id": "B",
-        "text": "Laravel is an open-source widely used JavaScript framework."
-      },
-      {
-        "id": "C",
-        "text": "Laravel is an open-source widely used Python framework."
-      },
-      {
-        "id": "D",
-        "text": "Laravel is an open-source widely used Ruby framework."
-      }
+      {"id": "A", "text": "CURDATE()"},
+      {"id": "B", "text": "COUNT"},
+      {"id": "C", "text": "AVERAGE"},
+      {"id": "D", "text": "MAXIMUM"}
     ],
-    "correct_answer": "A",
-    "tags": ["Laravel"],
-    "category": "Code",
+    "correct_answer": "B",
+    "tags": ["MySQL"],
+    "category": "SQL",
     "difficulty": "Easy"
   },
   {
-    "id": 907,
-    "question": "This volume type can be used to share contents within containers in a pod, but will not persist beyond the life of a pod.",
+    "id": 44,
+    "question": "Which of the following answers refers to a Linux command-line command used for configuring network interface parameters specific to the wireless communication?",
     "answers": [
-      {"id": "A", "text": "EmptyDir"},
-      {"id": "B", "text": "Local"},
-      {"id": "C", "text": "ConfigMap"},
-      {"id": "D", "text": "FlexVolume"}
-    ],
-    "correct_answer": "A",
-    "tags": ["Kubernetes"],
-    "category": "DevOps",
-    "difficulty": "Easy"
-  },
-  {
-    "id": 741,
-    "question": "How to show metrics for a given pod and its containers in Kubernetes?",
-    "answers": [
-      {"id": "A", "text": "kubectl resources pod POD_NAME --containers"},
-      {"id": "B", "text": "kubectl top POD_NAME --containers"},
-      {"id": "C", "text": "kubectl status pod POD_NAME --containers"},
-      {"id": "D", "text": "kubectl top pod POD_NAME --containers"}
+      {"id": "A", "text": "net config"},
+      {"id": "B", "text": "ifconfig"},
+      {"id": "C", "text": "networksetup"},
+      {"id": "D", "text": "iwconfig"}
     ],
     "correct_answer": "D",
-    "tags": ["Kubernetes"],
+    "tags": ["Linux"],
     "category": "Linux",
     "difficulty": "Medium"
   },
   {
-    "id": 391,
-    "question": "Which one is the correct declaration for choosing the 'Character Set' other than default?",
+    "id": 1037,
+    "question": "The default location of the ansible.cfg file is:",
     "answers": [
-      {"id": "A", "text": "Varchar(20);"},
-      {"id": "B", "text": "None Of The Mentioned"},
-      {"id": "C", "text": "Varchar(20) Character Set;"},
-      {"id": "D", "text": "Varchar(20) Character Set Utf8;"}
-    ],
-    "correct_answer": "D",
-    "tags": ["MySQL"],
-    "category": "SQL",
-    "difficulty": "Medium"
-  },
-  {
-    "id": 342,
-    "question": "What are Shortcodes in WordPress and how we can use it?",
-    "answers": [
-      {
-        "id": "A",
-        "text": "Shortcodes is a specific code that is used to do control loop."
-      },
-      {
-        "id": "B",
-        "text": "Shortcodes is a specific code that is used to do recursion."
-      },
-      {
-        "id": "C",
-        "text": "Shortcodes is a specific code that is used to do several tasks with less effort. Also, it is synonymous with the shortcut."
-      }
+      {"id": "A", "text": "/etc/ansible.cfg"},
+      {"id": "B", "text": "/etc/ansible/ansible.conf"},
+      {"id": "C", "text": "/etc/ansible/ansible.cfg"},
+      {"id": "D", "text": "/home/ansible/ansible.cfg"}
     ],
     "correct_answer": "C",
+    "tags": ["DevOps"],
+    "category": "DevOps",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 291,
+    "question": "Which relational database does WordPress use?",
+    "answers": [
+      {"id": "A", "text": "Oracle"},
+      {"id": "B", "text": "MySQL"},
+      {"id": "C", "text": "PostgresSQL"},
+      {"id": "D", "text": "MSSQL SERVER"}
+    ],
+    "correct_answer": "B",
     "tags": ["WordPress"],
     "category": "CMS",
-    "difficulty": "Medium"
+    "difficulty": "Easy"
   },
   {
-    "id": 402,
-    "question": "If you want to undo a GRANT, you should use",
+    "id": 234,
+    "question": "Can you insert multiple rows with only one INSERT query?",
     "answers": [
-      {"id": "A", "text": "REVOKE"},
-      {"id": "B", "text": "UNGRANT"},
-      {"id": "C", "text": "UNDO"},
-      {"id": "D", "text": "DELETE"},
-      {"id": "E", "text": "REMOVE"}
+      {"id": "A", "text": "True"},
+      {"id": "B", "text": "False"},
+      {"id": "C", "text": "It's possible but only with newer MySQL versions"},
+      {"id": "D", "text": "Yes but these inserts cause data corruption"}
     ],
     "correct_answer": "A",
     "tags": ["MySQL"],
@@ -105,116 +70,150 @@
     "difficulty": "Medium"
   },
   {
-    "id": 900,
-    "question": "To program additional authentication logic besides available authenticator modules, _______________ can be used.",
+    "id": 990,
+    "question": "What is the correct JavaScript syntax for opening a new window called \"w2\" ?",
     "answers": [
-      {"id": "A", "text": "WebHook Authentication"},
-      {"id": "B", "text": "Keystone Password"},
-      {"id": "C", "text": "Authentication Proxy"},
-      {"id": "D", "text": "OpenID Connect Tokens"}
+      {"id": "A", "text": "w2 = window.new(\"http://www.w3schools.com\");"},
+      {"id": "B", "text": "w2 = window.open(\"http://www.w3schools.com\");"}
     ],
-    "correct_answer": "C",
-    "tags": ["Kubernetes"],
-    "category": "DevOps",
-    "difficulty": "Medium"
-  },
-  {
-    "id": 376,
-    "question": "The syntax for adding a new column to an existing table is ALTER TABLE `table_name` ADD COLUMN `column_name` `data_type`;",
-    "answers": [
-      {"id": "A", "text": "True"},
-      {"id": "B", "text": "False"}
-    ],
-    "correct_answer": "A",
-    "tags": ["MySQL"],
-    "category": "SQL",
-    "difficulty": "Medium"
-  },
-  {
-    "id": 997,
-    "question": "Is JavaScript case-sensitive?",
-    "answers": [
-      {"id": "A", "text": "True"},
-      {"id": "B", "text": "False"}
-    ],
-    "correct_answer": "A",
+    "correct_answer": "B",
     "tags": ["JavaScript"],
     "category": "Code",
     "difficulty": "Easy"
   },
   {
-    "id": 811,
-    "question": "How to delete a stopped container?",
+    "id": 439,
+    "question": "Function which causes retrieval of any kind of data from database is considered as",
     "answers": [
-      {"id": "A", "text": "$ docker ---rm <container id>"},
-      {"id": "B", "text": "$ docker rm -n <container id>"},
-      {"id": "C", "text": "$ docker rm <container id>"}
+      {"id": "A", "text": "Interface or Signature"},
+      {"id": "B", "text": "Logical signature"},
+      {"id": "C", "text": "Conceptual signature"},
+      {"id": "D", "text": "User friendly signature"}
     ],
-    "correct_answer": "C",
+    "correct_answer": "D",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Hard"
+  },
+  {
+    "id": 830,
+    "question": "Containers include the application and all of its dependencies, but share the kernel with other containers. They run as an isolated process in userspace on the host operating system.",
+    "answers": [
+      {"id": "A", "text": "True"},
+      {"id": "B", "text": "False"}
+    ],
+    "correct_answer": "A",
     "tags": ["Docker"],
     "category": "Docker",
     "difficulty": "Medium"
   },
   {
-    "id": 1020,
-    "question": "Which Process Runs On Kubernetes Master Node?",
+    "id": 1003,
+    "question": "Which of the following is a valid Kubernetes configuration? Select those answers that apply.",
     "answers": [
-      {
-        "id": "A",
-        "text": "Kube-cli-proxy process runs on Kubernetes master node."
-      },
-      {
-        "id": "B",
-        "text": "Kube-cli-server process runs on Kubernetes master node."
-      },
+      {"id": "A", "text": "All-in-One Kubernetes Installation"},
+      {"id": "B", "text": "Single Master (with etcd) and Multi-Worker Nodes"},
       {
         "id": "C",
-        "text": "Kube-apiserver process runs on Kubernetes master node."
-      }
+        "text": "External etcd Cluster, Single Master and Multi-Worker Nodes"
+      },
+      {
+        "id": "D",
+        "text": "External etcd Cluster, Multi-Master and Multi-Worker Nodes"
+      },
+      {"id": "E", "text": "Kubernetes Swarm"}
     ],
-    "correct_answer": "C",
+    "correct_answer": "A",
     "tags": ["Kubernetes"],
-    "category": "DevOps",
+    "category": "Docker",
+    "difficulty": "Hard"
+  },
+  {
+    "id": 601,
+    "question": "If the variable $var1 is set to 10 and the $var2 is set to the character var1, what's the value of $$var2?",
+    "answers": [
+      {"id": "A", "text": "$$var2 contains the value 1."},
+      {"id": "B", "text": "$$var2 contains the value 5"},
+      {"id": "C", "text": "$$var2 contains the value 20"},
+      {"id": "D", "text": "$$var2 contains the value 10."}
+    ],
+    "correct_answer": "D",
+    "tags": ["PHP"],
+    "category": "Code",
     "difficulty": "Easy"
   },
   {
-    "id": 665,
-    "question": "Choose the correct usage of ‘cd’ to move into the parent directory.",
+    "id": 624,
+    "question": "What is the function file_get_contents() used for?",
     "answers": [
-      {"id": "A", "text": "cd"},
-      {"id": "B", "text": "cd .."},
-      {"id": "C", "text": "cd ."},
-      {"id": "D", "text": "cd/"},
-      {"id": "E", "text": "None of the above"},
-      {"id": "F", "text": "cd.."}
+      {
+        "id": "A",
+        "text": "file_get_contents() is used for reading a file and storing it in a string variable."
+      },
+      {
+        "id": "B",
+        "text": "file_get_contents() is used for parsing a file and storing it in a string variable."
+      },
+      {
+        "id": "C",
+        "text": "file_get_contents() is used for processing a file and storing it in a string variable."
+      }
+    ],
+    "correct_answer": "A",
+    "tags": ["PHP"],
+    "category": "Code",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 45,
+    "question": "Which of the answers listed below refers to a package management system most often used on Debian and Debian-based Linux distributions?",
+    "answers": [
+      {"id": "A", "text": "kde"},
+      {"id": "B", "text": "apt"},
+      {"id": "C", "text": "yum"},
+      {"id": "D", "text": "rpm"}
     ],
     "correct_answer": "B",
-    "tags": ["BASH"],
+    "tags": ["Linux"],
     "category": "Linux",
     "difficulty": "Easy"
   },
   {
-    "id": 91,
-    "question": "Which of the following variable is used to get user's browser and operating system details in PHP?",
+    "id": 522,
+    "question": "Which attribute you’ll use with the TD tag to merge two cells horizontally?",
     "answers": [
-      {"id": "A", "text": "AGENT"},
-      {"id": "B", "text": "USER"},
-      {"id": "C", "text": "HTTP_USER_AGENT"},
-      {"id": "D", "text": "None of the above."}
+      {"id": "A", "text": "merge=colspan2"},
+      {"id": "B", "text": "merge=row2"},
+      {"id": "C", "text": "colspan=2"},
+      {"id": "D", "text": "rowspan=2"}
     ],
     "correct_answer": "C",
-    "tags": ["PHP"],
-    "category": "",
+    "tags": ["HTML"],
+    "category": "Code",
     "difficulty": "Medium"
   },
   {
-    "id": 566,
-    "question": "When you need to obtain the ASCII value of a character which of the following function you'll need to use in PHP?",
+    "id": 427,
+    "question": "What is Granularity?",
     "answers": [
-      {"id": "A", "text": "chr( );"},
-      {"id": "B", "text": "val( );"},
-      {"id": "C", "text": "ord( );"},
-      {"id": "D", "text": ".asc( );"}
+      {"id": "A", "text": "The size of data items"},
+      {"id": "B", "text": "The size of database"},
+      {"id": "C", "text": "The size of file"},
+      {"id": "D", "text": "The size of record"}
+    ],
+    "correct_answer": "B",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 583,
+    "question": "What is the purpose of $_SESSION[]?",
+    "answers": [
+      {"id": "A", "text": "Used to register a global variable"},
+      {"id": "B", "text": "none of the above"},
+      {"id": "C", "text": "Used to store variables of the current session"},
+      {"id": "D", "text": "Used to initialize a session."}
     ],
     "correct_answer": "C",
     "tags": ["PHP"],
@@ -222,111 +221,87 @@
     "difficulty": "Medium"
   },
   {
-    "id": 757,
-    "question": "Which of the following is correct about constants?",
+    "id": 995,
+    "question": "Which operator is used to assign a value to a variable?",
     "answers": [
-      {
-        "id": "A",
-        "text": "To define a constant you have to use define() function."
-      },
-      {
-        "id": "B",
-        "text": "To retrieve the value of a constant, you have to simply specify its name."
-      },
-      {"id": "C", "text": "Both of the mentioned answers."},
-      {"id": "D", "text": "None of the mentioned answers."}
+      {"id": "A", "text": "x"},
+      {"id": "B", "text": "-"},
+      {"id": "C", "text": "="},
+      {"id": "D", "text": "*"}
     ],
     "correct_answer": "C",
-    "tags": ["PHP"],
+    "tags": ["JavaScript"],
     "category": "Code",
     "difficulty": "Easy"
   },
   {
-    "id": 792,
-    "question": "What is Hypervisor?",
+    "id": 794,
+    "question": "What is containerization?",
     "answers": [
       {
         "id": "A",
-        "text": "A hypervisor is a software that makes virtualization possible. It is also called Virtual Machine Monitor."
+        "text": "system that is being developed and deployed is bundled and wrapped separately with all its configuration files and dependencies. This bundle is called a container."
       },
       {
         "id": "B",
-        "text": "A hypervisor is a hardware that makes optimization possible. It is also called Virtual Machine Monitor."
-      },
-      {
-        "id": "C",
-        "text": "A hypervisor is a software that makes optimization possible. It is also called Virtual Machine Monitor."
+        "text": "an application that is being developed and deployed is bundled and wrapped together with all its configuration files and dependencies. This bundle is called a container."
       }
     ],
-    "correct_answer": "A",
+    "correct_answer": "B",
     "tags": ["Docker"],
     "category": "Docker",
     "difficulty": "Easy"
   },
   {
-    "id": 1028,
-    "question": "How to retrieve the join token for manager nodes in Docker Swarm?",
+    "id": 676,
+    "question": "What is the login name of the administrator in Linux?",
     "answers": [
-      {"id": "A", "text": "docker get join-token manager"},
-      {"id": "B", "text": "docker print join-token manager"},
-      {"id": "C", "text": "docker swarm join-token manager"},
-      {"id": "D", "text": "docker swarm token manager"}
-    ],
-    "correct_answer": "C",
-    "tags": ["Docker"],
-    "category": "",
-    "difficulty": "Medium"
-  },
-  {
-    "id": 227,
-    "question": "Which SQL statement is used to extract data from the database?",
-    "answers": [
-      {"id": "A", "text": "SELECT"},
-      {"id": "B", "text": "ACCESS"},
-      {"id": "C", "text": "OPEN"},
-      {"id": "D", "text": "GET"},
-      {"id": "E", "text": "ACQUIRE"}
+      {"id": "A", "text": "root"},
+      {"id": "B", "text": "administrator"},
+      {"id": "C", "text": "admin"},
+      {"id": "D", "text": "All of the mentioned"},
+      {"id": "E", "text": "None of the mentioned"}
     ],
     "correct_answer": "A",
+    "tags": ["BASH", "Linux"],
+    "category": "Linux",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 357,
+    "question": "Which of the following scripts will run successfully",
+    "answers": [
+      {
+        "id": "A",
+        "text": "Users statistics SELECT customer name FROM customers;"
+      },
+      {
+        "id": "B",
+        "text": "SELECT `customer name` FROM customers WHERE cat_id = 12 ORDER BY cat_id;"
+      },
+      {"id": "C", "text": "SELECT FROM `customers` 'customer name';"},
+      {
+        "id": "D",
+        "text": "SELECT `customer name` FROM customers ORDER BY zone WHERE cat_id = 12;"
+      }
+    ],
+    "correct_answer": "B",
     "tags": ["MySQL"],
     "category": "SQL",
     "difficulty": "Easy"
   },
   {
-    "id": 579,
-    "question": "____________ function in PHP Returns a list of response headers sent (or ready to send)",
+    "id": 744,
+    "question": "How to mark a node called my-node as schedulable in Kubernetes?",
     "answers": [
-      {"id": "A", "text": "header()"},
-      {"id": "B", "text": "header_send()"},
-      {"id": "C", "text": "header_sent()"},
-      {"id": "D", "text": "headers_list()"}
+      {"id": "A", "text": "kubectl schedulable my-node"},
+      {"id": "B", "text": "kubectl up my-node"},
+      {"id": "C", "text": "kubectl available my-node"},
+      {"id": "D", "text": "kubectl uncordon my-node"}
     ],
     "correct_answer": "D",
-    "tags": ["PHP"],
-    "category": "Code",
-    "difficulty": "Medium"
-  },
-  {
-    "id": 963,
-    "question": "Select all true statements for a node in Kubernetes?",
-    "answers": [
-      {
-        "id": "A",
-        "text": "A node is a worker machine in Kubernetes, previously known as a minion"
-      },
-      {
-        "id": "B",
-        "text": "Each node contains the services necessary to run pods and is managed by the master components"
-      },
-      {
-        "id": "C",
-        "text": "A node may be a VM or physical machine, depending on the cluster."
-      },
-      {"id": "D", "text": "There is only one node in each Kubernetes cluster"}
-    ],
-    "correct_answer": "A",
     "tags": ["Kubernetes"],
-    "category": "Docker",
+    "category": "Linux",
     "difficulty": "Medium"
   }
 ]

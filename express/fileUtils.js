@@ -98,5 +98,4 @@ function transformTags(tags) {
 module.exports = {
   saveDataAsJSON,
   transformData,
-  splitName,
 };

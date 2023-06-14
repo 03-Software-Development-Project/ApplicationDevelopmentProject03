@@ -8,7 +8,6 @@ parent component. Finally, it logs the `onAnswerSelect` function to the console.
   handlePress = () => {
     const {answer, onAnswerSelect} = this.props;
     onAnswerSelect(answer.id);
-    console.log(onAnswerSelect);
   };
 
   render() {
