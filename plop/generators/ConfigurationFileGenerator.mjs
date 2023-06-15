@@ -1,27 +1,20 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable prefer-template */
-/* eslint-disable func-names */
-import * as _ from './constants.mjs'
+import {highlightText, formatSourceCode} from './helpers.mjs'
 
-export default function (plop) {
+export default function ConfigurationFileGenerator(plop) {
   return {
     description: 'Generate a configuration file',
     prompts: [
       {
         type: 'input',
         name: 'configFileName',
-        message: `Enter the name of the configuration file (in ${_.highlight_levels[0](
-          'CamelCase'
-        )}):`,
+        message: `Enter the name of the configuration file (in ${highlightText[0]('CamelCase')}):`,
         filter: (value) => plop.getHelper('camelCase')(value),
         validate: (value) => (value !== '' ? true : 'Configuration file name is required.'),
       },
     ],
     actions: [
       (data) =>
-        `The final name of the config file is: ${_.highlight_levels[2](
-          data.configFileName + '.js'
-        )}`,
+        `The final name of the config file is: ${highlightText[2](`${data.configFileName}.js`)}`,
       {
         type: 'add',
         path: 'src/config/index.js',
@@ -34,6 +27,7 @@ export default function (plop) {
         type: 'add',
         path: 'src/config/{{configFileName}}.js',
         templateFile: 'plop/templates/configFile.js.hbs',
+        transform: formatSourceCode,
         skipIfExists: true,
         force: false,
         abortOnFail: true,
@@ -44,7 +38,13 @@ export default function (plop) {
         pattern: `/* PLOP_INJECT_EXPORT */`,
         separator: '\n',
         unique: true,
-        template: `export { default as {{configFileName}} } from './{{configFileName}}';`,
+        template: `export { default as {{configFileName}} } from './{{configFileName}}'`,
+        abortOnFail: true,
+      },
+      {
+        type: 'modify',
+        path: `src/config/index.js`,
+        transform: formatSourceCode,
         abortOnFail: true,
       },
     ],

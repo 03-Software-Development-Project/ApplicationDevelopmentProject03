@@ -1,27 +1,20 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable prefer-template */
-/* eslint-disable func-names */
-import * as _ from './constants.mjs'
+import {highlightText, formatSourceCode} from './helpers.mjs'
 
-export default function (plop) {
+export default function UtilityFunctionGenerator(plop) {
   return {
     description: 'Generate a new utility/helper function',
     prompts: [
       {
         type: 'input',
         name: 'utilityFunctionName',
-        message: `Enter the name of the utility function (in ${_.highlight_levels[0](
-          'CamelCase'
-        )}):`,
+        message: `Enter the name of the utility function (in ${highlightText[0]('CamelCase')}):`,
         filter: (value) => plop.getHelper('camelCase')(value),
         validate: (value) => (value !== '' ? true : 'Utility function name is required.'),
       },
     ],
     actions: [
       (data) =>
-        `The final name of the utility function is: ${_.highlight_levels[2](
-          data.utilityFunctionName
-        )}`,
+        `The final name of the utility function is: ${highlightText[2](data.utilityFunctionName)}`,
       {
         type: 'add',
         path: 'src/utils/index.js',
@@ -34,6 +27,7 @@ export default function (plop) {
         type: 'add',
         path: 'src/utils/{{utilityFunctionName}}.js',
         templateFile: 'plop/templates/utilityFunction.js.hbs',
+        transform: formatSourceCode,
         skipIfExists: true,
         force: false,
         abortOnFail: true,
@@ -44,7 +38,13 @@ export default function (plop) {
         pattern: `/* PLOP_INJECT_EXPORT */`,
         separator: '\n',
         unique: true,
-        template: `export { default as {{utilityFunctionName}} } from './{{utilityFunctionName}}';`,
+        template: `export { default as {{utilityFunctionName}} } from './{{utilityFunctionName}}'`,
+        abortOnFail: true,
+      },
+      {
+        type: 'modify',
+        path: `src/utils/index.js`,
+        transform: formatSourceCode,
         abortOnFail: true,
       },
     ],
