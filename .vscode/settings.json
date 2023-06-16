@@ -1,7 +1,7 @@
 {
-    "docwriter.style": "Auto-detect",
+    "docwriter.style": "JSDoc",
     "docwriter.hotkey.mac": "⌥ + .",
-    "docwriter.progress.trackFunctions": false,
+    "docwriter.progress.trackFunctions": true,
     "workbench.colorCustomizations": {
         "activityBar.activeBackground": "#d5ba6b",
         "activityBar.background": "#d5ba6b",
