@@ -1,0 +1,67 @@
+export default {
+  // greyscale color , used for text
+  'greyscale.50': '#f9fafb',
+  'greyscale.100': '#f3f4f6',
+  'greyscale.200': '#e5e7eb',
+  'greyscale.300': '#d1d5db',
+  'greyscale.400': '#9ca3af',
+  'greyscale.500': '#6b7280',
+  'greyscale.600': '#4b5563',
+  'greyscale.700': '#374151',
+  'greyscale.800': '#1d2734',
+  'greyscale.900': '#111827',
+  // primary/ brand color
+  'primary.100': '#d0e3fd',
+  'primary.200': '#a0c4fa',
+  'primary.300': '#78a2f9',
+  'primary.400': '#5585f4',
+  'primary.500': '#2058ed',
+  'primary.600': '#1743cb',
+  'primary.700': '#1031aa',
+  'primary.800': '#0a2289',
+  'primary.900': '#061771',
+
+  // success  color
+  'success.100': '#e1fad6',
+  'success.200': '#bff5ae',
+  'success.300': '#8ee380',
+  'success.400': '#61c75b',
+  'success.500': '#2da331',
+  'success.600': '#208c2e',
+  'success.700': '#16752a',
+  'success.800': '#0e5e26',
+  'success.900': '#084e23',
+
+  // info color
+  'info.100': '#d0edfe',
+  'info.200': '#a3d8fd',
+  'info.300': '#74bdfb',
+  'info.400': '#51a3f7',
+  'info.500': '#1a7bf2',
+  'info.600': '#135fd0',
+  'info.700': '#0d46ae',
+  'info.800': '#08318c',
+  'info.900': '#042274',
+
+  // warning color
+  'warning.100': '#fef4cb',
+  'warning.200': '#fde798',
+  'warning.300': '#fbd564',
+  'warning.400': '#f7c23d',
+  'warning.500': '#f2a500',
+  'warning.600': '#d08700',
+  'warning.700': '#ae6b00',
+  'warning.800': '#8c5100',
+  'warning.900': '#744000',
+
+  // danger color
+  'danger.100': '#fee4d2',
+  'danger.200': '#fec2a5',
+  'danger.300': '#fd9978',
+  'danger.400': '#fb7257',
+  'danger.500': '#f93220',
+  'danger.600': '#d61717',
+  'danger.700': '#b3101d',
+  'danger.800': '#900a20',
+  'danger.900': '#770621',
+}
