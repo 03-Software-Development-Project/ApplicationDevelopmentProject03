@@ -10,9 +10,11 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {NavigationContainer} from '@react-navigation/native'
 import {StyleSheet, View, Text, Button} from 'react-native'
 import SignIn from './screen/signIn/signIn'
+import HomeScreen from './screen/home/homeScreen'
 
 function App() {
-  return <SignIn />
+  return <HomeScreen />
+  // return <SignIn/>
 }
 
 export default App

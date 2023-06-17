@@ -11,6 +11,7 @@ import {
 } from 'react-native'
 
 import {typography, color} from '../../../constants'
+import CustomButton from '../../components/customButton/custromButton'
 // Const to receive styles externally
 const titleStyle = typography['heading.h4']
 const label = typography['body.medium.semibold']
@@ -60,11 +61,9 @@ const signIn = () => {
             ]}>
             Forgot Password?
           </Text>
-          <TouchableOpacity style={styles.button}>
-            <Text style={[textbutton, {color: color['Greyscale.50']}, {fontWeight: 'bold'}]}>
-              Sign in
-            </Text>
-          </TouchableOpacity>
+          <CustomButton
+            text="Sign in"
+            onPress={this.handleButtonPress}></CustomButton>
         </View>
       </View>
     </KeyboardAvoidingView>

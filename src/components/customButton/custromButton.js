@@ -1,4 +1,5 @@
 import {Text, View, StyleSheet, TouchableOpacity} from 'react-native'
+import {typography, color} from '../../../constants'
 import React, {Component} from 'react'
 
 export class CustomButton extends Component {
@@ -7,7 +8,7 @@ export class CustomButton extends Component {
       <TouchableOpacity
         onPress={this.props.onPress}
         style={styles.button}>
-        <Text style={[textbutton, {color: color['Greyscale.50']}, {fontWeight: 'bold'}]}>
+        <Text style={[{color: color['Greyscale.50']}, {fontWeight: 'bold'}]}>
           {this.props.text}
         </Text>
       </TouchableOpacity>
