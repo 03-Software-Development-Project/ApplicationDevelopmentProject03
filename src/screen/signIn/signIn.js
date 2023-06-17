@@ -1,74 +1,114 @@
-import {StyleSheet, Text, View} from 'react-native'
-import React, {Component} from 'react'
-import auth from '@react-native-firebase/auth'
-import validator from 'validator'
-import CustomInput from '../../components/customInput/customInput'
-import CustomButton from '../../components/customButton/custromButton'
-/* The `SignIn` class component defines a method `signInWithEmailAndPassword` that is triggered when
-the user presses the "Login" button, and it renders a form with email and password inputs and a
-login button. */
-class SignIn extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: '',
-      password: '',
-    }
-  }
+import React from 'react'
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  SafeAreaView,
+  TextInput,
+  TouchableOpacity,
+  KeyboardAvoidingView,
+} from 'react-native'
 
-  /* `signInWithEmailAndPassword` is a method that is defined within the `SignIn` class component. It is
- an asynchronous function that is triggered when the user presses the "Login" button. */
+import {typography, color} from '../../../constants'
+// Const to receive styles externally
+const titleStyle = typography['heading.h4']
+const label = typography['body.medium.semibold']
+const subtitleStyle = typography['body.large.regular']
+const textbutton = typography['body.large.bold']
 
-  signInWithEmailAndPassword = async () => {
-    const {email, password} = this.state
-
-    if (email === '' || password === '') {
-      console.error('Email or password is empty')
-      return
-    }
-
-    if (!validator.isEmail(email)) {
-      console.error('Invalid email format')
-      return
-    }
-    try {
-      await auth().signInWithEmailAndPassword(email, password)
-      console.warn('Signed in successfully!')
-      // Redirect to the home page or perform any necessary actions
-    } catch (error) {
-      console.error('Sign-in error:', error)
-    }
-  }
-
-  render() {
-    return (
+const signIn = () => {
+  return (
+    <KeyboardAvoidingView
+      style={styles.safeArea}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <View style={styles.container}>
-        <Text style={styles.text}>Sign In</Text>
-        <CustomInput
-          placeholder="Enter your email"
-          onChangeText={(text) => this.setState({email: text})}
-        />
-        <CustomInput
-          placeholder="Enter your password"
-          secureTextEntry
-          onChangeText={(text) => this.setState({password: text})}
-        />
-        <CustomButton
-          onPress={this.signInWithEmailAndPassword}
-          text="Login"
-        />
+        <View style={styles.content}>
+          <Image
+            style={styles.logotype}
+            // source={require('../assets/logo_horizontal.png')}
+            resizeMode="contain"
+          />
+          <Text style={[titleStyle, {color: color['Greyscale.900']}]}>Hi There 👋</Text>
+          <Text style={[subtitleStyle, {color: color['Greyscale.500']}]}>
+            Welcome back, sign in to your account
+          </Text>
+        </View>
+        <View style={styles.formContainer}>
+          <View style={styles.inputContainer}>
+            <Text style={[label, {marginHorizontal: 8, paddingVertical: 4}]}>Username</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Username"
+              placeholderTextColor={color['Greyscale.400']}
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Text style={[label, {marginHorizontal: 8, paddingVertical: 4}]}>Password</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Password"
+              placeholderTextColor={color['Greyscale.400']}
+            />
+          </View>
+          <Text
+            style={[
+              {marginHorizontal: 8},
+              {paddingVertical: 12},
+              label,
+              {color: color['Primary.700']},
+            ]}>
+            Forgot Password?
+          </Text>
+          <TouchableOpacity style={styles.button}>
+            <Text style={[textbutton, {color: color['Greyscale.50']}, {fontWeight: 'bold'}]}>
+              Sign in
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    )
-  }
+    </KeyboardAvoidingView>
+  )
 }
 
-export default SignIn
-
 const styles = StyleSheet.create({
-  container: {
-    marginVertical: 10,
+  safeArea: {
+    flex: 1,
   },
-  text: {
-    marginVertical: 10,
+  container: {
+    flex: 1,
+    marginTop: 0,
+    marginHorizontal: 16,
+    justifyContent: 'center',
+  },
+  textInput: {
+    width: '100%',
+    height: 56,
+    paddingHorizontal: 16,
+    borderRadius: 16,
+    backgroundColor: color['Greyscale.100'],
+    borderWidth: 1,
+    borderColor: color['Greyscale.300'],
+  },
+  formContainer: {
+    marginTop: 8,
+  },
+  header: {
+    color: color['primary.500'],
+  },
+  button: {
+    height: 56,
+    width: '100%',
+    backgroundColor: color['Greyscale.900'],
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 16,
+    marginTop: 24,
+  },
+  logotype: {
+    width: 100,
+    height: 60,
   },
 })
+
+export default signIn

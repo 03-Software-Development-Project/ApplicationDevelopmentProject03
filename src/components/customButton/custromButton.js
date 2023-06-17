@@ -6,8 +6,10 @@ export class CustomButton extends Component {
     return (
       <TouchableOpacity
         onPress={this.props.onPress}
-        style={styles.container}>
-        <Text style={styles.text}>{this.props.text}</Text>
+        style={styles.button}>
+        <Text style={[textbutton, {color: color['Greyscale.50']}, {fontWeight: 'bold'}]}>
+          {this.props.text}
+        </Text>
       </TouchableOpacity>
     )
   }
@@ -16,16 +18,13 @@ export class CustomButton extends Component {
 export default CustomButton
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#3b71f3',
+  button: {
+    height: 56,
     width: '100%',
-    padding: 15,
-    marginVertical: 5,
+    backgroundColor: color['Greyscale.900'],
+    justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 5,
-  },
-  text: {
-    fontWeight: 'bold',
-    color: '#FFFFFF',
+    borderRadius: 16,
+    marginTop: 24,
   },
 })
