@@ -4,10 +4,8 @@ import auth from '@react-native-firebase/auth'
 const Auth = {
   async signUp(email, password) {
     try {
-      const user = await auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => userCredential.user)
-      return user
+      const userCredential = await auth().createUserWithEmailAndPassword(email, password)
+      return userCredential
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         throw new Error('That email address is already in use!')
@@ -22,10 +20,8 @@ const Auth = {
   },
   async signIn(email, password) {
     try {
-      const user = await auth()
-        .signInWithEmailAndPassword(email, password)
-        .then((userCredential) => userCredential.user)
-      return user
+      const userCredential = await auth().signInWithEmailAndPassword(email, password)
+      return userCredential
     } catch (error) {
       throw new Error('Failed to sign in')
     }
@@ -230,6 +226,18 @@ const Firestore = {
       return docRef
     } catch (error) {
       throw new Error(`(method) insertExamQuestion\n${error}\n`)
+    }
+  },
+
+  async getUser(studentID) {
+    try {
+      const doc = await firestore().collection('students').doc(studentID).get()
+      if (doc.exists()) {
+        return doc
+      }
+      throw new Error('(method) getUser: No such document!')
+    } catch (error) {
+      throw new Error(`(method) getUser\n${error}\n`)
     }
   },
 }
