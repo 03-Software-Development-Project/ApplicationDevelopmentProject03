@@ -9,12 +9,15 @@ import React, {useState} from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import {NavigationContainer} from '@react-navigation/native'
 import {StyleSheet, View, Text, Button} from 'react-native'
-import SignIn from './screen/signIn/signIn'
-import HomeScreen from './screen/home/homeScreen'
-
+import SigninScreen from './screens/SigninScreen'
+import HomeScreen from './screens/HomeScreen'
+import CourseDetailScreen from './screens/CourseDetailScreen'
+import SearchScreen from './screens/SearchScreen'
 function App() {
+  return <SearchScreen />
+  return <CourseDetailScreen />
   return <HomeScreen />
-  // return <SignIn/>
+  return <SignIn />
 }
 
 export default App

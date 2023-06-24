@@ -18,13 +18,13 @@ export default {
   'heading.h4': {
     fontSize: 24,
     fontWeight: '800',
-    lineHeight: 40,
+    lineHeight: 34,
     textAlign: 'left',
   },
   'heading.h5': {
     fontSize: 20,
     fontWeight: '800',
-    lineHeight: 34,
+    lineHeight: 32,
   },
   'heading.h6': {
     fontSize: 18,
