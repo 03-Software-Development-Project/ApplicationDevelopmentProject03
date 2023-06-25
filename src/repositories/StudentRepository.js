@@ -18,15 +18,15 @@ const StudentRepository = {
 
   async signUp(email, password, firstName, lastName, phoneNumber, gender, birthdate, address) {
     const {user} = await FBGateway.signUp(email, password)
-    const docRef = await FBGateway.insertStudent(
-      user.uid,
+    await FBGateway.insertStudent(
       firstName,
       lastName,
       null,
       phoneNumber,
       gender,
       birthdate,
-      address
+      address,
+      user.uid
     )
     return new Student({
       id: user.uid,
