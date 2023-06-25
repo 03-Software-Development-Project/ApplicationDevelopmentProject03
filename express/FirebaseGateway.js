@@ -266,39 +266,49 @@ const dataSampleFunctions = {
 
   async insertSampleDataFromJsonData({classes, subjects, chapters, questions, accounts, students}) {
     try {
-      classes.forEach(async (_class) => {
-        const classRef = await dataSampleFunctions.insertClass(_class)
-
-        students
-          .filter((student) => student.classID === classRef.id)
-          .forEach(async (student) => {
-            const user = await dataSampleFunctions.registerStudent(
-              accounts.filter((account) => account.studentID === student.studentID)[0]
-            )
-            await dataSampleFunctions.insertStudent(
-              {...student, studentID: user.uid},
-              {..._class, reference: classRef}
-            )
-          })
-
-        subjects
-          .filter((subject) => subject.classID === classRef.id)
-          .forEach(async (subject) => {
-            const subjectRef = await dataSampleFunctions.insertSubject(subject, classRef.path)
-
-            chapters
-              .filter((chapter) => chapter.subjectID === subjectRef.id)
-              .forEach(async (chapter) => {
-                const chapterRef = await dataSampleFunctions.insertChapter(chapter, subjectRef.path)
-
-                questions
-                  .filter((question) => question.chapterID === chapterRef.id)
-                  .forEach(async (question) => {
-                    await dataSampleFunctions.insertQuestion(question, chapterRef.path)
-                  })
+      await Promise.all(
+        classes.map(async (_class) => {
+          const classRef = await dataSampleFunctions.insertClass(_class)
+          await Promise.all(
+            students
+              .filter((student) => student.classID === classRef.id)
+              .map(async (student) => {
+                const user = await dataSampleFunctions.registerStudent(
+                  accounts.filter((account) => account.studentID === student.studentID)[0]
+                )
+                await dataSampleFunctions.insertStudent(
+                  {...student, studentID: user.uid},
+                  {..._class, reference: classRef}
+                )
               })
-          })
-      })
+          )
+          await Promise.all(
+            subjects
+              .filter((subject) => subject.classID === classRef.id)
+              .map(async (subject) => {
+                const subjectRef = await dataSampleFunctions.insertSubject(subject, classRef.path)
+                await Promise.all(
+                  chapters
+                    .filter((chapter) => chapter.subjectID === subjectRef.id)
+                    .map(async (chapter) => {
+                      const chapterRef = await dataSampleFunctions.insertChapter(
+                        chapter,
+                        subjectRef.path
+                      )
+                      await Promise.all(
+                        questions
+                          .filter((question) => question.chapterID === chapterRef.id)
+                          .map(async (question) => {
+                            await dataSampleFunctions.insertQuestion(question, chapterRef.path)
+                          })
+                      )
+                    })
+                )
+              })
+          )
+        })
+      )
+      return 'Success'
     } catch (error) {
       throw new Error(`(method) dataSampleFunctions.insertDataSample\n${error} ${error.code}\n`)
     }

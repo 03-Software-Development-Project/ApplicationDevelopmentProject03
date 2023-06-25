@@ -18,19 +18,19 @@ app.get('/api/sampleData', async (req, res) => {
     {}
   )
   try {
-    await FBGateway.insertSampleDataFromJsonData(jsonData)
-    res.send(jsonData)
+    const result = await FBGateway.insertSampleDataFromJsonData(jsonData)
+    res.status(200).send(result)
   } catch (error) {
-    res.send(error)
+    res.status(500).send(error.message)
   }
 })
 
 app.get('/api/deleteAllUsers', async (req, res) => {
   try {
     const reuslt = await FBGateway.deleteAllUsers()
-    res.send(reuslt)
+    res.status(200).send(reuslt)
   } catch (error) {
-    res.send(error)
+    res.status(500).send(error)
   }
 })
 // Start the Express server
