@@ -15,18 +15,22 @@ parent component. Finally, it logs the `onAnswerSelect` function to the console.
 
     return (
       <View style={styles.answerContainer}>
-        <TouchableOpacity onPress={this.handlePress}>
+        <TouchableOpacity
+          onPress={this.handlePress}
+          style={styles.touchableOpacityContainer}>
           <Text style={styles.answerText}>
-            {answer.id}: {answer.text}
+            {answer.id}. {answer.text}
           </Text>
         </TouchableOpacity>
       </View>
     );
   }
+  TouchableOpacity;
 }
 export default AnswerComponent;
 
 const styles = StyleSheet.create({
+  touchableOpacityContainer: {marginLeft: 10},
   questionContainer: {
     marginBottom: 10,
   },
@@ -36,7 +40,11 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   answerContainer: {
-    marginLeft: 10,
+    margin: 10,
+    paddingVertical: 18,
+    backgroundColor: '#F9FAFB',
+    borderRadius: 5,
+    color: '#E5E7EB',
   },
   answerText: {
     fontSize: 16,

@@ -69,10 +69,14 @@ export default QuestionComponent;
 const styles = StyleSheet.create({
   questionContainer: {
     marginBottom: 10,
+
+    // backgroundColor: '#F9FAFB',
   },
   questionText: {
+    margin: 10,
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 5,
+    lineHeight: 30,
   },
 });
