@@ -1,0 +1,307 @@
+[
+  {
+    "id": 369,
+    "question": "Which of the following is a valid aggregate function",
+    "answers": [
+      {"id": "A", "text": "CURDATE()"},
+      {"id": "B", "text": "COUNT"},
+      {"id": "C", "text": "AVERAGE"},
+      {"id": "D", "text": "MAXIMUM"}
+    ],
+    "correct_answer": "B",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 44,
+    "question": "Which of the following answers refers to a Linux command-line command used for configuring network interface parameters specific to the wireless communication?",
+    "answers": [
+      {"id": "A", "text": "net config"},
+      {"id": "B", "text": "ifconfig"},
+      {"id": "C", "text": "networksetup"},
+      {"id": "D", "text": "iwconfig"}
+    ],
+    "correct_answer": "D",
+    "tags": ["Linux"],
+    "category": "Linux",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 1037,
+    "question": "The default location of the ansible.cfg file is:",
+    "answers": [
+      {"id": "A", "text": "/etc/ansible.cfg"},
+      {"id": "B", "text": "/etc/ansible/ansible.conf"},
+      {"id": "C", "text": "/etc/ansible/ansible.cfg"},
+      {"id": "D", "text": "/home/ansible/ansible.cfg"}
+    ],
+    "correct_answer": "C",
+    "tags": ["DevOps"],
+    "category": "DevOps",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 291,
+    "question": "Which relational database does WordPress use?",
+    "answers": [
+      {"id": "A", "text": "Oracle"},
+      {"id": "B", "text": "MySQL"},
+      {"id": "C", "text": "PostgresSQL"},
+      {"id": "D", "text": "MSSQL SERVER"}
+    ],
+    "correct_answer": "B",
+    "tags": ["WordPress"],
+    "category": "CMS",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 234,
+    "question": "Can you insert multiple rows with only one INSERT query?",
+    "answers": [
+      {"id": "A", "text": "True"},
+      {"id": "B", "text": "False"},
+      {"id": "C", "text": "It's possible but only with newer MySQL versions"},
+      {"id": "D", "text": "Yes but these inserts cause data corruption"}
+    ],
+    "correct_answer": "A",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 990,
+    "question": "What is the correct JavaScript syntax for opening a new window called \"w2\" ?",
+    "answers": [
+      {"id": "A", "text": "w2 = window.new(\"http://www.w3schools.com\");"},
+      {"id": "B", "text": "w2 = window.open(\"http://www.w3schools.com\");"}
+    ],
+    "correct_answer": "B",
+    "tags": ["JavaScript"],
+    "category": "Code",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 439,
+    "question": "Function which causes retrieval of any kind of data from database is considered as",
+    "answers": [
+      {"id": "A", "text": "Interface or Signature"},
+      {"id": "B", "text": "Logical signature"},
+      {"id": "C", "text": "Conceptual signature"},
+      {"id": "D", "text": "User friendly signature"}
+    ],
+    "correct_answer": "D",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Hard"
+  },
+  {
+    "id": 830,
+    "question": "Containers include the application and all of its dependencies, but share the kernel with other containers. They run as an isolated process in userspace on the host operating system.",
+    "answers": [
+      {"id": "A", "text": "True"},
+      {"id": "B", "text": "False"}
+    ],
+    "correct_answer": "A",
+    "tags": ["Docker"],
+    "category": "Docker",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 1003,
+    "question": "Which of the following is a valid Kubernetes configuration? Select those answers that apply.",
+    "answers": [
+      {"id": "A", "text": "All-in-One Kubernetes Installation"},
+      {"id": "B", "text": "Single Master (with etcd) and Multi-Worker Nodes"},
+      {
+        "id": "C",
+        "text": "External etcd Cluster, Single Master and Multi-Worker Nodes"
+      },
+      {
+        "id": "D",
+        "text": "External etcd Cluster, Multi-Master and Multi-Worker Nodes"
+      },
+      {"id": "E", "text": "Kubernetes Swarm"}
+    ],
+    "correct_answer": "A",
+    "tags": ["Kubernetes"],
+    "category": "Docker",
+    "difficulty": "Hard"
+  },
+  {
+    "id": 601,
+    "question": "If the variable $var1 is set to 10 and the $var2 is set to the character var1, what's the value of $$var2?",
+    "answers": [
+      {"id": "A", "text": "$$var2 contains the value 1."},
+      {"id": "B", "text": "$$var2 contains the value 5"},
+      {"id": "C", "text": "$$var2 contains the value 20"},
+      {"id": "D", "text": "$$var2 contains the value 10."}
+    ],
+    "correct_answer": "D",
+    "tags": ["PHP"],
+    "category": "Code",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 624,
+    "question": "What is the function file_get_contents() used for?",
+    "answers": [
+      {
+        "id": "A",
+        "text": "file_get_contents() is used for reading a file and storing it in a string variable."
+      },
+      {
+        "id": "B",
+        "text": "file_get_contents() is used for parsing a file and storing it in a string variable."
+      },
+      {
+        "id": "C",
+        "text": "file_get_contents() is used for processing a file and storing it in a string variable."
+      }
+    ],
+    "correct_answer": "A",
+    "tags": ["PHP"],
+    "category": "Code",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 45,
+    "question": "Which of the answers listed below refers to a package management system most often used on Debian and Debian-based Linux distributions?",
+    "answers": [
+      {"id": "A", "text": "kde"},
+      {"id": "B", "text": "apt"},
+      {"id": "C", "text": "yum"},
+      {"id": "D", "text": "rpm"}
+    ],
+    "correct_answer": "B",
+    "tags": ["Linux"],
+    "category": "Linux",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 522,
+    "question": "Which attribute you’ll use with the TD tag to merge two cells horizontally?",
+    "answers": [
+      {"id": "A", "text": "merge=colspan2"},
+      {"id": "B", "text": "merge=row2"},
+      {"id": "C", "text": "colspan=2"},
+      {"id": "D", "text": "rowspan=2"}
+    ],
+    "correct_answer": "C",
+    "tags": ["HTML"],
+    "category": "Code",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 427,
+    "question": "What is Granularity?",
+    "answers": [
+      {"id": "A", "text": "The size of data items"},
+      {"id": "B", "text": "The size of database"},
+      {"id": "C", "text": "The size of file"},
+      {"id": "D", "text": "The size of record"}
+    ],
+    "correct_answer": "B",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 583,
+    "question": "What is the purpose of $_SESSION[]?",
+    "answers": [
+      {"id": "A", "text": "Used to register a global variable"},
+      {"id": "B", "text": "none of the above"},
+      {"id": "C", "text": "Used to store variables of the current session"},
+      {"id": "D", "text": "Used to initialize a session."}
+    ],
+    "correct_answer": "C",
+    "tags": ["PHP"],
+    "category": "Code",
+    "difficulty": "Medium"
+  },
+  {
+    "id": 995,
+    "question": "Which operator is used to assign a value to a variable?",
+    "answers": [
+      {"id": "A", "text": "x"},
+      {"id": "B", "text": "-"},
+      {"id": "C", "text": "="},
+      {"id": "D", "text": "*"}
+    ],
+    "correct_answer": "C",
+    "tags": ["JavaScript"],
+    "category": "Code",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 794,
+    "question": "What is containerization?",
+    "answers": [
+      {
+        "id": "A",
+        "text": "system that is being developed and deployed is bundled and wrapped separately with all its configuration files and dependencies. This bundle is called a container."
+      },
+      {
+        "id": "B",
+        "text": "an application that is being developed and deployed is bundled and wrapped together with all its configuration files and dependencies. This bundle is called a container."
+      }
+    ],
+    "correct_answer": "B",
+    "tags": ["Docker"],
+    "category": "Docker",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 676,
+    "question": "What is the login name of the administrator in Linux?",
+    "answers": [
+      {"id": "A", "text": "root"},
+      {"id": "B", "text": "administrator"},
+      {"id": "C", "text": "admin"},
+      {"id": "D", "text": "All of the mentioned"},
+      {"id": "E", "text": "None of the mentioned"}
+    ],
+    "correct_answer": "A",
+    "tags": ["BASH", "Linux"],
+    "category": "Linux",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 357,
+    "question": "Which of the following scripts will run successfully",
+    "answers": [
+      {
+        "id": "A",
+        "text": "Users statistics SELECT customer name FROM customers;"
+      },
+      {
+        "id": "B",
+        "text": "SELECT `customer name` FROM customers WHERE cat_id = 12 ORDER BY cat_id;"
+      },
+      {"id": "C", "text": "SELECT FROM `customers` 'customer name';"},
+      {
+        "id": "D",
+        "text": "SELECT `customer name` FROM customers ORDER BY zone WHERE cat_id = 12;"
+      }
+    ],
+    "correct_answer": "B",
+    "tags": ["MySQL"],
+    "category": "SQL",
+    "difficulty": "Easy"
+  },
+  {
+    "id": 744,
+    "question": "How to mark a node called my-node as schedulable in Kubernetes?",
+    "answers": [
+      {"id": "A", "text": "kubectl schedulable my-node"},
+      {"id": "B", "text": "kubectl up my-node"},
+      {"id": "C", "text": "kubectl available my-node"},
+      {"id": "D", "text": "kubectl uncordon my-node"}
+    ],
+    "correct_answer": "D",
+    "tags": ["Kubernetes"],
+    "category": "Linux",
+    "difficulty": "Medium"
+  }
+]

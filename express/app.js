@@ -13,7 +13,9 @@ app.get('/api/sampleData', async (req, res) => {
   const jsonData = workbook.SheetNames.reduce(
     (_jsonData, currentSheetName) => ({
       ..._jsonData,
-      [currentSheetName]: XLSX.utils.sheet_to_json(workbook.Sheets[currentSheetName]),
+      [currentSheetName]: XLSX.utils.sheet_to_json(
+        workbook.Sheets[currentSheetName]
+      ),
     }),
     {}
   )

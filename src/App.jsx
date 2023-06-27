@@ -6,62 +6,10 @@
  */
 
 import React from 'react'
-import {View, Text, Button} from 'react-native'
-import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import {NavigationContainer} from '@react-navigation/native'
-
-function HomeScreen({navigator}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-      <Button
-        title="Go to Details"
-        onPress={() => navigator.navigate('Details')}
-      />
-    </View>
-  )
-}
-function DetailsScreen({navigator}) {
-  return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Details Screen</Text>
-      <Button
-        title="Go to Details... again"
-        onPress={() => navigator.push('Details')}
-      />
-      <Button
-        title="Go to Home"
-        onPress={() => navigator.navigate('Home')}
-      />
-      <Button
-        title="Go back"
-        onPress={() => navigator.goBack()}
-      />
-      <Button
-        title="Go back to first screen in stack"
-        onPress={() => navigator.popToTop()}
-      />
-    </View>
-  )
-}
-
-const Stack = createNativeStackNavigator()
+import {SignInScreen} from './screens'
 
 function App() {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-        />
-        <Stack.Screen
-          name="Details"
-          component={DetailsScreen}
-        />
-      </Stack.Navigator>
-    </NavigationContainer>
-  )
+  return <SignInScreen />
 }
 
 export default App
