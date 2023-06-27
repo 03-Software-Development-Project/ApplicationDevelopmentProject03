@@ -26,7 +26,15 @@ const auth = {
     }
   },
 
-  async createUser(email, emailVerified, phoneNumber, password, displayName, photoURL, disabled) {
+  async createUser(
+    email,
+    emailVerified,
+    phoneNumber,
+    password,
+    displayName,
+    photoURL,
+    disabled
+  ) {
     try {
       const user = await firebaseAuth.createUser({
         email,
@@ -45,7 +53,15 @@ const auth = {
 }
 
 const db = {
-  async insertStudent(studentID, firstName, lastName, _class, gender, birthdate, address) {
+  async insertStudent(
+    studentID,
+    firstName,
+    lastName,
+    _class,
+    gender,
+    birthdate,
+    address
+  ) {
     try {
       const docRef = firestore.collection('students').doc(studentID)
       await docRef.set({
@@ -89,9 +105,18 @@ const db = {
     }
   },
 
-  async insertSubject(subjectID, name, description, numberOfChapters, classRefPath) {
+  async insertSubject(
+    subjectID,
+    name,
+    description,
+    numberOfChapters,
+    classRefPath
+  ) {
     try {
-      const docRef = firestore.doc(classRefPath).collection('subjects').doc(subjectID)
+      const docRef = firestore
+        .doc(classRefPath)
+        .collection('subjects')
+        .doc(subjectID)
       await docRef.set({
         name,
         description,
@@ -103,9 +128,19 @@ const db = {
     }
   },
 
-  async insertChapter(chapterID, ord, name, description, numberOfQuestions, subjectRefPath) {
+  async insertChapter(
+    chapterID,
+    ord,
+    name,
+    description,
+    numberOfQuestions,
+    subjectRefPath
+  ) {
     try {
-      const docRef = firestore.doc(subjectRefPath).collection('chapters').doc(chapterID)
+      const docRef = firestore
+        .doc(subjectRefPath)
+        .collection('chapters')
+        .doc(chapterID)
       await docRef.set({
         ord,
         name,
@@ -130,7 +165,10 @@ const db = {
     chapterRefPath
   ) {
     try {
-      const docRef = firestore.doc(chapterRefPath).collection('questions').doc(questionID)
+      const docRef = firestore
+        .doc(chapterRefPath)
+        .collection('questions')
+        .doc(questionID)
       await docRef.set({
         difficulty,
         content,
@@ -169,7 +207,9 @@ const dataSampleFunctions = {
       )
       return user
     } catch (error) {
-      throw new Error(`(method) dataSampleFunctions.registerStudent\n${error} ${error.code}\n`)
+      throw new Error(
+        `(method) dataSampleFunctions.registerStudent\n${error} ${error.code}\n`
+      )
     }
   },
   async insertStudent(student, _class) {
@@ -193,10 +233,19 @@ const dataSampleFunctions = {
       )
       return studentRef
     } catch (error) {
-      throw new Error(`(method) dataSampleFunctions.insertStudent\n${error} ${error.code}\n`)
+      throw new Error(
+        `(method) dataSampleFunctions.insertStudent\n${error} ${error.code}\n`
+      )
     }
   },
-  async insertClass({classID, photoURL, name, description, joinCode, numberOfSubjects}) {
+  async insertClass({
+    classID,
+    photoURL,
+    name,
+    description,
+    joinCode,
+    numberOfSubjects,
+  }) {
     try {
       const classRef = await db.insertClass(
         classID,
@@ -208,10 +257,15 @@ const dataSampleFunctions = {
       )
       return classRef
     } catch (error) {
-      throw new Error(`(method) dataSampleFunctions.insertClass\n${error} ${error.code}\n`)
+      throw new Error(
+        `(method) dataSampleFunctions.insertClass\n${error} ${error.code}\n`
+      )
     }
   },
-  async insertSubject({subjectID, name, description, numberOfChapters}, classRefPath) {
+  async insertSubject(
+    {subjectID, name, description, numberOfChapters},
+    classRefPath
+  ) {
     try {
       const subjectRef = await db.insertSubject(
         subjectID,
@@ -222,11 +276,16 @@ const dataSampleFunctions = {
       )
       return subjectRef
     } catch (error) {
-      throw new Error(`(method) dataSampleFunctions.insertSubject\n${error} ${error.code}\n`)
+      throw new Error(
+        `(method) dataSampleFunctions.insertSubject\n${error} ${error.code}\n`
+      )
     }
   },
 
-  async insertChapter({chapterID, ord, name, description, numberOfQuestions}, subjectRefPath) {
+  async insertChapter(
+    {chapterID, ord, name, description, numberOfQuestions},
+    subjectRefPath
+  ) {
     try {
       const chapterRef = await db.insertChapter(
         chapterID,
@@ -238,12 +297,23 @@ const dataSampleFunctions = {
       )
       return chapterRef
     } catch (error) {
-      throw new Error(`(method) dataSampleFunctions.insertChapter\n${error} ${error.code}\n`)
+      throw new Error(
+        `(method) dataSampleFunctions.insertChapter\n${error} ${error.code}\n`
+      )
     }
   },
 
   async insertQuestion(
-    {questionID, difficulty, content, solutionA, solutionB, solutionC, solutionD, rightSolution},
+    {
+      questionID,
+      difficulty,
+      content,
+      solutionA,
+      solutionB,
+      solutionC,
+      solutionD,
+      rightSolution,
+    },
     chapterRefPath
   ) {
     try {
@@ -260,11 +330,20 @@ const dataSampleFunctions = {
       )
       return questionRef
     } catch (error) {
-      throw new Error(`(method) dataSampleFunctions.insertQuestion\n${error} ${error.code}\n`)
+      throw new Error(
+        `(method) dataSampleFunctions.insertQuestion\n${error} ${error.code}\n`
+      )
     }
   },
 
-  async insertSampleDataFromJsonData({classes, subjects, chapters, questions, accounts, students}) {
+  async insertSampleDataFromJsonData({
+    classes,
+    subjects,
+    chapters,
+    questions,
+    accounts,
+    students,
+  }) {
     try {
       await Promise.all(
         classes.map(async (_class) => {
@@ -274,7 +353,9 @@ const dataSampleFunctions = {
               .filter((student) => student.classID === classRef.id)
               .map(async (student) => {
                 const user = await dataSampleFunctions.registerStudent(
-                  accounts.filter((account) => account.studentID === student.studentID)[0]
+                  accounts.filter(
+                    (account) => account.studentID === student.studentID
+                  )[0]
                 )
                 await dataSampleFunctions.insertStudent(
                   {...student, studentID: user.uid},
@@ -286,20 +367,29 @@ const dataSampleFunctions = {
             subjects
               .filter((subject) => subject.classID === classRef.id)
               .map(async (subject) => {
-                const subjectRef = await dataSampleFunctions.insertSubject(subject, classRef.path)
+                const subjectRef = await dataSampleFunctions.insertSubject(
+                  subject,
+                  classRef.path
+                )
                 await Promise.all(
                   chapters
                     .filter((chapter) => chapter.subjectID === subjectRef.id)
                     .map(async (chapter) => {
-                      const chapterRef = await dataSampleFunctions.insertChapter(
-                        chapter,
-                        subjectRef.path
-                      )
+                      const chapterRef =
+                        await dataSampleFunctions.insertChapter(
+                          chapter,
+                          subjectRef.path
+                        )
                       await Promise.all(
                         questions
-                          .filter((question) => question.chapterID === chapterRef.id)
+                          .filter(
+                            (question) => question.chapterID === chapterRef.id
+                          )
                           .map(async (question) => {
-                            await dataSampleFunctions.insertQuestion(question, chapterRef.path)
+                            await dataSampleFunctions.insertQuestion(
+                              question,
+                              chapterRef.path
+                            )
                           })
                       )
                     })
@@ -310,7 +400,9 @@ const dataSampleFunctions = {
       )
       return 'Success'
     } catch (error) {
-      throw new Error(`(method) dataSampleFunctions.insertDataSample\n${error} ${error.code}\n`)
+      throw new Error(
+        `(method) dataSampleFunctions.insertDataSample\n${error} ${error.code}\n`
+      )
     }
   },
 }

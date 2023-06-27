@@ -39,6 +39,16 @@ class Student {
     this.#class = value
   }
 
+  #photoURL
+
+  get photoURL() {
+    return this.#photoURL
+  }
+
+  set photoURL(value) {
+    this.#photoURL = value
+  }
+
   #phoneNumber
 
   get phoneNumber() {
@@ -84,6 +94,7 @@ class Student {
     this.#firstName = data.firstName
     this.#lastName = data.lastName
     this.#class = data.class
+    this.#photoURL = data.photoURL
     this.#phoneNumber = data.phoneNumber
     this.#gender = data.gender
     this.#birthdate = data.birthdate

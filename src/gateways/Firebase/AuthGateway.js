@@ -1,36 +1,38 @@
 import firebaseAuth from '@react-native-firebase/auth'
 
+class FBAuthenticationErrorError extends Error {
+  constructor(message, code) {
+    super(message)
+    this.name = 'FBAuthenticationErrorError'
+    this.code = code
+  }
+}
 const auth = {
   async signUp(email, password) {
     try {
-      const userCredential = await firebaseAuth().createUserWithEmailAndPassword(email, password)
+      const userCredential =
+        await firebaseAuth().createUserWithEmailAndPassword(email, password)
       return userCredential
     } catch (error) {
-      if (error.code === 'auth/email-already-in-use') {
-        throw new Error('That email address is already in use!')
-      }
-      if (error.code === 'auth/invalid-email') {
-        throw new Error('That email address is invalid!')
-      }
-      throw error
+      throw new FBAuthenticationErrorError(error.message, error.code)
     }
   },
   async signIn(email, password) {
     try {
-      const userCredential = await firebaseAuth().signInWithEmailAndPassword(email, password)
+      const userCredential = await firebaseAuth().signInWithEmailAndPassword(
+        email,
+        password
+      )
       return userCredential
     } catch (error) {
-      throw new Error('Failed to sign in')
+      throw new FBAuthenticationErrorError(error.message, error.code)
     }
   },
   async signOut() {
     try {
-      const message = await firebaseAuth()
-        .signOut()
-        .then(() => 'User signed out')
-      return message
+      await firebaseAuth().signOut()
     } catch (error) {
-      throw new Error('Failed to sign out')
+      throw new FBAuthenticationErrorError(error.message, error.code)
     }
   },
 }
