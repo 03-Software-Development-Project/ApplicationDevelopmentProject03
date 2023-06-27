@@ -8,12 +8,12 @@
 import React, {useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import SignInScreen from './src/screen/signIn/signInScreen';
-import HomeScreen from './src/screen/home/homeScreen';
-import RegisterScreen from './src/screen/register/registerScreen';
+// import SignInScreen from './src/screen/signIn/signInScreen';
+// import HomeScreen from './src/screen/home/homeScreen';
+// import RegisterScreen from './src/screen/register/registerScreen';
 import {StyleSheet, View, Text, Button} from 'react-native';
 import QuestionScreen from './src/screen/question/questionScreen';
-import ClassScreen from './src/screen/class/classScreen';
+// import ClassScreen from './src/screen/class/classScreen';
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
@@ -24,11 +24,11 @@ function App(): JSX.Element {
     <View style={styles.root}>
       <NavigationContainer>
         <Stack.Navigator initialRouteName="Question">
-          <Stack.Screen name="Register" component={RegisterScreen} />
+          {/* <Stack.Screen name="Register" component={RegisterScreen} />
           <Stack.Screen name="SignIn" component={SignInScreen} />
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} /> */}
           <Stack.Screen name="Question" component={QuestionScreen} />
-          <Stack.Screen name="Class" component={ClassScreen} />
+          {/* <Stack.Screen name="Class" component={ClassScreen} /> */}
         </Stack.Navigator>
       </NavigationContainer>
     </View>
