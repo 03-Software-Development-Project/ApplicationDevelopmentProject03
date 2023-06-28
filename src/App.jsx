@@ -6,7 +6,7 @@
  */
 
 import React from 'react'
-import {SignInScreen} from './screens'
+import { SignInScreen } from './screens'
 
 function App() {
   return <SignInScreen />
