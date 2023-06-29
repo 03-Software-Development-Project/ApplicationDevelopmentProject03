@@ -1,7 +1,8 @@
-import { Text, StyleSheet, View, Alert, ActivityIndicator } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { fetchDataClass, fetchSubCollectionData, handleJoinClass, checkClassOfUser } from './components/handle';
+import { Alert, StyleSheet, Text, View } from 'react-native';
+import { checkUpdateUser, fetchDataClass, fetchSubCollectionData, handleJoinClass } from './components/handle';
 import PopupWithTextInput from './popup';
+
 
 const JoinClass = () => {
   const [data, setData] = useState([]);
@@ -21,14 +22,15 @@ const JoinClass = () => {
       setSubData(subDataRef)
     };
 
-    const handlecheckUser = async () => {
-      const subCollectionData = await checkClassOfUser();
-        setUserClass(subCollectionData)
-        
+    const handleCheckUserClass = () => {
+      checkUpdateUser((updatedUserClass) => {
+        setUserClass(updatedUserClass);
+      });  
     };
 
     fetchData();
-    handlecheckUser();
+    handleCheckUserClass();
+    
   }, []);
 
   //Lấy data và keyCode của class 
@@ -53,6 +55,7 @@ const JoinClass = () => {
 
   //Xử lý 2 onPress
   const handlePress = (index) => {
+    console.log(userClass.name)
     if (userClass == '') {
       selectClass(index);
       openModal()
@@ -60,7 +63,7 @@ const JoinClass = () => {
     else {
       Alert.alert(
         'Thông báo !',
-        'Bạn đã thuộc lớp ' + userClass,
+        'Bạn đã thuộc lớp ' + userClass.name,
         [
           { text: 'Đóng', onPress: () => console.log('Đóng thông báo') }
         ]

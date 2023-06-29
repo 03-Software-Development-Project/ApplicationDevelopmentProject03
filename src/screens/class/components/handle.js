@@ -1,4 +1,4 @@
-import firebase from '../../../../firebase.js'
+import firebase from '../../../../firebase.js';
 
 export const fetchDataClass = async () => {
     try {
@@ -66,17 +66,13 @@ export const handleJoinClass = (code, value, dataID) => {
         });
 }
 
-export const checkClassOfUser = async ()  => {
-    try {
-    const checkDataUser = await firebase
-    .firestore()
-    .collection('students')
-    //cái này đang set cứng
-    .doc('hhhhhhh5')
-    .get()
-        const subCollectionData = checkDataUser.data().class
-        return subCollectionData
-    } catch (error) {
-        console.error(error);
-    }
+export const checkUpdateUser = async (callback) => {
+    firebase
+        .firestore()
+        .collection('students')
+        .doc('hhhhhhh5')
+        .onSnapshot((snapshot) => {
+            const updatedUserClass = snapshot.get('class');
+            callback(updatedUserClass)
+        });
 }
