@@ -56,8 +56,8 @@ export const handleJoinClass = (code, value, dataId, docId) => {
                             .doc('hhhhhhh5')
                             .update({
                                 class: {
-                                    classId: docId,
-                                    detailsClass: dataId
+                                    classId: docId || '',
+                                    detailsClass: dataId || ''
                                 }
                                 
                             })

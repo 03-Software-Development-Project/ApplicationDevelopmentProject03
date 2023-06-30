@@ -21,11 +21,18 @@ const JoinClass = () => {
 
   //Fetch Data Collection và ID document của class
   useEffect(() => {
+    const handleCheckUserClass = async () => {
+      checkUpdateUser((updatedUserClass) => {
+        setUserClass(updatedUserClass);
+        fetchDataUser()
+        //console.log(updatedUserClass)
+      });
+    };
+
     const fetchDataUser = async () => {
       const dataRef = await getDataUser();
       setDataUserClassId(dataRef.class.classId)
       setDataUserDetailsClass(dataRef.class.detailsClass)
-      console.log(dataRef.class.detailsClass)
     };
 
     const fetchData = async () => {
@@ -34,15 +41,9 @@ const JoinClass = () => {
       setSubData(subDataRef)
     };
 
-    const handleCheckUserClass = () => {
-      checkUpdateUser((updatedUserClass) => {
-        setUserClass(updatedUserClass);
-      });  
-    };
-
+    handleCheckUserClass();
     fetchDataUser();
     fetchData();
-    handleCheckUserClass();
   }, []);
 
   //Lấy data và keyCode của class 
@@ -69,9 +70,10 @@ const JoinClass = () => {
   const handleOnPress = (index) => {
     const selectedDocId = subData[index];
     console.log(selectedDocId)
-    if (dataUserClassId === '') {
+    console.log(dataUserClassId)
+    if (dataUserClassId === undefined) {
       selectClass(index);
-      openModal()
+      openModal();
     }
     else {
       if (selectedDocId && selectedDocId === dataUserClassId) {
