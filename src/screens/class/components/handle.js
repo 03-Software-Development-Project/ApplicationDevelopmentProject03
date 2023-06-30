@@ -1,8 +1,9 @@
-import firebase from '../../../../firebase.js';
+import firebase from '../../../../firebase.js'
 
 export const fetchDataClass = async () => {
     try {
-        const response = await firebase.firestore()
+        const response = await firebase
+            .firestore()
             .collection('classes')
             .get();
         const dataRef = response.docs.map((doc) => doc.data());
@@ -29,9 +30,10 @@ export const fetchSubCollectionData = async (selectedDocId) => {
     }
 };
 
-export const handleJoinClass = (code, value, dataID) => {
+export const handleJoinClass = (code, value, dataId, docId) => {
     //get data user
-    firebase.firestore()
+    firebase
+        .firestore()
         .collection('students')
         //cái này đang set cứng
         .doc('hhhhhhh5')
@@ -53,7 +55,11 @@ export const handleJoinClass = (code, value, dataID) => {
                             //cái này đang set cứng
                             .doc('hhhhhhh5')
                             .update({
-                                class: dataID,
+                                class: {
+                                    classId: docId,
+                                    detailsClass: dataId
+                                }
+                                
                             })
                             .then(() => {
                                 console.log('User updated!');
@@ -75,4 +81,19 @@ export const checkUpdateUser = async (callback) => {
             const updatedUserClass = snapshot.get('class');
             callback(updatedUserClass)
         });
+}
+
+export const getDataUser = async () => {
+    try {
+        const response = await firebase
+        .firestore()
+        .collection('students')
+        .doc('hhhhhhh5')
+        .get()
+        const dataRef = response.data()
+        return dataRef
+        
+    } catch (error) {
+        console.log(error)
+    }
 }

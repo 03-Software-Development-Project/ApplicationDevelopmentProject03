@@ -1,6 +1,7 @@
+import { Text, StyleSheet, View, Alert, ActivityIndicator } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
-import { checkUpdateUser, fetchDataClass, fetchSubCollectionData, handleJoinClass } from './components/handle';
+import { useNavigation } from '@react-navigation/native';
+import { fetchDataClass, fetchSubCollectionData, handleJoinClass, checkUpdateUser, getDataUser } from './components/handle';
 import PopupWithTextInput from './popup';
 
 
@@ -8,14 +9,25 @@ const JoinClass = () => {
   const [data, setData] = useState([]);
   const [subData, setSubData] = useState([]);
   const [docId, setDocId] = useState('');
-  const [dataID, setDataID] = useState([])
+  const [dataId, setDataId] = useState([]);
+  const [dataUserClassId, setDataUserClassId] = useState('');
+  const [dataUserDetailsClass, setDataUserDetailsClass] = useState([])
   const [code, setCode] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const [userClass, setUserClass] = useState('');
 
+  const navigation = useNavigation();
+
   //Fetch Data Collection và ID document của class
   useEffect(() => {
+    const fetchDataUser = async () => {
+      const dataRef = await getDataUser();
+      setDataUserClassId(dataRef.class.classId)
+      setDataUserDetailsClass(dataRef.class.detailsClass)
+      console.log(dataRef.class.detailsClass)
+    };
+
     const fetchData = async () => {
       const { dataRef, subDataRef } = await fetchDataClass();
       setData(dataRef)
@@ -28,9 +40,9 @@ const JoinClass = () => {
       });  
     };
 
+    fetchDataUser();
     fetchData();
     handleCheckUserClass();
-    
   }, []);
 
   //Lấy data và keyCode của class 
@@ -38,7 +50,7 @@ const JoinClass = () => {
     const selectedData = data[index];
     const selectedDocId = subData[index];
     setDocId(selectedDocId)
-    setDataID(selectedData)
+    setDataId(selectedData)
     console.log("Selected Doc ID:", selectedDocId);
     //console.log("Selected Data:", selectedData);
 
@@ -54,20 +66,27 @@ const JoinClass = () => {
   }
 
   //Xử lý 2 onPress
-  const handlePress = (index) => {
-    console.log(userClass.name)
-    if (userClass == '') {
+  const handleOnPress = (index) => {
+    const selectedDocId = subData[index];
+    console.log(selectedDocId)
+    if (dataUserClassId === '') {
       selectClass(index);
       openModal()
-    } 
+    }
     else {
-      Alert.alert(
+      if (selectedDocId && selectedDocId === dataUserClassId) {
+        navigation.navigate('Subject', { dataUserClassId });
+      }
+      else {
+        Alert.alert(
         'Thông báo !',
-        'Bạn đã thuộc lớp ' + userClass.name,
+        'Bạn đã thuộc lớp ' + dataUserDetailsClass.name,
         [
           { text: 'Đóng', onPress: () => console.log('Đóng thông báo') }
         ]
       );
+      }
+
     }
   }
 
@@ -81,7 +100,7 @@ const JoinClass = () => {
 
   const handlePopupSubmit = (value) => {
     //get data user
-    handleJoinClass(value, code, dataID)
+    handleJoinClass(value, code, dataId, docId)
 
     // Lưu giá trị đã nhập vào state
     setInputValue(value);
@@ -96,7 +115,7 @@ const JoinClass = () => {
       {data.map((item, index) => (
         <Text
           key={index}
-          onPress={() => handlePress(index)} 
+          onPress={() => handleOnPress(index)} 
           style={styles.text}>{item.name}</Text>
       ))}
       
