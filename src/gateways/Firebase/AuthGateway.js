@@ -1,9 +1,9 @@
 import firebaseAuth from '@react-native-firebase/auth'
 
-class FBAuthenticationErrorError extends Error {
+class FBAuthenticationError extends Error {
   constructor(message, code) {
     super(message)
-    this.name = 'FBAuthenticationErrorError'
+    this.name = 'FBAuthenticationError'
     this.code = code
   }
 }
@@ -14,7 +14,7 @@ const auth = {
         await firebaseAuth().createUserWithEmailAndPassword(email, password)
       return userCredential
     } catch (error) {
-      throw new FBAuthenticationErrorError(error.message, error.code)
+      throw new FBAuthenticationError(error.message, error.code)
     }
   },
   async signIn(email, password) {
@@ -25,15 +25,18 @@ const auth = {
       )
       return userCredential
     } catch (error) {
-      throw new FBAuthenticationErrorError(error.message, error.code)
+      throw new FBAuthenticationError(error.message, error.code)
     }
   },
   async signOut() {
     try {
       await firebaseAuth().signOut()
     } catch (error) {
-      throw new FBAuthenticationErrorError(error.message, error.code)
+      throw new FBAuthenticationError(error.message, error.code)
     }
+  },
+  onAuthStateChanged(listener) {
+    return firebaseAuth().onAuthStateChanged(listener)
   },
 }
 Object.freeze(auth)

@@ -36,10 +36,10 @@ const db = {
   async getStudent(studentID) {
     try {
       const doc = await firestore().collection('students').doc(studentID).get()
-      if (doc.exists()) {
+      if (doc.exists) {
         return doc
       }
-      throw new CloudFirestoreError('No such document!', '')
+      throw new CloudFirestoreError('No such document!', 'no-doc')
     } catch (error) {
       throw new CloudFirestoreError(error.message, error.code)
     }

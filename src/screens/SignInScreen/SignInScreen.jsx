@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
   Image,
   KeyboardAvoidingView,
@@ -9,9 +9,16 @@ import {
   View,
 } from 'react-native'
 import {color} from '../../constants'
+import {StudentRepository} from '../../repositories'
 import styles from './styles'
 
-function SignInScreen({navigator}) {
+function SignInScreen({navigation}) {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const signIn = () => {
+    StudentRepository.signIn(username, password)
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.safeArea}
@@ -35,6 +42,8 @@ function SignInScreen({navigator}) {
               style={styles.textInput}
               placeholder="Username"
               placeholderTextColor={color['greyscale.400']}
+              value={username}
+              onChangeText={setUsername}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -43,6 +52,8 @@ function SignInScreen({navigator}) {
               style={styles.textInput}
               placeholder="Password"
               placeholderTextColor={color['greyscale.400']}
+              value={password}
+              onChangeText={setPassword}
             />
           </View>
           <Text
@@ -53,7 +64,9 @@ function SignInScreen({navigator}) {
             }}>
             Forgot Password?
           </Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={signIn}>
             <Text style={styles.buttonText}>Sign in</Text>
           </TouchableOpacity>
         </View>

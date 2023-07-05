@@ -29,6 +29,10 @@ class Student {
     this.#lastName = value
   }
 
+  get displayName() {
+    return `${this.#lastName} ${this.#firstName}`
+  }
+
   #class
 
   get class() {
@@ -100,6 +104,5 @@ class Student {
     this.#birthdate = data.birthdate
     this.#address = data.address
   }
-  // Define your model properties and methods here
 }
 export default Student
