@@ -1,36 +1,35 @@
-import { Text, StyleSheet, View, Alert, ActivityIndicator } from 'react-native';
-import React, { useEffect, useState } from 'react';
-import { useRoute, useNavigation } from '@react-navigation/native';
-import { fetchDataSubject } from './components/handle';
+import {useNavigation, useRoute} from '@react-navigation/native'
+import React, {useEffect, useState} from 'react'
+import {StyleSheet, Text, View} from 'react-native'
+import {fetchDataSubject} from './components/handle'
 
-const Subject = () => {
-  const route = useRoute();
-  const { dataUserClassId } = route.params;
+function Subject() {
+  const route = useRoute()
+  const {dataUserClassId} = route.params
 
-  const [subject, setSubject] = useState([]);
-  const [subjectId, setSubjectId] = useState([]);
+  const [subject, setSubject] = useState([])
+  const [subjectId, setSubjectId] = useState([])
 
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   useEffect(() => {
-
     const getDataSubject = async () => {
-      const { dataRef, dataIdRef } = await fetchDataSubject(dataUserClassId)
+      const {dataRef, dataIdRef} = await fetchDataSubject(dataUserClassId)
       setSubject(dataRef)
       setSubjectId(dataIdRef)
-      //console.log(dataIdRef)
-      //console.log(dataRef)
-    };
+      // console.log(dataIdRef)
+      // console.log(dataRef)
+    }
 
-    getDataSubject();
-  }, []);
+    getDataSubject()
+  }, [])
 
   const selectSubject = (index) => {
     const dataSubjectId = subjectId[index]
-    navigation.navigate('Chapter', { dataSubjectId, dataUserClassId })
-    console.log('id môn học: ',dataSubjectId)
+    navigation.navigate('Chapter', {dataSubjectId, dataUserClassId})
+    console.log('id môn học: ', dataSubjectId)
   }
-  
+
   const handleOnPress = (index) => {
     selectSubject(index)
   }
@@ -38,14 +37,16 @@ const Subject = () => {
   return (
     <View>
       {subject.map((item, index) => (
-        <Text 
-        key={index}
-        onPress={() => handleOnPress(index)}
-        style={styles.text}>{item.name}</Text>
+        <Text
+          key={index}
+          onPress={() => handleOnPress(index)}
+          style={styles.text}>
+          {item.name}
+        </Text>
       ))}
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -56,6 +57,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
   },
-});
+})
 
-export default Subject;
+export default Subject

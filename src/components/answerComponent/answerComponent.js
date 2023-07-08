@@ -1,17 +1,18 @@
-import React, {Component} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {Component} from 'react'
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+
 class AnswerComponent extends Component {
   /* `handlePress` is a method that is called when the user presses on an answer. It extracts the
 `answer` and `onAnswerSelect` props from the component's props. Then, it calls the `onAnswerSelect`
 function with the `answer.id` as an argument, which is a callback function passed down from the
 parent component. Finally, it logs the `onAnswerSelect` function to the console. */
   handlePress = () => {
-    const {answer, onAnswerSelect} = this.props;
-    onAnswerSelect(answer.id);
-  };
+    const {answer, onAnswerSelect} = this.props
+    onAnswerSelect(answer.id)
+  }
 
   render() {
-    const {answer} = this.props;
+    const {answer} = this.props
 
     return (
       <View style={styles.answerContainer}>
@@ -19,15 +20,14 @@ parent component. Finally, it logs the `onAnswerSelect` function to the console.
           onPress={this.handlePress}
           style={styles.touchableOpacityContainer}>
           <Text style={styles.answerText}>
-            {answer.id}. {answer.text}
+            {answer.id}. {answer}
           </Text>
         </TouchableOpacity>
       </View>
-    );
+    )
   }
-  TouchableOpacity;
 }
-export default AnswerComponent;
+export default AnswerComponent
 
 const styles = StyleSheet.create({
   touchableOpacityContainer: {marginLeft: 10},
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
   answerText: {
     fontSize: 16,
   },
-});
+})
