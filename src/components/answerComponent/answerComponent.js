@@ -20,7 +20,7 @@ parent component. Finally, it logs the `onAnswerSelect` function to the console.
           onPress={this.handlePress}
           style={styles.touchableOpacityContainer}>
           <Text style={styles.answerText}>
-            {answer.id}. {answer}
+            {answer.id}. {answer.text}
           </Text>
         </TouchableOpacity>
       </View>

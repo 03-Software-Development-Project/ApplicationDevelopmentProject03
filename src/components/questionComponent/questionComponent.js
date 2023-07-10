@@ -7,7 +7,7 @@ class QuestionComponent extends Component {
   takes in the `selectedAnswerId` as a parameter and uses it to find the selected answer from the
   list of answers for the current question. It then logs the selected answer and the difficulty of
   the question, and checks if the selected answer is correct or not by comparing it to the
-  `correct_answer` property of the question. Finally, it calls the `onAnswerSelect` function passed
+  `correctAnswer` property of the question. Finally, it calls the `onAnswerSelect` function passed
   down as a prop, passing in the `selectedAnswerId`. */
   handleAnswerSelect = (selectedAnswerId) => {
     const {question, onAnswerSelect} = this.props
@@ -27,12 +27,12 @@ class QuestionComponent extends Component {
     const difficulty = this.getQuestionDifficulty(question)
     console.log(`Question difficulty: ${difficulty}`)
     console.log(`Selected answer: ${selectedAnswer.id}`)
-    console.log(`Correct answer: ${question.correct_answer}`)
+    console.log(`Correct answer: ${question.correctAnswer}`)
   }
 
   logAnswerResult = (selectedAnswer, question) => {
     console.log('============================================================')
-    if (selectedAnswer && selectedAnswer.id === question.correct_answer) {
+    if (selectedAnswer && selectedAnswer.id === question.correctAnswer) {
       console.log('🎉 Correct answer! 🎉')
       console.log('Well done!')
     } else {
@@ -45,24 +45,23 @@ class QuestionComponent extends Component {
 
   render() {
     const {question} = this.props
-    console.log(question)
     return (
       <View
         key={question.id}
         style={styles.questionContainer}>
-        <Text style={styles.questionText}>{question.content}</Text>
-        {/* {question.answers.map((answer) => (
+        <Text style={styles.questionText}>{question.question}</Text>
+        {question.answers.map((answer) => (
           <AnswerComponent
             key={answer.id}
             answer={answer}
             onAnswerSelect={this.handleAnswerSelect}
           />
-        ))} */}
-        <AnswerComponent
+        ))}
+        {/* <AnswerComponent
           key={question.id}
           answer={question.solutionA}
           onAnswerSelect={this.handleAnswerSelect}
-        />
+        /> */}
       </View>
     )
   }

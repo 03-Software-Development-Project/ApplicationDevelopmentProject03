@@ -32,10 +32,7 @@ class QuestionScreen extends Component {
       (answer) => answer.id === selectedAnswerId
     )
 
-    if (
-      selectedAnswer &&
-      selectedAnswer.id === currentQuestion.correct_answer
-    ) {
+    if (selectedAnswer && selectedAnswer.id === currentQuestion.correctAnswer) {
       await this.incrementCorrectAnswers()
     }
 
@@ -93,7 +90,7 @@ class QuestionScreen extends Component {
   }
 
   navigateToHomeScreen = () => {
-    this.props.navigation.navigate('Home')
+    this.props.navigation.navigate('Class')
   }
 
   /* The `getLimitedQuestions` function is filtering and shuffling the questions from a JSON file based
@@ -135,7 +132,6 @@ class QuestionScreen extends Component {
 
   getLimitedQuestion = (index) => {
     const {limitedQuestions} = this.state
-    console.log(`this is the question:${JSON.stringify(limitedQuestions)}`)
     return limitedQuestions[index]
   }
 
