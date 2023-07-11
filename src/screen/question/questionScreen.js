@@ -11,6 +11,7 @@ import {getLimitedQuestions as questionData} from './model/questionModel'
 class QuestionScreen extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
       currentQuestionIndex: 0,
       correctAnswers: 0,
@@ -43,6 +44,29 @@ class QuestionScreen extends Component {
     }
   }
 
+  handleEndOfQuestions = async (correctAnswers) => {
+    const hasPassed = correctAnswers >= PASS_THRESHOLD
+
+    if (hasPassed) {
+      this.handleTestPassed()
+    } else {
+      this.handleTestFailed()
+    }
+
+    this.resetQuestionState()
+    this.navigateToHomeScreen()
+  }
+
+  handleTestPassed() {
+    this.congrateMessage = 'Congratulations! Passed the test! Well done!'
+    console.log(this.congrateMessage)
+  }
+
+  handleTestFailed() {
+    this.failedMessage = 'Oops! Failed the test! Keep practicing!'
+    console.log(this.failedMessage)
+  }
+
   incrementCorrectAnswers = () => {
     this.setState((prevState) => {
       const newCorrectAnswers = prevState.correctAnswers + 1
@@ -59,27 +83,6 @@ class QuestionScreen extends Component {
     this.setState((prevState) => ({
       currentQuestionIndex: prevState.currentQuestionIndex + 1,
     }))
-  }
-
-  handleEndOfQuestions = async (correctAnswers) => {
-    const hasPassed = correctAnswers >= PASS_THRESHOLD
-
-    if (hasPassed) {
-      this.handleTestPassed()
-    } else {
-      this.handleTestFailed()
-    }
-
-    this.resetQuestionState()
-    this.navigateToHomeScreen()
-  }
-
-  handleTestPassed = () => {
-    console.log('Congratulations! Passed the test! Well done!')
-  }
-
-  handleTestFailed = () => {
-    console.log('Oops! Failed the test! Keep practicing!')
   }
 
   resetQuestionState = () => {
