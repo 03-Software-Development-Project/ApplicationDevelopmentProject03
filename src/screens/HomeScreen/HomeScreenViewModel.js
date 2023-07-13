@@ -1,21 +1,43 @@
-class HomeScreenViewModel {
-  updateData = null
+/* eslint-disable no-param-reassign */
+import {createSlice} from '@reduxjs/toolkit'
 
-  // constructor() {}
-  // Your view model initialization code here
+const stateSlice = createSlice({
+  name: 'HomeScreenViewModel',
+  initialState: {
+    error: {},
+    data: {
+      classes: {},
+    },
+  },
+  reducers: {
+    loadClasses: (state, action) => {
+      state.data.classes = action.payload
+    },
+    handleError: (state, action) => {
+      state.error = action.payload
+    },
+    dismissError: (state) => {
+      state.error = {}
+    },
+  },
+})
 
-  setUpdateData(updateData) {
-    // Set the updateData function from the screen component
-    this.updateData = updateData
-  }
-
-  doSomething() {
-    // Example function that performs some action
-    // You can add your own functionality here
-    // Update the data state in the screen component
-    const newData = 'New data from view model'
-    this.updateData(newData)
-  }
+const HomeScreenViewModel = {
+  sliceReducer: stateSlice.reducer,
+  actions: stateSlice.actions,
+  selfSelector: (state) => state.HomeScreenViewModel,
 }
 
-export default new HomeScreenViewModel()
+export default HomeScreenViewModel
+export const {handleError, dismissError} = HomeScreenViewModel.actions
+
+// THUNKS
+export function loadClasses() {
+  return (dispatch) => {}
+}
+
+// SELECTORS
+export const errorSelector = createSelector(
+  HomeScreenViewModel.selfSelector,
+  (vm) => vm.error
+)

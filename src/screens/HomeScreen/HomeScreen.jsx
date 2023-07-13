@@ -9,6 +9,7 @@ import {
 } from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import Swiper from 'react-native-swiper'
+import img from '../../assets/img'
 import {SharedClasscardComponent} from '../../components/shared'
 import {color, typography} from '../../constants'
 import {StudentRepository} from '../../repositories'
@@ -19,7 +20,7 @@ function HomeScreen() {
   const classes = [
     {
       id: '1',
-      image: require('../../assets/img/Slide01.png'),
+      image: img.Slide01,
       courseID: 'LIFESTYLE101',
       courseTitle:
         'Mastering a Healthy and Balanced Lifestyle for Optimal Well-being',
@@ -27,7 +28,7 @@ function HomeScreen() {
     },
     {
       id: '2',
-      image: require('../../assets/img/Slide02.png'),
+      image: img.Slide02,
       courseID: 'CODING202',
       courseTitle:
         'Comprehensive Coding: From Fundamentals to Advanced Techniques',
@@ -35,7 +36,7 @@ function HomeScreen() {
     },
     {
       id: '3',
-      image: require('../../assets/img/Slide03.png'),
+      image: img.Slide03,
       courseID: 'MEDITATE303',
       courseTitle:
         'Meditation and Mindfulness: Cultivating Inner Peace and Clarity',
@@ -43,7 +44,7 @@ function HomeScreen() {
     },
     {
       id: '4',
-      image: require('../../assets/img/Slide04.png'),
+      image: img.Slide04,
       courseID: 'GUITAR404',
       courseTitle:
         'Unleashing Your Inner Rockstar: Guitar Techniques and Musical Theory',
@@ -51,7 +52,7 @@ function HomeScreen() {
     },
     {
       id: '5',
-      image: require('../../assets/img/Slide05.png'),
+      image: img.Slide05,
       courseID: 'ARTISTRY505',
       courseTitle:
         'The Artistic Journey: Exploring Boundless Creativity and Self-Expression',
@@ -61,38 +62,38 @@ function HomeScreen() {
   const category = [
     {
       id: '1',
-      image: require('../../assets/img/Category01.png'),
+      image: img.Category01,
       categoryTitle: 'Art and Humanities',
       categoryDescription: 'History, Music & Art, Philosophy',
     },
     {
       id: '2',
-      image: require('../../assets/img/Category02.png'),
+      image: img.Category02,
       categoryTitle: 'Business',
       categoryDescription: 'Leadership, Finance, Marketing',
     },
     {
       id: '3',
-      image: require('../../assets/img/Category03.png'),
+      image: img.Category03,
       categoryTitle: 'Computer Science',
       categoryDescription: 'Software Dev, Mobile, Algorithm',
     },
     {
       id: '4',
-      image: require('../../assets/img/Category04.png'),
+      image: img.Category04,
       categoryTitle: 'Design',
       categoryDescription: 'User Interface, 3D Animation',
     },
 
     {
       id: '5',
-      image: require('../../assets/img/Category05.png'),
+      image: img.Category05,
       categoryTitle: 'Finance & Accounting',
       categoryDescription: 'Fincancial Modeling, Investment',
     },
     {
       id: '6',
-      image: require('../../assets/img/Category06.png'),
+      image: img.Category06,
       categoryTitle: 'Information Technology',
       categoryDescription: 'Cloud Computing, Security',
     },
@@ -103,7 +104,7 @@ function HomeScreen() {
         <View style={styles.headerView}>
           <Text
             style={[typography['heading.h4'], {fontWeight: 700}, {flex: 1}]}>
-            Course in class
+            Mind Snap
           </Text>
 
           <TouchableOpacity onPress={() => StudentRepository.signOut()}>

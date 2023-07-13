@@ -7,7 +7,8 @@ const styles = StyleSheet.create({
   },
   safeArea: {
     flex: 1,
-    marginTop: 50,
+    paddingTop: 0,
+    backgroundColor: 'white',
   },
   childView: {
     margintop: 20,
@@ -36,7 +37,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'baseline',
     paddingHorizontal: 16,
-    // backgroundColor: 'blue',
   },
   sectionTitle: {
     flex: 1,
