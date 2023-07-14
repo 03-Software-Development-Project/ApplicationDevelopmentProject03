@@ -171,12 +171,26 @@ const db = {
         .doc(questionID)
       await docRef.set({
         difficulty,
-        content,
-        solutionA,
-        solutionB,
-        solutionC,
-        solutionD,
-        rightSolution,
+        question: content,
+        answers: [
+          {
+            id: 'A',
+            text: solutionA,
+          },
+          {
+            id: 'B',
+            text: solutionB,
+          },
+          {
+            id: 'C',
+            text: solutionC,
+          },
+          {
+            id: 'D',
+            text: solutionD,
+          },
+        ],
+        correctAnswer: rightSolution.replace('solution', ''),
       })
       return docRef
     } catch (error) {

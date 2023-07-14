@@ -1,21 +1,46 @@
-class SignInScreenViewModel {
-  updateData = null
+/* eslint-disable no-param-reassign */
+import {createSelector, createSlice} from '@reduxjs/toolkit'
+import {StudentRepository} from '../../repositories'
 
-  // constructor() {}
-  // Your view model initialization code here
+const stateSlice = createSlice({
+  name: 'SignInScreenViewModel',
+  initialState: {
+    error: {},
+    data: {},
+  },
+  reducers: {
+    handleError: (state, action) => {
+      state.error = action.payload
+    },
+    dismissError: (state) => {
+      state.error = {}
+    },
+  },
+})
 
-  setUpdateData(updateData) {
-    // Set the updateData function from the screen component
-    this.updateData = updateData
-  }
+const SignInScreenViewModel = {
+  sliceReducer: stateSlice.reducer,
+  actions: stateSlice.actions,
+  selfSelector: (state) => state.SignInScreenViewModel,
+}
 
-  doSomething() {
-    // Example function that performs some action
-    // You can add your own functionality here
-    // Update the data state in the screen component
-    const newData = 'New data from view model'
-    this.updateData(newData)
+export default SignInScreenViewModel
+export const {handleError, dismissError} = SignInScreenViewModel.actions
+
+// THUNKS
+export function signIn(email, password) {
+  return async (dispatch) => {
+    try {
+      await StudentRepository.signIn(email, password)
+    } catch (err) {
+      const {name, code, message} = err
+      dispatch(handleError({name, code, message}))
+    }
   }
 }
 
-export default new SignInScreenViewModel()
+// SELECTORS
+export const errorSelector = createSelector(
+  SignInScreenViewModel.selfSelector,
+  (vm) => vm.error
+)

@@ -1,12 +1,20 @@
 import {FirebaseGateway as FBGateway} from '../gateways'
 import Student from '../models/Student'
 
+class StudentRepositoryError extends Error {
+  constructor(err) {
+    super(err.message)
+    this.name = 'StudentRepositoryError'
+    this.code = err.code
+  }
+}
+
 const StudentRepository = {
   async signOut() {
     try {
       await FBGateway.signOut()
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      throw new StudentRepositoryError(err)
     }
   },
 
@@ -14,8 +22,8 @@ const StudentRepository = {
     try {
       const {user} = await FBGateway.signIn(email, password)
       return user
-    } catch (error) {
-      throw new Error(error)
+    } catch (err) {
+      throw new StudentRepositoryError(err)
     }
   },
 

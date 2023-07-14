@@ -29,21 +29,36 @@ function MainStack() {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {!isStudentSignedIn ? (
         // User isn't signed in
-        <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{
-            title: 'Sign in',
-            animationTypeForReplace: 'pop',
-          }}
-        />
+        <Stack.Group>
+          <Stack.Screen
+            name="SignIn"
+            component={SignInScreen}
+            options={{
+              title: 'Sign in',
+              animationTypeForReplace: 'pop',
+            }}
+          />
+        </Stack.Group>
       ) : (
         // User is signed in
-        <Stack.Screen
-          name="Home"
-          component={HomeScreen}
-        />
+        <Stack.Group>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+          />
+        </Stack.Group>
       )}
+
+      <Stack.Group navigationKey={isStudentSignedIn ? 'user' : 'guest'}>
+        {/* <Stack.Screen
+          name="Help"
+          component={HelpScreen}
+        />
+        <Stack.Screen
+          name="About"
+          component={AboutScreen}
+        /> */}
+      </Stack.Group>
     </Stack.Navigator>
   )
 }

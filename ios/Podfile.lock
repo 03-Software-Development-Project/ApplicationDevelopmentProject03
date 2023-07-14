@@ -1082,7 +1082,9 @@ PODS:
   - React-jsinspector (0.72.1)
   - React-logger (0.72.1):
     - glog
-  - react-native-safe-area-context (4.6.3):
+  - react-native-pager-view (6.2.0):
+    - React-Core
+  - react-native-safe-area-context (4.6.4):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -1218,7 +1220,36 @@ PODS:
     - Firebase/Storage (= 10.11.0)
     - React-Core
     - RNFBApp
-  - RNScreens (3.22.0):
+  - RNGestureHandler (2.12.0):
+    - React-Core
+  - RNReanimated (3.3.0):
+    - DoubleConversion
+    - FBLazyVector
+    - glog
+    - RCT-Folly
+    - RCTRequired
+    - RCTTypeSafety
+    - React-callinvoker
+    - React-Core
+    - React-Core/DevSupport
+    - React-Core/RCTWebSocket
+    - React-CoreModules
+    - React-cxxreact
+    - React-jsi
+    - React-jsiexecutor
+    - React-jsinspector
+    - React-RCTActionSheet
+    - React-RCTAnimation
+    - React-RCTAppDelegate
+    - React-RCTBlob
+    - React-RCTImage
+    - React-RCTLinking
+    - React-RCTNetwork
+    - React-RCTSettings
+    - React-RCTText
+    - ReactCommon/turbomodule/core
+    - Yoga
+  - RNScreens (3.22.1):
     - React-Core
     - React-RCTImage
   - SocketRocket (0.6.1)
@@ -1246,6 +1277,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - React-logger (from `../node_modules/react-native/ReactCommon/logger`)
+  - react-native-pager-view (from `../node_modules/react-native-pager-view`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-perflogger (from `../node_modules/react-native/ReactCommon/reactperflogger`)
@@ -1270,6 +1302,8 @@ DEPENDENCIES:
   - "RNFBFunctions (from `../node_modules/@react-native-firebase/functions`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - "RNFBStorage (from `../node_modules/@react-native-firebase/storage`)"
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -1343,6 +1377,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   React-logger:
     :path: "../node_modules/react-native/ReactCommon/logger"
+  react-native-pager-view:
+    :path: "../node_modules/react-native-pager-view"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   React-NativeModulesApple:
@@ -1391,6 +1427,10 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNFBStorage:
     :path: "../node_modules/@react-native-firebase/storage"
+  RNGestureHandler:
+    :path: "../node_modules/react-native-gesture-handler"
+  RNReanimated:
+    :path: "../node_modules/react-native-reanimated"
   RNScreens:
     :path: "../node_modules/react-native-screens"
   Yoga:
@@ -1442,7 +1482,8 @@ SPEC CHECKSUMS:
   React-jsiexecutor: d870d2b6fe0a060e2dcf675e9d801552ead06c84
   React-jsinspector: d0b5bfd1085599265f4212034321e829bdf83cc0
   React-logger: b8103c9b04e707b50cdd2b1aeb382483900cbb37
-  react-native-safe-area-context: 36cc67648134e89465663b8172336a19eeda493d
+  react-native-pager-view: 0ccb8bf60e2ebd38b1f3669fa3650ecce81db2df
+  react-native-safe-area-context: 68b07eabfb0d14547d36f6929c0e98d818064f02
   React-NativeModulesApple: 8188d33dc935ae56e48bf45a20ff8b9b12407887
   React-perflogger: 3d501f34c8d4b10cb75f348e43591765788525ad
   React-RCTActionSheet: f5335572c979198c0c3daff67b07bd1ad8370c1d
@@ -1466,7 +1507,9 @@ SPEC CHECKSUMS:
   RNFBFunctions: f8acac64c44f7f91f7ccb41cab47963424ee14e6
   RNFBMessaging: 3aca7a5b3b1f79a9ee75026662ea57693436a338
   RNFBStorage: 693965df29a3c4b67e3bd1f817dd21f6a7cf6df6
-  RNScreens: 68fd1060f57dd1023880bf4c05d74784b5392789
+  RNGestureHandler: dec4645026e7401a0899f2846d864403478ff6a5
+  RNReanimated: 3ffa3d63576ecd26a4f8772d03029cccaf41b5d7
+  RNScreens: 50ffe2fa2342eabb2d0afbe19f7c1af286bc7fb3
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   Yoga: 65286bb6a07edce5e4fe8c90774da977ae8fc009
 

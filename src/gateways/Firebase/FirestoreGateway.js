@@ -1,10 +1,10 @@
 import firestore from '@react-native-firebase/firestore'
 
 class CloudFirestoreError extends Error {
-  constructor(message, code) {
-    super(message)
+  constructor(err) {
+    super(err.message)
     this.name = 'CloudFirestoreError'
-    this.code = code
+    this.code = err.code
   }
 }
 const db = {
@@ -28,8 +28,8 @@ const db = {
         address,
       })
       return docRef
-    } catch (error) {
-      throw new CloudFirestoreError(error)
+    } catch (err) {
+      throw new CloudFirestoreError(err)
     }
   },
 
@@ -39,9 +39,28 @@ const db = {
       if (doc.exists) {
         return doc
       }
-      throw new CloudFirestoreError('No such document!', 'no-doc')
-    } catch (error) {
-      throw new CloudFirestoreError(error.message, error.code)
+      throw new CloudFirestoreError('No such student!', 'no-doc')
+    } catch (err) {
+      throw new CloudFirestoreError(err)
+    }
+  },
+
+  async getClasses(limit) {
+    try {
+      const querySnapshot = await firestore()
+        .collection('classes')
+        .orderBy('createdDate')
+        .limit(limit)
+        .get()
+      if (!querySnapshot.empty) {
+        return querySnapshot.docs.map((doc) => doc.data())
+      }
+      throw new CloudFirestoreError(
+        '"classes" collection is empty of non-exist',
+        'no-docs'
+      )
+    } catch (err) {
+      throw new CloudFirestoreError(err)
     }
   },
 }

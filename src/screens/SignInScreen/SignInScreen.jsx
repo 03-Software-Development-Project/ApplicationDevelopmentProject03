@@ -8,15 +8,22 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import {useDispatch, useSelector} from 'react-redux'
+import {SharedErrorModalComponent} from '../../components/shared'
 import {color} from '../../constants'
-import {StudentRepository} from '../../repositories'
+import {dismissError, errorSelector, signIn} from './SignInScreenViewModel'
 import styles from './styles'
 
 function SignInScreen({navigation}) {
+  const dispatch = useDispatch()
+
+  const error = useSelector(errorSelector)
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const signIn = () => {
-    StudentRepository.signIn(username, password)
+
+  const signInButtonPressed = () => {
+    dispatch(signIn(username, password))
   }
 
   return (
@@ -66,11 +73,17 @@ function SignInScreen({navigation}) {
           </Text>
           <TouchableOpacity
             style={styles.button}
-            onPress={signIn}>
+            onPress={signInButtonPressed}>
             <Text style={styles.buttonText}>Sign in</Text>
           </TouchableOpacity>
         </View>
       </View>
+      <SharedErrorModalComponent
+        error={error}
+        onClose={() => {
+          dispatch(dismissError())
+        }}
+      />
     </KeyboardAvoidingView>
   )
 }
