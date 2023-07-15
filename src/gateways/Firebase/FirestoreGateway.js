@@ -8,38 +8,32 @@ class CloudFirestoreError extends Error {
   }
 }
 const db = {
-  async insertStudent(
-    studentID,
-    firstName,
-    lastName,
-    _class,
-    gender,
-    birthdate,
-    address
-  ) {
+  async getStudent(studentID) {
     try {
-      const docRef = firestore().collection('students').doc(studentID)
-      await docRef.set({
-        firstName,
-        lastName,
-        class: _class,
-        gender,
-        birthdate,
-        address,
-      })
-      return docRef
+      const doc = await firestore().collection('students').doc(studentID).get()
+      if (doc.exists) {
+        return doc.data()
+      }
+      throw new CloudFirestoreError('No such student!', 'no-doc')
     } catch (err) {
       throw new CloudFirestoreError(err)
     }
   },
 
-  async getStudent(studentID) {
+  async getSujectsOfClass(classRefPath) {
     try {
-      const doc = await firestore().collection('students').doc(studentID).get()
-      if (doc.exists) {
-        return doc
+      const querySnapshot = await firestore()
+        .doc(classRefPath)
+        .collection('subjects')
+        .orderBy('name')
+        .get()
+      if (!querySnapshot.empty) {
+        return querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
       }
-      throw new CloudFirestoreError('No such student!', 'no-doc')
+      throw new CloudFirestoreError(
+        `"subjects" collection of the "${classRefPath}" class is non-existent`,
+        'no-docs'
+      )
     } catch (err) {
       throw new CloudFirestoreError(err)
     }
@@ -53,10 +47,10 @@ const db = {
         .limit(limit)
         .get()
       if (!querySnapshot.empty) {
-        return querySnapshot.docs.map((doc) => doc.data())
+        return querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
       }
       throw new CloudFirestoreError(
-        '"classes" collection is empty of non-exist',
+        '"classes" collection is non-existent',
         'no-docs'
       )
     } catch (err) {

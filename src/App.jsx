@@ -5,6 +5,7 @@
  * @format
  */
 
+import {createDrawerNavigator} from '@react-navigation/drawer'
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import React, {useEffect} from 'react'
@@ -17,7 +18,21 @@ import {
 import {store} from './redux'
 import {HomeScreen, SignInScreen} from './screens'
 
+const Drawer = createDrawerNavigator()
 const Stack = createNativeStackNavigator()
+
+function MainDrawer() {
+  return (
+    <Drawer.Navigator
+      initialRouteName="Home"
+      screenOptions={{headerShown: false}}>
+      <Drawer.Screen
+        name="Home"
+        component={HomeScreen}
+      />
+    </Drawer.Navigator>
+  )
+}
 
 function MainStack() {
   const isInitializing = useSelector(isInitializingSelector)
@@ -43,8 +58,8 @@ function MainStack() {
         // User is signed in
         <Stack.Group>
           <Stack.Screen
-            name="Home"
-            component={HomeScreen}
+            name="Drawer"
+            component={MainDrawer}
           />
         </Stack.Group>
       )}

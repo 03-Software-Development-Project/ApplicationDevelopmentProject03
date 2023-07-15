@@ -3,19 +3,24 @@ import {Modal, Text, TouchableOpacity, View} from 'react-native'
 import styles from './styles'
 
 function SharedErrorModalComponent(props) {
+  const {
+    name: errorName,
+    code: errorCode,
+    message: errorMessage,
+  } = props.error || {}
   return (
     <Modal
       transparent={true}
       animationType="fade"
-      visible={Object.keys(props.error).length !== 0}
+      visible={props.error != null}
       onRequestClose={props.onClose}>
       <View style={styles.container}>
         <View style={styles.modal}>
           <View style={styles.textView}>
-            <Text style={styles.errorName}>{props.error.name}</Text>
-            <Text style={styles.errorCode}>{props.error.code}</Text>
+            <Text style={styles.errorName}>{errorName}</Text>
+            <Text style={styles.errorCode}>{errorCode}</Text>
             <View style={styles.errorMessageView}>
-              <Text style={styles.errorMessage}>{props.error.message}</Text>
+              <Text style={styles.errorMessage}>{errorMessage}</Text>
             </View>
           </View>
           <View style={styles.buttonView}>

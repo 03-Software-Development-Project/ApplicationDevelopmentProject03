@@ -35,8 +35,22 @@ const auth = {
       throw new FBAuthenticationError(err)
     }
   },
-  onAuthStateChanged(listener) {
-    return firebaseAuth().onAuthStateChanged(listener)
+  onStudentAuthStateChanged(listener) {
+    return firebaseAuth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        await listener(null)
+        return
+      }
+      const studentAccount = {
+        id: user.uid,
+        email: user.email,
+        emailVerified: user.emailVerified,
+        phoneNumber: user.phoneNumber,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+      }
+      await listener(studentAccount)
+    })
   },
 }
 Object.freeze(auth)

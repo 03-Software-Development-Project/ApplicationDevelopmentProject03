@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   errorMessageView: {
     flex: 1,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   errorMessage: {
     margin: 5,
