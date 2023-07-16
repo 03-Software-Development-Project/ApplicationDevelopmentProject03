@@ -16,7 +16,7 @@ import {
   listenToStudentAuthState,
 } from './AppViewModel'
 import {store} from './redux'
-import {HomeScreen, SignInScreen} from './screens'
+import {ClassDetailScreen, HomeScreen, SignInScreen} from './screens'
 
 const Drawer = createDrawerNavigator()
 const Stack = createNativeStackNavigator()
@@ -25,10 +25,14 @@ function MainDrawer() {
   return (
     <Drawer.Navigator
       initialRouteName="Home"
-      screenOptions={{headerShown: false}}>
+      screenOptions={{headerShown: true}}>
       <Drawer.Screen
         name="Home"
         component={HomeScreen}
+      />
+      <Drawer.Screen
+        name="ClassDetail"
+        component={ClassDetailScreen}
       />
     </Drawer.Navigator>
   )
@@ -44,36 +48,21 @@ function MainStack() {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {!isStudentSignedIn ? (
         // User isn't signed in
-        <Stack.Group>
-          <Stack.Screen
-            name="SignIn"
-            component={SignInScreen}
-            options={{
-              title: 'Sign in',
-              animationTypeForReplace: 'pop',
-            }}
-          />
-        </Stack.Group>
+        <Stack.Screen
+          name="SignIn"
+          component={SignInScreen}
+          options={{
+            title: 'Sign in',
+            animationTypeForReplace: 'pop',
+          }}
+        />
       ) : (
         // User is signed in
-        <Stack.Group>
-          <Stack.Screen
-            name="Drawer"
-            component={MainDrawer}
-          />
-        </Stack.Group>
-      )}
-
-      <Stack.Group navigationKey={isStudentSignedIn ? 'user' : 'guest'}>
-        {/* <Stack.Screen
-          name="Help"
-          component={HelpScreen}
-        />
         <Stack.Screen
-          name="About"
-          component={AboutScreen}
-        /> */}
-      </Stack.Group>
+          name="Drawer"
+          component={MainDrawer}
+        />
+      )}
     </Stack.Navigator>
   )
 }

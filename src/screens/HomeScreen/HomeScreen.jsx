@@ -12,11 +12,9 @@ import Swiper from 'react-native-swiper'
 import img from '../../assets/img'
 import {SharedClasscardComponent} from '../../components/shared'
 import {color, typography} from '../../constants'
-
-import {FirebaseGateway} from '../../gateways'
 import styles from './styles'
 
-function HomeScreen() {
+function HomeScreen({navigation}) {
   const screenWidth = Dimensions.get('window').width
   const classes = [
     {
@@ -108,7 +106,10 @@ function HomeScreen() {
             Mind Snap
           </Text>
 
-          <TouchableOpacity onPress={() => FirebaseGateway.signOut()}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.openDrawer()
+            }}>
             <Image
               source={require('../../assets/icons/@2x_search_icon.png')}
               style={styles.image}
