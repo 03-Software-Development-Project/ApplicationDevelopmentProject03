@@ -5,7 +5,6 @@
  * @format
  */
 
-import {createDrawerNavigator} from '@react-navigation/drawer'
 import {NavigationContainer} from '@react-navigation/native'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import React, {useEffect} from 'react'
@@ -16,27 +15,10 @@ import {
   listenToStudentAuthState,
 } from './AppViewModel'
 import {store} from './redux'
-import {ClassDetailScreen, HomeScreen, SignInScreen} from './screens'
+import {SignInScreen} from './screens'
+import {HomeDrawer} from './navigation'
 
-const Drawer = createDrawerNavigator()
 const Stack = createNativeStackNavigator()
-
-function MainDrawer() {
-  return (
-    <Drawer.Navigator
-      initialRouteName="Home"
-      screenOptions={{headerShown: true}}>
-      <Drawer.Screen
-        name="Home"
-        component={HomeScreen}
-      />
-      <Drawer.Screen
-        name="ClassDetail"
-        component={ClassDetailScreen}
-      />
-    </Drawer.Navigator>
-  )
-}
 
 function MainStack() {
   const isInitializing = useSelector(isInitializingSelector)
@@ -59,8 +41,8 @@ function MainStack() {
       ) : (
         // User is signed in
         <Stack.Screen
-          name="Drawer"
-          component={MainDrawer}
+          name="HomeDrawer"
+          component={HomeDrawer}
         />
       )}
     </Stack.Navigator>

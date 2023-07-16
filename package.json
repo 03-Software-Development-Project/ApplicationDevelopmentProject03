@@ -58,6 +58,7 @@
     "metro-react-native-babel-preset": "0.76.7",
     "plop": "^3.1.2",
     "prettier": "^3.0.0",
+    "react-native-debugger-open": "^0.3.25",
     "react-native-dotenv": "^3.4.9",
     "react-test-renderer": "18.2.0",
     "typescript": "4.8.4"
