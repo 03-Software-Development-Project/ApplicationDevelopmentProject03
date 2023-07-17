@@ -1,7 +1,9 @@
 import React from 'react'
 import {createDrawerNavigator} from '@react-navigation/drawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import {HomeScreen, ClassDetailScreen, HomeDrawerScreen} from '../screens'
+import {HomeDrawerScreen} from '../screens'
+import HomeStack from './HomeStack'
+import ClassDetailStack from './ClassDetailStack'
 
 const Drawer = createDrawerNavigator()
 
@@ -55,16 +57,16 @@ function MainDrawer() {
         },
       }}>
       <Drawer.Screen
-        name="Home"
-        component={HomeScreen}
+        name="HomeStack"
+        component={HomeStack}
         options={{
           drawerLabel: 'Home',
           drawerIcon: DrawerItemIconCreator('home', 'home-outline'),
         }}
       />
       <Drawer.Screen
-        name="ClassDetail"
-        component={ClassDetailScreen}
+        name="ClassDetailStack"
+        component={ClassDetailStack}
         options={{
           drawerLabel: 'Your class',
           drawerIcon: DrawerItemIconCreator('person', 'person-outline'),

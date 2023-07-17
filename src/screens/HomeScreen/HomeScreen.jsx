@@ -119,7 +119,7 @@ function HomeScreen({navigation}) {
 
           <TouchableOpacity
             onPress={() => {
-              navigation.openDrawer()
+              navigation.navigate('Search')
             }}>
             <Ionicons
               name="search"
