@@ -38,7 +38,7 @@ function DrawerContent(props) {
   )
 }
 
-function HomeDrawer() {
+function MainDrawer() {
   return (
     <Drawer.Navigator
       drawerContent={DrawerContent}
@@ -74,4 +74,4 @@ function HomeDrawer() {
   )
 }
 
-export default HomeDrawer
+export default MainDrawer

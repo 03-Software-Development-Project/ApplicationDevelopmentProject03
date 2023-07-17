@@ -16,11 +16,11 @@ import {
 } from './AppViewModel'
 import {store} from './redux'
 import {SignInScreen} from './screens'
-import {HomeDrawer} from './navigation'
+import {MainDrawer} from './navigation'
 
 const Stack = createNativeStackNavigator()
 
-function MainStack() {
+function AppStack() {
   const isInitializing = useSelector(isInitializingSelector)
   const isStudentSignedIn = useSelector(isStudentSignedInSelector)
 
@@ -41,8 +41,8 @@ function MainStack() {
       ) : (
         // User is signed in
         <Stack.Screen
-          name="HomeDrawer"
-          component={HomeDrawer}
+          name="MainDrawer"
+          component={MainDrawer}
         />
       )}
     </Stack.Navigator>
@@ -58,7 +58,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
-        <MainStack />
+        <AppStack />
       </NavigationContainer>
     </Provider>
   )
