@@ -1,8 +1,7 @@
 import React from 'react'
 import {createDrawerNavigator} from '@react-navigation/drawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import {HomeScreen, ClassDetailScreen} from '../screens'
-import {SharedDrawerComponent} from '../components/shared'
+import {HomeScreen, ClassDetailScreen, HomeDrawerScreen} from '../screens'
 
 const Drawer = createDrawerNavigator()
 
@@ -31,7 +30,7 @@ function DrawerItemIconCreator(defaultIconName, focusedIconName) {
 function DrawerContent(props) {
   const {state, navigation, descriptors} = {...props}
   return (
-    <SharedDrawerComponent
+    <HomeDrawerScreen
       state={state}
       navigation={navigation}
       descriptors={descriptors}
@@ -51,7 +50,7 @@ function HomeDrawer() {
         drawerAllowFontScaling: true,
         drawerLabelStyle: {
           marginLeft: -20,
-          fontSize: 20,
+          fontSize: 16,
           fontWeight: 'bold',
         },
       }}>

@@ -1,13 +1,9 @@
-import {StyleSheet, Dimensions} from 'react-native'
-
-const drawerHeaderHeight = Dimensions.get('window').height / 4
-const drawerFooterHeight = Dimensions.get('window').height / 7
+import {StyleSheet} from 'react-native'
 
 const styles = StyleSheet.create({
   drawer: {flex: 1},
   drawerHeader: {
-    flex: 0,
-    flexBasis: drawerHeaderHeight,
+    flex: 8,
     backgroundColor: 'rgba(6, 143, 255, 0.2)',
   },
   drawerHeaderBackgroundImage: {
@@ -28,14 +24,14 @@ const styles = StyleSheet.create({
   },
   drawerHeadrContentNameText: {
     color: 'black',
-    fontSize: 26,
+    fontSize: 24,
   },
   drawerHeadrContentEmailText: {
     color: 'black',
     fontSize: 16,
   },
   drawerBody: {
-    flex: 1,
+    flex: 18,
   },
   drawerBodyContent: {
     flex: 1,
@@ -46,8 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   drawerFooter: {
-    flex: 0,
-    flexBasis: drawerFooterHeight,
+    flex: 4,
     marginHorizontal: 10,
     marginBottom: 50,
     paddingTop: 25,
@@ -56,6 +51,7 @@ const styles = StyleSheet.create({
   },
   drawerFooterItem: {
     flex: 1,
+    marginVertical: 10,
   },
   drawerFooterFirstItem: {
     marginTop: 0,

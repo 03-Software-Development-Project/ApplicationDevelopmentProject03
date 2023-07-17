@@ -1,27 +1,22 @@
 import React from 'react'
-import {
-  View,
-  Text,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-} from 'react-native'
+import {View, Text, ImageBackground, Image} from 'react-native'
 import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
 } from '@react-navigation/drawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5'
+import {useDispatch, useSelector} from 'react-redux'
+import {signOut, dismissError, errorSelector} from './HomeDrawerScreenViewModel'
 import styles from './styles'
+import {SharedErrorModalComponent} from '../../components/shared'
 
-function DrawerItemIconCreator(defaultIconName) {
-  return function DrawerItemIcon(props) {
+function IconCreator(name) {
+  return function Icon(props) {
     const {color, size} = {...props}
-
     return (
       <Ionicons
-        name={defaultIconName}
+        name={name}
         size={size}
         color={color}
       />
@@ -29,7 +24,25 @@ function DrawerItemIconCreator(defaultIconName) {
   }
 }
 
-function SharedDrawerComponent(props) {
+function CustomDrawerItem(props) {
+  const {label, iconName, onPress} = {...props}
+  return (
+    <DrawerItem
+      style={[styles.drawerFooterItem, styles.drawerFooterFirstItem]}
+      label={label}
+      labelStyle={styles.drawerFooterItemLabel}
+      allowFontScaling
+      icon={IconCreator(iconName)}
+      inactiveBackgroundColor="#EEEEEE"
+      inactiveTintColor="#333"
+      onPress={onPress}
+    />
+  )
+}
+
+function HomeDrawerScreen(props) {
+  const dispatch = useDispatch()
+  const error = useSelector(errorSelector)
   const {state, navigation, descriptors} = {...props}
   return (
     <View style={styles.drawer}>
@@ -44,7 +57,7 @@ function SharedDrawerComponent(props) {
           scrollEnabled={false}
           contentContainerStyle={styles.drawerHeaderContent}>
           <Image
-            source={require('../../../assets/img/Category01.png')}
+            source={require('../../assets/img/Category01.png')}
             style={styles.drawerHeaderContentAvatar}
           />
           <Text style={styles.drawerHeadrContentNameText}>John Doe</Text>
@@ -54,6 +67,7 @@ function SharedDrawerComponent(props) {
         </DrawerContentScrollView>
         {/* </ImageBackground> */}
       </View>
+
       <View style={styles.drawerBody}>
         <DrawerContentScrollView
           state={state}
@@ -72,29 +86,27 @@ function SharedDrawerComponent(props) {
       </View>
 
       <View style={styles.drawerFooter}>
-        <DrawerItem
-          style={[styles.drawerFooterItem, styles.drawerFooterFirstItem]}
+        <CustomDrawerItem
           label="Tell a Friend"
-          labelStyle={styles.drawerFooterItemLabel}
-          allowFontScaling
-          icon={DrawerItemIconCreator('share-social-outline')}
-          inactiveBackgroundColor="#EEEEEE"
-          inactiveTintColor="#333"
+          iconName="share-social-outline"
           onPress={() => {}}
         />
-        <DrawerItem
-          style={[styles.drawerFooterItem, styles.drawerFooterLastItem]}
+        <CustomDrawerItem
           label="Sign out"
-          labelStyle={styles.drawerFooterItemLabel}
-          allowFontScaling
-          icon={DrawerItemIconCreator('log-out-outline')}
-          inactiveBackgroundColor="#EEEEEE"
-          inactiveTintColor="#333"
-          onPress={() => {}}
+          iconName="log-out-outline"
+          onPress={() => {
+            dispatch(signOut())
+          }}
         />
       </View>
+      <SharedErrorModalComponent
+        error={error}
+        onClose={() => {
+          dispatch(dismissError())
+        }}
+      />
     </View>
   )
 }
 
-export default SharedDrawerComponent
+export default HomeDrawerScreen

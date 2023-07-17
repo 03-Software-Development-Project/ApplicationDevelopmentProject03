@@ -17,14 +17,11 @@ const styles = StyleSheet.create({
   headerView: {
     paddingHorizontal: 16,
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 16,
   },
-  image: {
-    width: 24,
-    height: 24,
-    resizeMode: 'contain',
-  },
+
   classimage: {
     flex: 1,
     width: '100%',

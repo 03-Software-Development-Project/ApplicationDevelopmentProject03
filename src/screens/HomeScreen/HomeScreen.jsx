@@ -8,6 +8,7 @@ import {
   View,
 } from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 import Swiper from 'react-native-swiper'
 import img from '../../assets/img'
 import {SharedClasscardComponent} from '../../components/shared'
@@ -101,8 +102,18 @@ function HomeScreen({navigation}) {
     <SafeAreaView style={styles.safeArea}>
       <ScrollView>
         <View style={styles.headerView}>
-          <Text
-            style={[typography['heading.h4'], {fontWeight: 700}, {flex: 1}]}>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.openDrawer()
+            }}>
+            <Ionicons
+              name="menu"
+              size={35}
+              color="black"
+            />
+          </TouchableOpacity>
+
+          <Text style={[typography['heading.h4'], {fontWeight: 700}]}>
             Mind Snap
           </Text>
 
@@ -110,9 +121,10 @@ function HomeScreen({navigation}) {
             onPress={() => {
               navigation.openDrawer()
             }}>
-            <Image
-              source={require('../../assets/icons/@2x_search_icon.png')}
-              style={styles.image}
+            <Ionicons
+              name="search"
+              size={30}
+              color="black"
             />
           </TouchableOpacity>
         </View>
