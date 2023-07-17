@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {
   Dimensions,
   Image,
@@ -10,12 +10,18 @@ import {
 import {SafeAreaView} from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import Swiper from 'react-native-swiper'
+import {useSelector} from 'react-redux'
 import img from '../../assets/img'
-import {SharedClasscardComponent} from '../../components/shared'
+import {
+  SharedClasscardComponent,
+  SharedDebugDrawerComponent,
+} from '../../components/shared'
+import {isAppDebugModeOnSelector} from './HomeScreenViewModel'
 import {color, typography} from '../../constants'
 import styles from './styles'
 
 function HomeScreen({navigation}) {
+  const isAppDebugModeOn = useSelector(isAppDebugModeOnSelector)
   const screenWidth = Dimensions.get('window').width
   const classes = [
     {
@@ -100,6 +106,9 @@ function HomeScreen({navigation}) {
   ]
   return (
     <SafeAreaView style={styles.safeArea}>
+      {isAppDebugModeOn ? (
+        <SharedDebugDrawerComponent navigation={navigation} />
+      ) : null}
       <ScrollView>
         <View style={styles.headerView}>
           <TouchableOpacity

@@ -1,11 +1,13 @@
 /* eslint-disable no-param-reassign */
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice, createSelector} from '@reduxjs/toolkit'
+import {isDebugModeOnSelector} from '../../AppViewModel'
 
 const stateSlice = createSlice({
   name: 'HomeScreenViewModel',
   initialState: {
     error: {},
     data: {
+      isDebugModeOn: false,
       classes: {},
     },
   },
@@ -32,12 +34,15 @@ export default HomeScreenViewModel
 export const {handleError, dismissError} = HomeScreenViewModel.actions
 
 // THUNKS
-export function loadClasses() {
-  return (dispatch) => {}
-}
+export function loadClasses() {}
 
 // SELECTORS
 export const errorSelector = createSelector(
   HomeScreenViewModel.selfSelector,
   (vm) => vm.error
+)
+
+export const isAppDebugModeOnSelector = createSelector(
+  isDebugModeOnSelector,
+  (isAppDebugModeOn) => isAppDebugModeOn
 )

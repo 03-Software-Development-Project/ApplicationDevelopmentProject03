@@ -3,7 +3,7 @@ import {createSelector, createSlice} from '@reduxjs/toolkit'
 import {FirebaseGateway} from '../../gateways'
 
 const stateSlice = createSlice({
-  name: 'HomeDrawerScreenViewModel',
+  name: 'MainDrawerScreenViewModel',
   initialState: {
     error: null,
     data: null,
@@ -18,14 +18,14 @@ const stateSlice = createSlice({
   },
 })
 
-const HomeDrawerScreenViewModel = {
+const MainDrawerScreenViewModel = {
   sliceReducer: stateSlice.reducer,
   actions: stateSlice.actions,
-  selfSelector: (state) => state.HomeDrawerScreenViewModel,
+  selfSelector: (state) => state.MainDrawerScreenViewModel,
 }
 
-export default HomeDrawerScreenViewModel
-export const {handleError, dismissError} = HomeDrawerScreenViewModel.actions
+export default MainDrawerScreenViewModel
+export const {handleError, dismissError} = MainDrawerScreenViewModel.actions
 
 // THUNKS
 export function signOut() {
@@ -41,6 +41,6 @@ export function signOut() {
 
 // SELECTORS
 export const errorSelector = createSelector(
-  HomeDrawerScreenViewModel.selfSelector,
+  MainDrawerScreenViewModel.selfSelector,
   (vm) => vm.error
 )

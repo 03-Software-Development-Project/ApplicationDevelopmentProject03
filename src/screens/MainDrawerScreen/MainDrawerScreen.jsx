@@ -1,5 +1,5 @@
 import React from 'react'
-import {View, Text, ImageBackground, Image} from 'react-native'
+import {View, Text, Image} from 'react-native'
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -7,7 +7,7 @@ import {
 } from '@react-navigation/drawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {useDispatch, useSelector} from 'react-redux'
-import {signOut, dismissError, errorSelector} from './HomeDrawerScreenViewModel'
+import {signOut, dismissError, errorSelector} from './MainDrawerScreenViewModel'
 import styles from './styles'
 import {SharedErrorModalComponent} from '../../components/shared'
 
@@ -40,7 +40,7 @@ function CustomDrawerItem(props) {
   )
 }
 
-function HomeDrawerScreen(props) {
+function MainDrawerScreen(props) {
   const dispatch = useDispatch()
   const error = useSelector(errorSelector)
   const {state, navigation, descriptors} = {...props}
@@ -109,4 +109,4 @@ function HomeDrawerScreen(props) {
   )
 }
 
-export default HomeDrawerScreen
+export default MainDrawerScreen

@@ -1,7 +1,7 @@
 import React from 'react'
 import {createDrawerNavigator} from '@react-navigation/drawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import {HomeDrawerScreen} from '../screens'
+import {MainDrawerScreen} from '../screens'
 import HomeStack from './HomeStack'
 import ClassDetailStack from './ClassDetailStack'
 
@@ -32,7 +32,7 @@ function DrawerItemIconCreator(defaultIconName, focusedIconName) {
 function DrawerContent(props) {
   const {state, navigation, descriptors} = {...props}
   return (
-    <HomeDrawerScreen
+    <MainDrawerScreen
       state={state}
       navigation={navigation}
       descriptors={descriptors}

@@ -9,11 +9,13 @@ import {
   studentAccountSelector,
   studentInfoSelector,
 } from './redux/slices/studentSlice'
+
 const stateSlice = createSlice({
   name: 'AppViewModel',
   initialState: {
     error: null,
     data: {
+      isDebugModeOn: false,
       isInitializing: true,
     },
   },
@@ -27,6 +29,9 @@ const stateSlice = createSlice({
     dismissError: (state) => {
       state.error = null
     },
+    setDebugMode: (state, action) => {
+      state.data.isDebugModeOn = action.payload
+    },
   },
 })
 
@@ -37,10 +42,28 @@ const AppViewModel = {
 }
 
 export default AppViewModel
-export const {finishedInitializing, handleError, dismissError} =
+export const {finishedInitializing, handleError, dismissError, setDebugMode} =
   AppViewModel.actions
 
 // THUNKS
+function signIn(account) {
+  return async (dispatch) => {
+    try {
+      const studentID = dispatch(setAccount(account))
+      const studentClass = await dispatch(setInfo(studentID))
+      dispatch(setClass(studentClass))
+    } catch (err) {
+      throw new Error(err)
+    }
+  }
+}
+
+function signOut() {
+  return (dispatch) => {
+    dispatch(removeAll())
+  }
+}
+
 export function listenToStudentAuthState() {
   return (dispatch, getState) => {
     const subscriber = FirebaseGateway.onStudentAuthStateChanged(
@@ -95,24 +118,6 @@ export function listenToStudentAuthState() {
   }
 }
 
-function signIn(account) {
-  return async (dispatch) => {
-    try {
-      const studentID = dispatch(setAccount(account))
-      const studentClass = await dispatch(setInfo(studentID))
-      dispatch(setClass(studentClass))
-    } catch (err) {
-      throw new Error(err)
-    }
-  }
-}
-
-function signOut() {
-  return (dispatch) => {
-    dispatch(removeAll())
-  }
-}
-
 // SELECTORS
 /*
 isStudentAccountSetSelector được dùng để kiểm tra người dùng có đăng nhập hay
@@ -144,4 +149,9 @@ export const isInitializingSelector = createSelector(
 export const errorSelector = createSelector(
   AppViewModel.selfSelector,
   (vm) => vm.error
+)
+
+export const isDebugModeOnSelector = createSelector(
+  AppViewModel.selfSelector,
+  (vm) => vm.data.isDebugModeOn
 )

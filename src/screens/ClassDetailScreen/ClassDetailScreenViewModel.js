@@ -1,21 +1,48 @@
-class ClassDetailScreenViewModel {
-  updateData = null
+/* eslint-disable no-param-reassign */
+import {createSlice, createSelector} from '@reduxjs/toolkit'
+import {isDebugModeOnSelector} from '../../AppViewModel'
 
-  // constructor() {}
-  // Your view model initialization code here
+const stateSlice = createSlice({
+  name: 'ClassDetailScreenViewModel',
+  initialState: {
+    error: {},
+    data: {
+      isDebugModeOn: false,
+      classes: {},
+    },
+  },
+  reducers: {
+    loadClasses: (state, action) => {
+      state.data.classes = action.payload
+    },
+    handleError: (state, action) => {
+      state.error = action.payload
+    },
+    dismissError: (state) => {
+      state.error = {}
+    },
+  },
+})
 
-  setUpdateData(updateData) {
-    // Set the updateData function from the screen component
-    this.updateData = updateData
-  }
-
-  doSomething() {
-    // Example function that performs some action
-    // You can add your own functionality here
-    // Update the data state in the screen component
-    const newData = 'New data from view model'
-    this.updateData(newData)
-  }
+const ClassDetailScreenViewModel = {
+  sliceReducer: stateSlice.reducer,
+  actions: stateSlice.actions,
+  selfSelector: (state) => state.ClassDetailScreenViewModel,
 }
 
-export default new ClassDetailScreenViewModel()
+export default ClassDetailScreenViewModel
+export const {handleError, dismissError} = ClassDetailScreenViewModel.actions
+
+// THUNKS
+export function loadSubjectsOfClass() {}
+
+// SELECTORS
+export const errorSelector = createSelector(
+  ClassDetailScreenViewModel.selfSelector,
+  (vm) => vm.error
+)
+
+export const isAppDebugModeOnSelector = createSelector(
+  isDebugModeOnSelector,
+  (isAppDebugModeOn) => isAppDebugModeOn
+)

@@ -1,13 +1,20 @@
 import React, {useEffect} from 'react'
 import {Image, Text, TouchableOpacity, View} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
+import {useSelector} from 'react-redux'
+import {isAppDebugModeOnSelector} from './ClassDetailScreenViewModel'
 import {color} from '../../constants'
 import styles from './styles'
+import {SharedDebugDrawerComponent} from '../../components/shared'
 
 function ClassDetailScreen({navigation}) {
+  const isAppDebugModeOn = useSelector(isAppDebugModeOnSelector)
   useEffect(() => {}, [])
   return (
     <SafeAreaView style={[styles.container]}>
+      {isAppDebugModeOn ? (
+        <SharedDebugDrawerComponent navigation={navigation} />
+      ) : null}
       <Image
         source={require('../../assets/img/Slide01.png')}
         style={styles.courseImage}

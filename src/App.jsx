@@ -13,6 +13,7 @@ import {
   isInitializingSelector,
   isStudentSignedInSelector,
   listenToStudentAuthState,
+  setDebugMode,
 } from './AppViewModel'
 import {store} from './redux'
 import {SignInScreen} from './screens'
@@ -51,6 +52,7 @@ function AppStack() {
 
 export default function App() {
   useEffect(() => {
+    store.dispatch(setDebugMode(true))
     const subscriber = store.dispatch(listenToStudentAuthState())
     return subscriber
   }, [])
