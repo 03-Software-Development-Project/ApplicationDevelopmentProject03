@@ -29,7 +29,10 @@ function ClassDetailScreen({navigation}) {
             source={require('../../assets/icons/@back_icon.png')}
           />
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.openDrawer()
+          }}>
           <Image
             style={{width: 40, height: 40}}
             source={require('../../assets/icons/@save_icon.png')}

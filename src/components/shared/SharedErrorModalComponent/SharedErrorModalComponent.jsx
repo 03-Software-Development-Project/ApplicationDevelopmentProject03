@@ -3,17 +3,14 @@ import {Modal, Text, TouchableOpacity, View} from 'react-native'
 import styles from './styles'
 
 function SharedErrorModalComponent(props) {
-  const {
-    name: errorName,
-    code: errorCode,
-    message: errorMessage,
-  } = props.error || {}
+  const {error, onClose} = {...props}
+  const {name: errorName, code: errorCode, message: errorMessage} = error || {}
   return (
     <Modal
-      transparent={true}
+      transparent
       animationType="fade"
-      visible={props.error != null}
-      onRequestClose={props.onClose}>
+      visible={error != null}
+      onRequestClose={onClose}>
       <View style={styles.container}>
         <View style={styles.modal}>
           <View style={styles.textView}>
@@ -26,12 +23,12 @@ function SharedErrorModalComponent(props) {
           <View style={styles.buttonView}>
             <TouchableOpacity
               style={[styles.button, styles.firstButton]}
-              onPress={props.onClose}>
+              onPress={onClose}>
               <Text style={styles.buttonText}>Cancel</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={styles.button}
-              onPress={props.onClose}>
+              onPress={onClose}>
               <Text style={styles.buttonText}>Oke</Text>
             </TouchableOpacity>
           </View>
