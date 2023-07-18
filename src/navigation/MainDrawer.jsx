@@ -29,21 +29,10 @@ function DrawerItemIconCreator(defaultIconName, focusedIconName) {
   }
 }
 
-function DrawerContent(props) {
-  const {state, navigation, descriptors} = {...props}
-  return (
-    <MainDrawerScreen
-      state={state}
-      navigation={navigation}
-      descriptors={descriptors}
-    />
-  )
-}
-
 function MainDrawer() {
   return (
     <Drawer.Navigator
-      drawerContent={DrawerContent}
+      drawerContent={MainDrawerScreen}
       screenOptions={{
         headerShown: false,
         drawerActiveBackgroundColor: '#068FFF',

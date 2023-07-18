@@ -90,7 +90,10 @@ function ClassDetailScreen({navigation}) {
         }}
       />
       <Text style={styles.sectionTitle}>Chapter </Text>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('Question')
+        }}>
         <View
           style={{
             paddingHorizontal: 16,
@@ -105,12 +108,10 @@ function ClassDetailScreen({navigation}) {
           <View style={{flex: 1, paddingHorizontal: 8}}>
             <Text style={styles.chapterTitle}> Chapter name 01</Text>
           </View>
-          <TouchableOpacity>
-            <Image
-              style={{width: 40, height: 40}}
-              source={require('../../assets/icons/@next_icon.png')}
-            />
-          </TouchableOpacity>
+          <Image
+            style={{width: 40, height: 40}}
+            source={require('../../assets/icons/@next_icon.png')}
+          />
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -128,12 +129,10 @@ function ClassDetailScreen({navigation}) {
           <View style={{flex: 1, paddingHorizontal: 8}}>
             <Text style={styles.chapterTitle}> Chapter name 02</Text>
           </View>
-          <TouchableOpacity>
-            <Image
-              style={{width: 40, height: 40}}
-              source={require('../../assets/icons/@next_icon.png')}
-            />
-          </TouchableOpacity>
+          <Image
+            style={{width: 40, height: 40}}
+            source={require('../../assets/icons/@next_icon.png')}
+          />
         </View>
       </TouchableOpacity>
       <TouchableOpacity>
@@ -151,12 +150,10 @@ function ClassDetailScreen({navigation}) {
           <View style={{flex: 1, paddingHorizontal: 8}}>
             <Text style={styles.chapterTitle}> Chapter name 03</Text>
           </View>
-          <TouchableOpacity>
-            <Image
-              style={{width: 40, height: 40}}
-              source={require('../../assets/icons/@next_icon.png')}
-            />
-          </TouchableOpacity>
+          <Image
+            style={{width: 40, height: 40}}
+            source={require('../../assets/icons/@next_icon.png')}
+          />
         </View>
       </TouchableOpacity>
     </SafeAreaView>

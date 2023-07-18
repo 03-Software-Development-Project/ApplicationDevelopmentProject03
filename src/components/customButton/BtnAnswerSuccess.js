@@ -1,6 +1,7 @@
-import {Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native'
-import {typography, color} from '../../../constants'
 import React, {Component} from 'react'
+import {Text, View, StyleSheet, TouchableOpacity, Image} from 'react-native'
+import {typography, color} from '../../constants'
+
 export class BtnAnswerSuccess extends Component {
   render() {
     return (
@@ -12,7 +13,8 @@ export class BtnAnswerSuccess extends Component {
           <View style={{paddingVertical: 20}}>
             <Image
               source={require('../../assets/icons/successCC.png')}
-              style={{resizeMode: 'cover', height: 20, width: 20}}></Image>
+              style={{resizeMode: 'cover', height: 20, width: 20}}
+            />
           </View>
         </View>
       </TouchableOpacity>

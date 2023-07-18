@@ -1,6 +1,6 @@
 import React from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import {ClassDetailScreen} from '../screens'
+import {ClassDetailScreen, QuestionScreen} from '../screens'
 
 const Stack = createNativeStackNavigator()
 
@@ -10,6 +10,10 @@ function ClassDetailStack() {
       <Stack.Screen
         name="ClassDetail"
         component={ClassDetailScreen}
+      />
+      <Stack.Screen
+        name="Question"
+        component={QuestionScreen}
       />
     </Stack.Navigator>
   )
