@@ -1,15 +1,25 @@
 import React from 'react'
 import {createNativeStackNavigator} from '@react-navigation/native-stack'
-import {ClassDetailScreen, QuestionScreen} from '../screens'
+import {
+  ClassDetailScreen,
+  QuestionScreen,
+  SubjectDetailScreen,
+} from '../screens'
 
 const Stack = createNativeStackNavigator()
 
 function ClassDetailStack() {
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      initialRouteName="Question"
+      screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="ClassDetail"
         component={ClassDetailScreen}
+      />
+      <Stack.Screen
+        name="SubjectDetail"
+        component={SubjectDetailScreen}
       />
       <Stack.Screen
         name="Question"

@@ -1,3 +1,4 @@
+import background from './background.png'
 import Category01 from './Category01.png'
 import Category02 from './Category02.png'
 import Category03 from './Category03.png'
@@ -16,6 +17,7 @@ import Slide04 from './Slide04.png'
 import Slide05 from './Slide05.png'
 
 const img = {
+  background,
   Category01,
   Category02,
   Category03,

@@ -1,15 +1,55 @@
 import {StyleSheet} from 'react-native'
 import {color, typography} from '../../constants'
 
+const answerItemStyle = {
+  lowerBodyDefaultAnswerItem: {
+    marginBottom: 20,
+    paddingHorizontal: 20,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderRadius: 12,
+    backgroundColor: color['greyscale.50'],
+    borderColor: color['greyscale.200'],
+  },
+  lowerBodyCorrectAnswerItem: {
+    // ...lowerBodyDefaultAnswerItem,
+    backgroundColor: color['success.100'],
+    borderColor: color['success.500'],
+  },
+  lowerBodyWrongAnswerItem: {
+    // ...lowerBodyDefaultAnswerItem,
+    backgroundColor: color['danger.100'],
+    borderColor: color['danger.500'],
+  },
+  lowerBodyDefaultAnswerText: {
+    flex: 1,
+    ...typography['body.large.medium'],
+    color: color['greyscale.900'],
+  },
+  lowerBodyCorrectAnswerText: {
+    // ...lowerBodyDefaultAnswerText,
+    ...typography['body.large.medium'],
+    color: color['success.500'],
+  },
+  lowerBodyWrongAnswerText: {
+    // ...lowerBodyDefaultAnswerText,
+    ...typography['body.large.medium'],
+    color: color['danger.500'],
+  },
+}
+
 const styles = StyleSheet.create({
-  rootContainer: {
+  container: {
     flex: 1,
   },
   topSafeArea: {
     flex: 0,
     backgroundColor: color['info.900'],
   },
-  mainContainer: {
+  content: {
     flex: 1,
     paddingTop: 0,
     marginTop: 0,
@@ -54,11 +94,10 @@ const styles = StyleSheet.create({
   upperBody: {
     flex: 0,
   },
-  upperBodyQuestionDescription: {
+  upperBodyQuestionText: {
     ...typography['body.xlarge.medium'],
     lineHeight: 30,
-    marginVertical: 20,
-    marginHorizontal: 20,
+    padding: 20,
   },
   upperBodyDivider: {
     borderBottomColor: color['greyscale.400'],
@@ -66,8 +105,7 @@ const styles = StyleSheet.create({
   },
   upperBodyQuestionGuide: {
     ...typography['body.large.bold'],
-    marginTop: 20,
-    marginHorizontal: 20,
+    padding: 20,
   },
   lowerBody: {
     flex: 1,
@@ -76,30 +114,9 @@ const styles = StyleSheet.create({
   lowerBodyAnswerList: {
     flex: 1,
   },
-  lowerBodyDefaultAnswerItem: {
-    backgroundColor: color['greyscale.50'],
-    borderColor: color['greyscale.200'],
-  },
-  lowerBodyCorrectAnswerItem: {
-    backgroundColor: color['success.100'],
-    borderColor: color['success.500'],
-  },
-  lowerBodyWrongAnswerItem: {
-    backgroundColor: color['danger.100'],
-    borderColor: color['danger.500'],
-  },
-  lowerBodyDefaultAnswerText: {
-    ...typography['body.large.medium'],
-    color: color['greyscale.900'],
-  },
-  lowerBodyCorrectAnswerText: {
-    ...typography['body.large.medium'],
-    color: color['success.500'],
-  },
-  lowerBodyWrongAnswerText: {
-    ...typography['body.large.medium'],
-    color: color['danger.500'],
-  },
+
+  ...answerItemStyle,
+
   footer: {
     flex: 0,
     flexDirection: 'row',

@@ -1,23 +1,19 @@
 import React from 'react'
-import {View, Text, TouchableOpacity, FlatList} from 'react-native'
+import {View, Text, TouchableOpacity} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import styles from './styles'
 
-function QuestionAnswerComponent(props) {
-  const {key, text, onPress, isAnswerCorrectly, isFirstItem, isDisabled} = {
+function AnswerItem(props) {
+  const {key, text, onPress, isAnswerCorrectly, isDisabled} = {
     ...props,
   }
-  let answerContainerStyle
-  let answerTextStyle
-  let answerIcon
-  if (isAnswerCorrectly === null) {
-    answerContainerStyle = styles.lowerBodyDefaultAnswerItem
-    answerTextStyle = styles.lowerBodyDefaultAnswerText
-    answerIcon = null
-  } else if (isAnswerCorrectly) {
-    answerContainerStyle = styles.lowerBodyCorrectAnswerItem
-    answerTextStyle = styles.lowerBodyCorrectAnswerText
+  const answerItemStyle = [styles.lowerBodyDefaultAnswerItem]
+  const answerTextStyle = [styles.lowerBodyDefaultAnswerText]
+  let answerIcon = null
+  if (isAnswerCorrectly !== null && isAnswerCorrectly) {
+    answerItemStyle.push(styles.lowerBodyCorrectAnswerItem)
+    answerTextStyle.push(styles.lowerBodyCorrectAnswerText)
     answerIcon = (
       <Ionicons
         name="checkmark-circle"
@@ -25,9 +21,9 @@ function QuestionAnswerComponent(props) {
         color="green"
       />
     )
-  } else {
-    answerContainerStyle = styles.lowerBodyWrongAnswerItem
-    answerTextStyle = styles.lowerBodyWrongAnswerText
+  } else if (isAnswerCorrectly !== null && !isAnswerCorrectly) {
+    answerItemStyle.push(styles.lowerBodyWrongAnswerItem)
+    answerTextStyle.push(styles.lowerBodyWrongAnswerText)
     answerIcon = (
       <Ionicons
         name="close-circle"
@@ -36,30 +32,13 @@ function QuestionAnswerComponent(props) {
       />
     )
   }
-  answerContainerStyle = {
-    ...answerContainerStyle,
-    marginTop: isFirstItem ? 20 : 0,
-    marginBottom: 20,
-    paddingHorizontal: 20,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderRadius: 12,
-  }
-
-  answerTextStyle = {
-    ...answerTextStyle,
-    flex: 1,
-  }
 
   return (
     <TouchableOpacity
       key={key}
       disabled={isDisabled}
       onPress={onPress}
-      style={answerContainerStyle}>
+      style={answerItemStyle}>
       <Text style={answerTextStyle}>{text}</Text>
       {answerIcon}
     </TouchableOpacity>
@@ -98,14 +77,14 @@ function QuestionScreen({navigation}) {
     },
   ]
   return (
-    <View style={styles.rootContainer}>
+    <View style={styles.container}>
       <SafeAreaView
         edges={['top']}
         style={styles.topSafeArea}
       />
       <SafeAreaView
         edges={['left', 'right', 'bottom']}
-        style={styles.mainContainer}>
+        style={styles.content}>
         <View style={styles.header}>
           <TouchableOpacity
             style={styles.headerBackButton}
@@ -125,7 +104,7 @@ function QuestionScreen({navigation}) {
 
         <View style={styles.body}>
           <View style={styles.upperBody}>
-            <Text style={styles.upperBodyQuestionDescription}>
+            <Text style={styles.upperBodyQuestionText}>
               Which tag is used to define the main heading in HTML?
             </Text>
             <View style={styles.upperBodyDivider} />
@@ -133,13 +112,12 @@ function QuestionScreen({navigation}) {
           </View>
           <View style={styles.lowerBody}>
             <View style={styles.lowerBodyAnswerList}>
-              {answers.map((answer, index) => (
-                <QuestionAnswerComponent
+              {answers.map((answer) => (
+                <AnswerItem
                   key={answer.id}
                   text={answer.text}
                   onPress={answer.onPress}
                   isAnswerCorrectly={answer.isAnswerCorrectly}
-                  isFirstItem={index === 0}
                   isDisabled={answer.isDisabled}
                 />
               ))}

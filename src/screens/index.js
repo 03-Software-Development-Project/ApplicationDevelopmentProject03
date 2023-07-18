@@ -1,5 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* PLOP_INJECT_EXPORT */
+export {default as ChapterDetailScreen} from './ChapterDetailScreen'
+export {default as SubjectDetailScreen} from './SubjectDetailScreen'
 export {default as QuestionScreen} from './QuestionScreen'
 export {default as SearchScreen} from './SearchScreen'
 export {default as MainDrawerScreen} from './MainDrawerScreen'
