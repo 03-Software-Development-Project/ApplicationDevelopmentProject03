@@ -64,9 +64,8 @@ const styles = StyleSheet.create({
   lowerBodyTitle: {
     ...typography['heading.h6'],
     color: color['greyscale.800'],
-    marginBottom: 5,
   },
-  lowerBodySrollViewContainer: {flex: 1},
+  lowerBodySrollViewContainer: {flex: 1, paddingTop: 20},
   lowerBodySrollViewContent: {flex: 1},
   lowerBodySubjectItem: {
     marginBottom: 20,

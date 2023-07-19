@@ -5,20 +5,46 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import img from '../../assets/img'
 import styles from './styles'
 
+function SubjectItem(props) {
+  const {key, subjectName, subjectDesc, onPress} = {...props}
+  return (
+    <TouchableOpacity
+      key={key}
+      onPress={onPress}
+      style={styles.lowerBodySubjectItem}>
+      <Ionicons
+        style={styles.lowerBodySubjectItemIcon}
+        name="library-outline"
+      />
+      <View style={styles.lowerBodySubjectItemTextView}>
+        <Text
+          numberOfLines={1}
+          style={styles.lowerBodySubjectName}>
+          {subjectName}
+        </Text>
+        <Text
+          numberOfLines={2}
+          style={styles.lowerBodySubjectDesc}>
+          {subjectDesc}
+        </Text>
+      </View>
+    </TouchableOpacity>
+  )
+}
+
 function ClassDetailScreen({navigation}) {
   const insets = useSafeAreaInsets()
   const bodyBottomInset = insets.bottom
   const subjects = [
-    {
-      id: 1,
-      name: 'Môn 1',
-      description: 'Mô tả',
-      onPress: () => {
-        navigation.navigate('SubjectDetail')
-      },
-    },
+    {id: 1, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
     {id: 2, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
     {id: 3, name: 'Môn 3', description: 'Mô tả', onPress: () => {}},
+    {id: 4, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
+    {id: 5, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
+    {id: 6, name: 'Môn 3', description: 'Mô tả', onPress: () => {}},
+    {id: 7, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
+    {id: 8, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
+    {id: 9, name: 'Môn 3', description: 'Mô tả', onPress: () => {}},
   ]
   return (
     <View style={styles.container}>
@@ -70,32 +96,17 @@ function ClassDetailScreen({navigation}) {
         </View>
         <View style={styles.lowerBody}>
           <Text style={styles.lowerBodyTitle}>Các môn có trong lớp học</Text>
-          <ScrollView
-            style={styles.lowerBodySrollViewContainer}
-            contentContainerStyle={styles.lowerBodySrollViewContent}>
-            {subjects.map((subject) => (
-              <TouchableOpacity
-                key={subject.id}
-                onPress={subject.onPress}
-                style={styles.lowerBodySubjectItem}>
-                <Ionicons
-                  style={styles.lowerBodySubjectItemIcon}
-                  name="library-outline"
+          <ScrollView style={styles.lowerBodySrollViewContainer}>
+            <View style={styles.lowerBodySrollViewContent}>
+              {subjects.map((subject) => (
+                <SubjectItem
+                  key={subject.id}
+                  subjectName={subject.name}
+                  subjectDesc={subject.description}
+                  onPress={subject.onPress}
                 />
-                <View style={styles.lowerBodySubjectItemTextView}>
-                  <Text
-                    numberOfLines={1}
-                    style={styles.lowerBodySubjectName}>
-                    {subject.name}
-                  </Text>
-                  <Text
-                    numberOfLines={2}
-                    style={styles.lowerBodySubjectDesc}>
-                    {subject.description}
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            ))}
+              ))}
+            </View>
           </ScrollView>
         </View>
       </SafeAreaView>
