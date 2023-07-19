@@ -11,7 +11,7 @@ const Stack = createNativeStackNavigator()
 function ClassDetailStack() {
   return (
     <Stack.Navigator
-      initialRouteName="Question"
+      initialRouteName="ClassDetail"
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="ClassDetail"

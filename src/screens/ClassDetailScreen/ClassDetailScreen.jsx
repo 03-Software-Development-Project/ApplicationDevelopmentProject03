@@ -1,162 +1,105 @@
-import React, {useEffect} from 'react'
-import {Image, Text, TouchableOpacity, View} from 'react-native'
-import {SafeAreaView} from 'react-native-safe-area-context'
-import {useSelector} from 'react-redux'
-import {isAppDebugModeOnSelector} from './ClassDetailScreenViewModel'
-import {color} from '../../constants'
+import React from 'react'
+import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native'
+import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import img from '../../assets/img'
 import styles from './styles'
-import {SharedDebugDrawerComponent} from '../../components/shared'
 
 function ClassDetailScreen({navigation}) {
-  const isAppDebugModeOn = useSelector(isAppDebugModeOnSelector)
-  useEffect(() => {}, [])
+  const insets = useSafeAreaInsets()
+  const bodyBottomInset = insets.bottom
+  const subjects = [
+    {
+      id: 1,
+      name: 'Môn 1',
+      description: 'Mô tả',
+      onPress: () => {
+        navigation.navigate('SubjectDetail')
+      },
+    },
+    {id: 2, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
+    {id: 3, name: 'Môn 3', description: 'Mô tả', onPress: () => {}},
+  ]
   return (
-    <SafeAreaView style={[styles.container]}>
-      {isAppDebugModeOn ? (
-        <SharedDebugDrawerComponent navigation={navigation} />
-      ) : null}
-      <Image
-        source={require('../../assets/img/Slide01.png')}
-        style={styles.courseImage}
-      />
-      <View
-        style={{
-          top: 50,
-          left: 0,
-          right: 0,
-          height: 48,
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          position: 'absolute',
-          paddingHorizontal: 16,
-        }}>
-        <TouchableOpacity>
-          <Image
-            style={{width: 40, height: 40}}
-            source={require('../../assets/icons/@back_icon.png')}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.openDrawer()
-          }}>
-          <Image
-            style={{width: 40, height: 40}}
-            source={require('../../assets/icons/@save_icon.png')}
-          />
-        </TouchableOpacity>
-      </View>
-
-      <Text style={styles.courseTitle}>
-        UI Design Fundamental - 6 Step to Start Designing Interface
-      </Text>
-      <Text style={styles.courseDescription}>
-        Facilisis in purus et id sit feugiat. Eu nulla vitae aliquet cursus
-        volutpat tortor sapien, quis dignissim. Tincidunt amet id in enim.
-      </Text>
-      <Text style={styles.sectionTitle}>Course Overview </Text>
-      <View style={{paddingHorizontal: 20}}>
-        <View style={{flexDirection: 'row', paddingVertical: 8}}>
-          <Image
-            source={require('../../assets/icons/coursefeature_01.png')}
-            style={styles.courseFeatureimage}
-          />
-          <Text style={styles.couseFeatureText}>03 Chapters included</Text>
+    <View style={styles.container}>
+      <SafeAreaView
+        edges={['left, right']}
+        style={styles.header}>
+        <Image
+          style={styles.headerBackgroundImage}
+          source={img.background}
+        />
+        <SafeAreaView
+          edges={['top']}
+          style={styles.headerContent}>
+          <TouchableOpacity
+            style={styles.headerContentBackButton}
+            onPress={() => {
+              navigation.goBack()
+            }}>
+            <Ionicons
+              name="chevron-back"
+              size={25}
+              color="white"
+            />
+          </TouchableOpacity>
+        </SafeAreaView>
+      </SafeAreaView>
+      <SafeAreaView
+        edges={['left', 'right']}
+        style={[
+          styles.body,
+          {
+            bottom: bodyBottomInset,
+          },
+        ]}>
+        <View style={styles.upperBody}>
+          <Text style={styles.upperBodyTitle}>
+            Lớp đào tạo môn học tự nhiên
+          </Text>
+          <Text style={styles.upperBodyText}>Mã lớp: LA001</Text>
         </View>
-        <View style={{flexDirection: 'row', paddingVertical: 8}}>
-          <Image
-            source={require('../../assets/icons/coursefeature_02.png')}
-            style={styles.courseFeatureimage}
-          />
-          <Text style={styles.couseFeatureText}>
-            Quiz with multiple questions
+        <View style={styles.middleBody}>
+          <Text style={styles.middleBodyTitle}>Mô tả lớp học</Text>
+          <Text style={styles.middleBodyText}>
+            You must complete this test in one session, make sure your Internet
+            is reliable. One mark awarded for a correct answer. No negative
+            marking will be there for wrong answer. More you give the correct
+            answer more chance to win the badge.
           </Text>
         </View>
-        <View style={{flexDirection: 'row', paddingVertical: 8}}>
-          <Image
-            source={require('../../assets/icons/coursefeature_03.png')}
-            style={styles.courseFeatureimage}
-          />
-          <Text style={styles.couseFeatureText}>
-            245 people joined this course
-          </Text>
+        <View style={styles.lowerBody}>
+          <Text style={styles.lowerBodyTitle}>Các môn có trong lớp học</Text>
+          <ScrollView
+            style={styles.lowerBodySrollViewContainer}
+            contentContainerStyle={styles.lowerBodySrollViewContent}>
+            {subjects.map((subject) => (
+              <TouchableOpacity
+                key={subject.id}
+                onPress={subject.onPress}
+                style={styles.lowerBodySubjectItem}>
+                <Ionicons
+                  style={styles.lowerBodySubjectItemIcon}
+                  name="library-outline"
+                />
+                <View style={styles.lowerBodySubjectItemTextView}>
+                  <Text
+                    numberOfLines={1}
+                    style={styles.lowerBodySubjectName}>
+                    {subject.name}
+                  </Text>
+                  <Text
+                    numberOfLines={2}
+                    style={styles.lowerBodySubjectDesc}>
+                    {subject.description}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
         </View>
-      </View>
-      <View
-        style={{
-          marginVertical: 8,
-          borderWidth: 0.7,
-          borderColor: color['Greyscale.200'],
-        }}
-      />
-      <Text style={styles.sectionTitle}>Chapter </Text>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate('Question')
-        }}>
-        <View
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 8,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <View style={{borderRadius: 90, overflow: 'hidden'}}>
-            <Text style={styles.chapterNum}>01</Text>
-          </View>
-          <View style={{flex: 1, paddingHorizontal: 8}}>
-            <Text style={styles.chapterTitle}> Chapter name 01</Text>
-          </View>
-          <Image
-            style={{width: 40, height: 40}}
-            source={require('../../assets/icons/@next_icon.png')}
-          />
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 8,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <View style={{borderRadius: 90, overflow: 'hidden'}}>
-            <Text style={styles.chapterNum}>02</Text>
-          </View>
-          <View style={{flex: 1, paddingHorizontal: 8}}>
-            <Text style={styles.chapterTitle}> Chapter name 02</Text>
-          </View>
-          <Image
-            style={{width: 40, height: 40}}
-            source={require('../../assets/icons/@next_icon.png')}
-          />
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity>
-        <View
-          style={{
-            paddingHorizontal: 16,
-            paddingVertical: 8,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-          <View style={{borderRadius: 90, overflow: 'hidden'}}>
-            <Text style={styles.chapterNum}>03</Text>
-          </View>
-          <View style={{flex: 1, paddingHorizontal: 8}}>
-            <Text style={styles.chapterTitle}> Chapter name 03</Text>
-          </View>
-          <Image
-            style={{width: 40, height: 40}}
-            source={require('../../assets/icons/@next_icon.png')}
-          />
-        </View>
-      </TouchableOpacity>
-    </SafeAreaView>
+      </SafeAreaView>
+    </View>
   )
 }
 export default ClassDetailScreen

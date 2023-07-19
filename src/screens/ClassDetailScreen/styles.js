@@ -2,64 +2,101 @@ import {StyleSheet} from 'react-native'
 import {color, typography} from '../../constants'
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  container: {flex: 1, backgroundColor: 'white'},
+  header: {
+    flex: 0,
+    position: 'relative',
   },
-  backButton: {
-    width: 40,
-    height: 40,
-    resizeMode: 'contain',
-  },
-  courseImage: {
+  headerBackgroundImage: {
     width: '100%',
-    height: 280,
-    overflow: 'hidden',
+  },
+  headerContent: {
+    position: 'absolute',
+    top: 0,
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    paddingVertical: 20,
+  },
+  headerContentBackButton: {
+    flex: 0,
+    padding: 5,
+    marginHorizontal: 15,
+    borderColor: 'white',
+    borderWidth: 2,
+    borderRadius: 10,
+  },
+  body: {
+    bottom: 0,
+    flex: 1,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    backgroundColor: 'white',
+  },
+  upperBody: {
+    flex: 0,
+    padding: 30,
+    borderBottomColor: color['greyscale.300'],
+    borderBottomWidth: 1,
+  },
+  upperBodyTitle: {
+    ...typography['heading.h4'],
+    color: color['greyscale.900'],
+    marginBottom: 5,
+  },
+  upperBodyText: {
+    ...typography['body.medium.regular'],
+    color: color['greyscale.500'],
   },
 
-  courseTitle: {
-    ...typography['heading.h4'],
-    color: color['Greyscale.900'],
-    fontWeight: 500,
-    marginTop: -12,
-    paddingHorizontal: 16,
-  },
-  courseDescription: {
-    ...typography['body.large.regular'],
-    color: color['Greyscale.700'],
-    marginTop: 12,
-    paddingHorizontal: 16,
-  },
-  sectionTitle: {
+  middleBody: {flex: 0, padding: 30},
+  middleBodyTitle: {
     ...typography['heading.h6'],
-    color: color['Greyscale.900'],
-    fontWeight: 700,
-    marginTop: 16,
-    marginBottom: 4,
-
-    paddingHorizontal: 16,
+    color: color['greyscale.800'],
+    marginBottom: 5,
   },
-  courseFeatureimage: {
-    width: 24,
-    height: 24,
+  middleBodyText: {
+    ...typography['body.medium.regular'],
+    color: color['greyscale.700'],
   },
-  couseFeatureText: {
-    ...typography['body.large.regular'],
-    color: color['Greyscale.900'],
-    marginLeft: 12,
+  lowerBody: {flex: 1, paddingHorizontal: 30},
+  lowerBodyTitle: {
+    ...typography['heading.h6'],
+    color: color['greyscale.800'],
+    marginBottom: 5,
   },
-  chapterNum: {
-    ...typography['heading.h4'],
-    color: color['info.400'],
-    fontWeight: '600',
-    backgroundColor: color['info.100'],
-    width: 40,
-    height: 40,
-    textAlign: 'center',
-    textAlignVertical: 'center',
-    paddingTop: 2,
+  lowerBodySrollViewContainer: {flex: 1},
+  lowerBodySrollViewContent: {flex: 1},
+  lowerBodySubjectItem: {
+    marginBottom: 20,
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    flex: 0,
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: color['greyscale.100'],
+    borderRadius: 5,
   },
-  chapterTitle: {
-    ...typography['body.large.regular'],
+  lowerBodySubjectItemIcon: {
+    flex: 0,
+    fontSize: 35,
+    color: color['greyscale.800'],
+    marginRight: 15,
+  },
+  lowerBodySubjectItemTextView: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+  },
+  lowerBodySubjectName: {
+    ...typography['body.large.medium'],
+    color: color['greyscale.800'],
+  },
+  lowerBodySubjectDesc: {
+    ...typography['body.medium.regular'],
+    color: color['greyscale.600'],
   },
 })
 

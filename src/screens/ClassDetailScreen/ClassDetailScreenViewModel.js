@@ -1,19 +1,17 @@
 /* eslint-disable no-param-reassign */
 import {createSlice, createSelector} from '@reduxjs/toolkit'
-import {isDebugModeOnSelector} from '../../AppViewModel'
 
 const stateSlice = createSlice({
   name: 'ClassDetailScreenViewModel',
   initialState: {
     error: {},
     data: {
-      isDebugModeOn: false,
-      classes: {},
+      subjects: {},
     },
   },
   reducers: {
-    loadClasses: (state, action) => {
-      state.data.classes = action.payload
+    loadSubjects: (state, action) => {
+      state.data.subjects = action.payload
     },
     handleError: (state, action) => {
       state.error = action.payload
@@ -40,9 +38,4 @@ export function loadSubjectsOfClass() {}
 export const errorSelector = createSelector(
   ClassDetailScreenViewModel.selfSelector,
   (vm) => vm.error
-)
-
-export const isAppDebugModeOnSelector = createSelector(
-  isDebugModeOnSelector,
-  (isAppDebugModeOn) => isAppDebugModeOn
 )
