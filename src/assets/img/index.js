@@ -1,3 +1,5 @@
+import prize from './prize.png'
+import failed from './failed.png'
 import medal from './medal.png'
 import checklist from './checklist.png'
 import card from './card.png'
@@ -20,6 +22,8 @@ import Slide04 from './Slide04.png'
 import Slide05 from './Slide05.png'
 
 const img = {
+  prize,
+  failed,
   medal,
   checklist,
   card,

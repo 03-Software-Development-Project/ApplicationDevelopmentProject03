@@ -1,5 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* PLOP_INJECT_EXPORT */
+export {default as QuizResultScreen} from './QuizResultScreen'
+export {default as QuizStartingScreen} from './QuizStartingScreen'
 export {default as ChapterDetailScreen} from './ChapterDetailScreen'
 export {default as SubjectDetailScreen} from './SubjectDetailScreen'
 export {default as QuestionScreen} from './QuestionScreen'
