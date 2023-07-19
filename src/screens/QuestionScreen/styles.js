@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   headerTitle: {
-    ...typography['heading.h4'],
+    ...typography['heading.h5'],
     textAlign: 'center',
     color: 'white',
   },
