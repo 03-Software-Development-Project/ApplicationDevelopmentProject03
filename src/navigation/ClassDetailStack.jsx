@@ -4,6 +4,7 @@ import {
   ClassDetailScreen,
   QuestionScreen,
   SubjectDetailScreen,
+  ChapterDetailScreen,
 } from '../screens'
 
 const Stack = createNativeStackNavigator()
@@ -11,7 +12,7 @@ const Stack = createNativeStackNavigator()
 function ClassDetailStack() {
   return (
     <Stack.Navigator
-      initialRouteName="SubjectDetail"
+      initialRouteName="ChapteDetail"
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="ClassDetail"
@@ -20,6 +21,10 @@ function ClassDetailStack() {
       <Stack.Screen
         name="SubjectDetail"
         component={SubjectDetailScreen}
+      />
+      <Stack.Screen
+        name="ChapteDetail"
+        component={ChapterDetailScreen}
       />
       <Stack.Screen
         name="Question"
