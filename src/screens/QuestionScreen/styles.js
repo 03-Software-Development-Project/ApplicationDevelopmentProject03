@@ -125,12 +125,11 @@ const styles = StyleSheet.create({
   footerContinueButton: {
     flex: 1,
     paddingVertical: 15,
-    backgroundColor: color['info.900'],
-    borderWidth: 1,
+    backgroundColor: color['info.800'],
     borderRadius: 15,
   },
   footerContinueButtonText: {
-    ...typography['heading.h5'],
+    ...typography['body.large.bold'],
     textAlign: 'center',
     color: 'white',
   },
