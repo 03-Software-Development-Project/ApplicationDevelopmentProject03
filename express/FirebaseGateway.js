@@ -228,7 +228,7 @@ const dataSampleFunctions = {
   },
   async insertStudent(student, _class) {
     const {studentID, firstName, lastName, gender, birthdate, address} = student
-    const {reference, photoURL, name, description, numberOfSubjects} = _class
+    const {reference} = _class
     try {
       const studentRef = await db.insertStudent(
         studentID,
@@ -236,10 +236,6 @@ const dataSampleFunctions = {
         lastName,
         {
           reference,
-          photoURL,
-          name,
-          description,
-          numberOfSubjects,
         },
         gender,
         birthdate,
@@ -373,7 +369,7 @@ const dataSampleFunctions = {
                 )
                 await dataSampleFunctions.insertStudent(
                   {...student, studentID: user.uid},
-                  {..._class, reference: classRef}
+                  {reference: classRef}
                 )
               })
           )
