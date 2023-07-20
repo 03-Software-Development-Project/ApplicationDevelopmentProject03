@@ -1,3 +1,6 @@
+<h1> Mind Snap Project - Mobile Quiz Application using React Native</h1>
+<img src="https://drive.google.com/uc?export=view&id=1wLhftH1l7rhxCAp3zR2FhmQnxYmDlHiw" alt="Image">
+
 <h1>Installation</h1>
 
 <p>To install and set up the project, please follow the steps below:</p>
@@ -72,13 +75,6 @@
 
 <p>Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.</p>
 
-<h1>License</h1>
-
-<p>This project is licensed under the [insert license name]. For more details, please refer to the LICENSE file.</p>
-
-<h1>Acknowledgments</h1>
-
-<p>[List any acknowledgments or credits for libraries, frameworks, or individuals that contributed to the project.]</p>
 
 <h1>Contact</h1>
 
