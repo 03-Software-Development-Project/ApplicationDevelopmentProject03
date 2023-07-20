@@ -2,16 +2,21 @@ import React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import {useDispatch} from 'react-redux'
+import {quitExamAttempt} from './QuizStartingScreenViewModel'
 import styles from './styles'
 
-function QuizStartingScreen({navigation}) {
+function QuizStartingScreen({route, navigation}) {
+  const {headerTitle} = route.params
+  const dispatch = useDispatch()
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.content}>
         <View style={styles.header}>
           <TouchableOpacity
             style={styles.headerBackButton}
-            onPress={() => {
+            onPress={async () => {
+              await dispatch(quitExamAttempt())
               navigation.goBack()
             }}>
             <Ionicons
@@ -20,7 +25,7 @@ function QuizStartingScreen({navigation}) {
             />
           </TouchableOpacity>
           <View style={styles.headerTitleView}>
-            <Text style={styles.headerTitle}>Quiz 2</Text>
+            <Text style={styles.headerTitle}>{headerTitle}</Text>
           </View>
         </View>
         <View style={styles.body}>
@@ -40,7 +45,11 @@ function QuizStartingScreen({navigation}) {
           </View>
         </View>
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.footerButton}>
+          <TouchableOpacity
+            style={styles.footerButton}
+            onPress={() => {
+              navigation.navigate('Question', {currentQuestionIndex: 0})
+            }}>
             <Text style={styles.footerButtonText}>Get Started</Text>
           </TouchableOpacity>
         </View>

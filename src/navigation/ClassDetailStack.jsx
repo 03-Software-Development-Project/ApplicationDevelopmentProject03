@@ -14,7 +14,7 @@ const Stack = createNativeStackNavigator()
 function ClassDetailStack() {
   return (
     <Stack.Navigator
-      initialRouteName="QuizResult"
+      initialRouteName="ClassDetail"
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="ClassDetail"
@@ -25,7 +25,7 @@ function ClassDetailStack() {
         component={SubjectDetailScreen}
       />
       <Stack.Screen
-        name="ChapteDetail"
+        name="ChapterDetail"
         component={ChapterDetailScreen}
       />
       <Stack.Screen

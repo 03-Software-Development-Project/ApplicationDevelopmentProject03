@@ -5,10 +5,10 @@ import {isDebugModeOnSelector} from '../../AppViewModel'
 const stateSlice = createSlice({
   name: 'HomeScreenViewModel',
   initialState: {
-    error: {},
+    error: null,
     data: {
       isDebugModeOn: false,
-      classes: {},
+      classes: null,
     },
   },
   reducers: {
@@ -19,7 +19,7 @@ const stateSlice = createSlice({
       state.error = action.payload
     },
     dismissError: (state) => {
-      state.error = {}
+      state.error = null
     },
   },
 })

@@ -11,7 +11,7 @@ import {
 import {useDispatch, useSelector} from 'react-redux'
 import {SharedErrorModalComponent} from '../../components/shared'
 import {color} from '../../constants'
-import {dismissError, errorSelector, signIn} from './SignInScreenViewModel'
+import {dismissError, errorSelector, login} from './SignInScreenViewModel'
 import styles from './styles'
 
 function SignInScreen({navigation}) {
@@ -23,7 +23,7 @@ function SignInScreen({navigation}) {
   const [password, setPassword] = useState('')
 
   const signInButtonPressed = () => {
-    dispatch(signIn(username, password))
+    dispatch(login(username, password))
   }
 
   return (
@@ -49,6 +49,7 @@ function SignInScreen({navigation}) {
               style={styles.textInput}
               placeholder="Username"
               placeholderTextColor={color['greyscale.400']}
+              autoCapitalize="none"
               value={username}
               onChangeText={setUsername}
             />
@@ -59,6 +60,8 @@ function SignInScreen({navigation}) {
               style={styles.textInput}
               placeholder="Password"
               placeholderTextColor={color['greyscale.400']}
+              secureTextEntry
+              autoCapitalize="none"
               value={password}
               onChangeText={setPassword}
             />

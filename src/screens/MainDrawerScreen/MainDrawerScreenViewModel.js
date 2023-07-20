@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {createSelector, createSlice} from '@reduxjs/toolkit'
-import {FirebaseGateway} from '../../gateways'
+import {accountSelector, signOut} from '../../redux/slices/studentSlice'
 
 const stateSlice = createSlice({
   name: 'MainDrawerScreenViewModel',
@@ -28,10 +28,10 @@ export default MainDrawerScreenViewModel
 export const {handleError, dismissError} = MainDrawerScreenViewModel.actions
 
 // THUNKS
-export function signOut() {
+export function logOut() {
   return async (dispatch) => {
     try {
-      await FirebaseGateway.signOut()
+      await dispatch(signOut())
     } catch (err) {
       const {name, code, message} = err
       dispatch(handleError({name, code, message}))
@@ -43,4 +43,9 @@ export function signOut() {
 export const errorSelector = createSelector(
   MainDrawerScreenViewModel.selfSelector,
   (vm) => vm.error
+)
+
+export const studentAccountSelector = createSelector(
+  accountSelector,
+  (studentAccount) => studentAccount
 )

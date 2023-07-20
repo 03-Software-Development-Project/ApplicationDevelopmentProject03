@@ -1,7 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native'
 import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import {useDispatch, useSelector} from 'react-redux'
+import {
+  loadStudentClass,
+  studentClassSelector,
+} from './ClassDetailScreenViewModel'
 import img from '../../assets/img'
 import styles from './styles'
 
@@ -33,19 +38,18 @@ function SubjectItem(props) {
 }
 
 function ClassDetailScreen({navigation}) {
+  const dispatch = useDispatch()
+  const studentClass = useSelector(studentClassSelector)
   const insets = useSafeAreaInsets()
   const bodyBottomInset = insets.bottom
-  const subjects = [
-    {id: 1, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
-    {id: 2, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
-    {id: 3, name: 'Môn 3', description: 'Mô tả', onPress: () => {}},
-    {id: 4, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
-    {id: 5, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
-    {id: 6, name: 'Môn 3', description: 'Mô tả', onPress: () => {}},
-    {id: 7, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
-    {id: 8, name: 'Môn 2', description: 'Mô tả', onPress: () => {}},
-    {id: 9, name: 'Môn 3', description: 'Mô tả', onPress: () => {}},
-  ]
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(loadStudentClass())
+    }
+    fetchData()
+  }, [dispatch])
+
   return (
     <View style={styles.container}>
       <SafeAreaView
@@ -64,7 +68,7 @@ function ClassDetailScreen({navigation}) {
               navigation.goBack()
             }}>
             <Ionicons
-              name="chevron-back"
+              name="menu"
               size={25}
               color="white"
             />
@@ -80,30 +84,33 @@ function ClassDetailScreen({navigation}) {
           },
         ]}>
         <View style={styles.upperBody}>
-          <Text style={styles.upperBodyTitle}>
-            Lớp đào tạo môn học tự nhiên
-          </Text>
-          <Text style={styles.upperBodyText}>Mã lớp: LA001</Text>
+          <Text style={styles.upperBodyTitle}>{studentClass.name}</Text>
+          <Text style={styles.upperBodyText}>Mã lớp: {studentClass.id}</Text>
         </View>
         <View style={styles.middleBody}>
           <Text style={styles.middleBodyTitle}>Mô tả lớp học</Text>
-          <Text style={styles.middleBodyText}>
-            You must complete this test in one session, make sure your Internet
-            is reliable. One mark awarded for a correct answer. No negative
-            marking will be there for wrong answer. More you give the correct
-            answer more chance to win the badge.
+          <Text
+            numberOfLines={6}
+            style={styles.middleBodyText}>
+            {studentClass.description}
           </Text>
         </View>
         <View style={styles.lowerBody}>
           <Text style={styles.lowerBodyTitle}>Các môn có trong lớp học</Text>
           <ScrollView style={styles.lowerBodySrollViewContainer}>
             <View style={styles.lowerBodySrollViewContent}>
-              {subjects.map((subject) => (
+              {(studentClass.subjects || []).map((subject, index) => (
                 <SubjectItem
                   key={subject.id}
                   subjectName={subject.name}
                   subjectDesc={subject.description}
-                  onPress={subject.onPress}
+                  onPress={() => {
+                    navigation.navigate('SubjectDetail', {
+                      headerTitle: studentClass.name,
+                      subjectIndex: index,
+                      subjectRefPath: subject.refPath,
+                    })
+                  }}
                 />
               ))}
             </View>

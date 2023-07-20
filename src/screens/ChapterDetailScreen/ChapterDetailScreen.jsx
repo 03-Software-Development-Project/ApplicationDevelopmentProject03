@@ -1,7 +1,13 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {View, Text, TouchableOpacity, Image} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import {useDispatch, useSelector} from 'react-redux'
+import {
+  currentChapterSelector,
+  loadCurrentChapter,
+  startNewExamAttempt,
+} from './ChapterDetailScreenViewModel'
 import img from '../../assets/img'
 import styles from './styles'
 
@@ -23,7 +29,10 @@ function ChapterOverviewItem(props) {
   )
 }
 
-function ChapterDetailScreen({navigation}) {
+function ChapterDetailScreen({route, navigation}) {
+  const {headerTitle, subjectIndex, chapterIndex, chapterRefPath} = route.params
+  const dispatch = useDispatch()
+  const chapter = useSelector(currentChapterSelector)
   const chapterOverview = [
     {
       id: 1,
@@ -38,6 +47,14 @@ function ChapterDetailScreen({navigation}) {
       lowerText: 'To pass this test',
     },
   ]
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(
+        loadCurrentChapter(subjectIndex, chapterIndex, chapterRefPath)
+      )
+    }
+    fetchData()
+  }, [chapterIndex, chapterRefPath, dispatch, subjectIndex])
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.content}>
@@ -53,11 +70,11 @@ function ChapterDetailScreen({navigation}) {
             />
           </TouchableOpacity>
           <View style={styles.headerTitleView}>
-            <Text style={styles.headerTitle}>Quiz 2</Text>
+            <Text style={styles.headerTitle}>{headerTitle}</Text>
           </View>
         </View>
         <View style={styles.body}>
-          <Text style={styles.bodyTitle}>Chương 01: Giới thiệu về môn học</Text>
+          <Text style={styles.bodyTitle}>{chapter.name}</Text>
           <Text style={styles.bodySubtitle}>12k student took this</Text>
 
           <View style={styles.bodyChapterOverview}>
@@ -84,7 +101,14 @@ function ChapterDetailScreen({navigation}) {
         </View>
 
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.footerButton}>
+          <TouchableOpacity
+            style={styles.footerButton}
+            onPress={async () => {
+              await dispatch(startNewExamAttempt(chapter.questions))
+              navigation.navigate('QuizStarting', {
+                headerTitle: 'Quiz',
+              })
+            }}>
             <Text style={styles.footerButtonText}>Ôn tổng chương</Text>
           </TouchableOpacity>
         </View>

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 import {createSelector, createSlice} from '@reduxjs/toolkit'
-import {FirebaseGateway} from '../../gateways'
+import {signIn} from '../../redux/slices/studentSlice'
 
 const stateSlice = createSlice({
   name: 'SignInScreenViewModel',
@@ -28,10 +28,10 @@ export default SignInScreenViewModel
 export const {handleError, dismissError} = SignInScreenViewModel.actions
 
 // THUNKS
-export function signIn(email, password) {
+export function login(email, password) {
   return async (dispatch) => {
     try {
-      await FirebaseGateway.signIn(email, password)
+      await dispatch(signIn(email, password))
     } catch (err) {
       const {name, code, message} = err
       dispatch(handleError({name, code, message}))

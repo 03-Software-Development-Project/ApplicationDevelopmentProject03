@@ -1,4 +1,9 @@
-import {StyleSheet} from 'react-native'
+import {StyleSheet, Dimensions} from 'react-native'
+
+const windowWidth = Dimensions.get('window').width
+const avatarWidth = windowWidth / 5
+const avatarHeight = avatarWidth
+const avatarBorderRadius = avatarWidth / 2
 
 const styles = StyleSheet.create({
   drawer: {flex: 1},
@@ -16,11 +21,11 @@ const styles = StyleSheet.create({
     paddingBottom: 25,
   },
   drawerHeaderContentAvatar: {
-    height: 80,
-    width: 80,
+    height: avatarHeight,
+    width: avatarWidth,
     borderColor: '#fff',
     borderWidth: 1,
-    borderRadius: 40,
+    borderRadius: avatarBorderRadius,
   },
   drawerHeadrContentNameText: {
     color: 'black',

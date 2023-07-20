@@ -1,7 +1,7 @@
 import React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
 import {useDispatch} from 'react-redux'
-import {signOut} from '../../../screens/MainDrawerScreen/MainDrawerScreenViewModel'
+import {logOut} from '../../../screens/MainDrawerScreen/MainDrawerScreenViewModel'
 import styles from './styles'
 
 function SharedDebugDrawerComponent({navigation}) {
@@ -25,7 +25,7 @@ function SharedDebugDrawerComponent({navigation}) {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => dispatch(signOut())}>
+        onPress={() => dispatch(logOut())}>
         <Text style={styles.buttonText}>Sign out</Text>
       </TouchableOpacity>
     </View>

@@ -52,7 +52,7 @@ function AppStack() {
 
 export default function App() {
   useEffect(() => {
-    store.dispatch(setDebugMode(true))
+    store.dispatch(setDebugMode(false))
     const subscriber = store.dispatch(listenToStudentAuthState())
     return subscriber
   }, [])

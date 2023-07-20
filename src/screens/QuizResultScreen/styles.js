@@ -2,7 +2,6 @@ import {StyleSheet, Dimensions} from 'react-native'
 import {color, typography} from '../../constants'
 
 const windowWidth = Dimensions.get('window').width
-console.log(windowWidth / 2)
 
 const styles = StyleSheet.create({
   container: {

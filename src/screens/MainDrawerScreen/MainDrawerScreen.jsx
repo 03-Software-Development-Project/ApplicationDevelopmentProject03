@@ -7,9 +7,14 @@ import {
 } from '@react-navigation/drawer'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {useDispatch, useSelector} from 'react-redux'
-import {signOut, dismissError, errorSelector} from './MainDrawerScreenViewModel'
-import styles from './styles'
+import {
+  logOut,
+  dismissError,
+  errorSelector,
+  studentAccountSelector,
+} from './MainDrawerScreenViewModel'
 import {SharedErrorModalComponent} from '../../components/shared'
+import styles from './styles'
 
 function IconCreator(name) {
   return function Icon(props) {
@@ -41,9 +46,10 @@ function CustomDrawerItem(props) {
 }
 
 function MainDrawerScreen(props) {
+  const {state, navigation, descriptors} = {...props}
   const dispatch = useDispatch()
   const error = useSelector(errorSelector)
-  const {state, navigation, descriptors} = {...props}
+  const studentAccount = useSelector(studentAccountSelector)
   return (
     <View style={styles.drawer}>
       <View style={styles.drawerHeader}>
@@ -57,12 +63,14 @@ function MainDrawerScreen(props) {
           scrollEnabled={false}
           contentContainerStyle={styles.drawerHeaderContent}>
           <Image
-            source={require('../../assets/img/Category01.png')}
+            source={{uri: studentAccount.photoURL}}
             style={styles.drawerHeaderContentAvatar}
           />
-          <Text style={styles.drawerHeadrContentNameText}>John Doe</Text>
+          <Text style={styles.drawerHeadrContentNameText}>
+            {studentAccount.displayName}
+          </Text>
           <Text style={styles.drawerHeadrContentEmailText}>
-            johndoe@gmail.com
+            {studentAccount.email}
           </Text>
         </DrawerContentScrollView>
         {/* </ImageBackground> */}
@@ -95,7 +103,7 @@ function MainDrawerScreen(props) {
           label="Sign out"
           iconName="log-out-outline"
           onPress={() => {
-            dispatch(signOut())
+            dispatch(logOut())
           }}
         />
       </View>

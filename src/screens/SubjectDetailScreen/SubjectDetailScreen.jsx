@@ -1,7 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Image, Text, TouchableOpacity, View, ScrollView} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import {useDispatch, useSelector} from 'react-redux'
+import {
+  currentSubjectSelector,
+  loadCurrentSubject,
+} from './SubjectDetailScreenViewModel'
 import img from '../../assets/img'
 import styles from './styles'
 
@@ -47,11 +52,23 @@ function ChapterItem(props) {
   )
 }
 
-function SubjectDetailScreen({navigation}) {
+function SubjectDetailScreen({route, navigation}) {
+  const {headerTitle, subjectIndex, subjectRefPath} = route.params
+  const dispatch = useDispatch()
+  /*
+  currentSubjectSelector truy xuất môn học được bấm vào của lớp học viên hay môn học hiện tại
+  Khi screen được khởi tạo thì sẽ thiết lập chỉ mục của môn học hiện tại, tải môn học hiện tại và các chương của nó (nếu đã có thì tải lại)
+  Do hoạt động trên ở trên chỉ được diễn ra khi screen này khởi tạo chứ không đc thực hiện trước, cùng với việc lần truy xuất môn học hiện tại đầu tiên lại diễn ra trước hoạt động này (lúc này chưa thiết lập chỉ mục của môn học hiện tại)
+  => Nên dữ liệu trả về sẽ là object rỗng (cần sử dụng các phương pháp khi thao tác object rỗng)
+  */
+  const subject = useSelector(currentSubjectSelector)
   const subjectOverview = [
     {
       id: 1,
-      text: '03 Chapters included',
+      text: `${(subject.numberOfChapters || 0).toLocaleString('en-US', {
+        minimumIntegerDigits: 2,
+        useGrouping: false,
+      })} Chapters included`,
       iconName: 'library-outline',
     },
     {
@@ -66,18 +83,12 @@ function SubjectDetailScreen({navigation}) {
     },
   ]
 
-  const chapters = [
-    {id: 1, name: 'Chương 1', description: 'Mô tả', onPress: () => {}},
-    {id: 2, name: 'Chương 2', description: 'Mô tả', onPress: () => {}},
-    {id: 3, name: 'Chương 3', description: 'Mô tả', onPress: () => {}},
-    {id: 4, name: 'Chương 1', description: 'Mô tả', onPress: () => {}},
-    {id: 5, name: 'Chương 2', description: 'Mô tả', onPress: () => {}},
-    {id: 6, name: 'Chương 3', description: 'Mô tả', onPress: () => {}},
-    {id: 7, name: 'Chương 1', description: 'Mô tả', onPress: () => {}},
-    {id: 8, name: 'Chương 2', description: 'Mô tả', onPress: () => {}},
-    {id: 9, name: 'Chương 3', description: 'Mô tả', onPress: () => {}},
-  ]
-
+  useEffect(() => {
+    const fetchData = async () => {
+      await dispatch(loadCurrentSubject(subjectIndex, subjectRefPath))
+    }
+    fetchData()
+  }, [dispatch, subjectIndex, subjectRefPath])
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.content}>
@@ -93,7 +104,7 @@ function SubjectDetailScreen({navigation}) {
             />
           </TouchableOpacity>
           <View style={styles.headerTitleView}>
-            <Text style={styles.headerTitle}>Quiz 2</Text>
+            <Text style={styles.headerTitle}>{headerTitle}</Text>
           </View>
         </View>
 
@@ -104,18 +115,15 @@ function SubjectDetailScreen({navigation}) {
               style={styles.bodyCardImage}
             />
           </View>
-          <Text style={styles.bodySubjectTitle}>
-            UI Design Fundamental - 6 Step to Start Designing Interface
-          </Text>
-          <Text style={styles.bodySubjectDesc}>
-            Facilisis in purus et id sit feugiat. Eu nulla vitae aliquet cursus
-            volutpat tortor sapien, quis dignissim. Tincidunt amet id in enim.
+          <Text style={styles.bodySubjectTitle}>{subject.name}</Text>
+          <Text
+            numberOfLines={6}
+            style={styles.bodySubjectDesc}>
+            {subject.description}
           </Text>
 
           <View style={styles.bodySubjectOverview}>
-            <Text style={styles.bodySubjectOverviewTitle}>
-              Course Overview{' '}
-            </Text>
+            <Text style={styles.bodySubjectOverviewTitle}>Course Overview</Text>
             {subjectOverview.map((info) => (
               <SubjectOverviewItem
                 key={info.id}
@@ -131,84 +139,24 @@ function SubjectDetailScreen({navigation}) {
           </View>
           <ScrollView style={styles.footerSrollViewContainer}>
             <View style={styles.footerSrollViewContent}>
-              {chapters.map((chapter, index) => (
+              {(subject.chapters || []).map((chapter, index) => (
                 <ChapterItem
                   key={chapter.id}
-                  chapterOrd={index + 1}
+                  chapterOrd={chapter.ord}
                   chapterName={chapter.name}
                   chapterDesc={chapter.description}
-                  onPress={chapter.onPress}
+                  onPress={() => {
+                    navigation.navigate('ChapterDetail', {
+                      headerTitle: subject.name,
+                      subjectIndex,
+                      chapterIndex: index,
+                      chapterRefPath: chapter.refPath,
+                    })
+                  }}
                 />
               ))}
             </View>
           </ScrollView>
-          {/* <Text style={styles.sectionTitle}>Chapter </Text>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate('Question')
-          }}>
-          <View
-            style={{
-              paddingHorizontal: 16,
-              paddingVertical: 8,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <View style={{borderRadius: 90, overflow: 'hidden'}}>
-              <Text style={styles.chapterNum}>01</Text>
-            </View>
-            <View style={{flex: 1, paddingHorizontal: 8}}>
-              <Text style={styles.chapterTitle}> Chapter name 01</Text>
-            </View>
-            <Image
-              style={{width: 40, height: 40}}
-              source={require('../../assets/icons/@next_icon.png')}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View
-            style={{
-              paddingHorizontal: 16,
-              paddingVertical: 8,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <View style={{borderRadius: 90, overflow: 'hidden'}}>
-              <Text style={styles.chapterNum}>02</Text>
-            </View>
-            <View style={{flex: 1, paddingHorizontal: 8}}>
-              <Text style={styles.chapterTitle}> Chapter name 02</Text>
-            </View>
-            <Image
-              style={{width: 40, height: 40}}
-              source={require('../../assets/icons/@next_icon.png')}
-            />
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <View
-            style={{
-              paddingHorizontal: 16,
-              paddingVertical: 8,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-            <View style={{borderRadius: 90, overflow: 'hidden'}}>
-              <Text style={styles.chapterNum}>03</Text>
-            </View>
-            <View style={{flex: 1, paddingHorizontal: 8}}>
-              <Text style={styles.chapterTitle}> Chapter name 03</Text>
-            </View>
-            <Image
-              style={{width: 40, height: 40}}
-              source={require('../../assets/icons/@next_icon.png')}
-            />
-          </View>
-        </TouchableOpacity> */}
         </View>
       </SafeAreaView>
     </View>
