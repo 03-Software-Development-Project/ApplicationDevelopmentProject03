@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
   Image,
   KeyboardAvoidingView,
@@ -8,10 +8,24 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native'
+import {useDispatch, useSelector} from 'react-redux'
+import {SharedErrorModalComponent} from '../../components/shared'
 import {color} from '../../constants'
+import {dismissError, errorSelector, login} from './SignInScreenViewModel'
 import styles from './styles'
 
-function SignInScreen({navigator}) {
+function SignInScreen({navigation}) {
+  const dispatch = useDispatch()
+
+  const error = useSelector(errorSelector)
+
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
+  const signInButtonPressed = () => {
+    dispatch(login(username, password))
+  }
+
   return (
     <KeyboardAvoidingView
       style={styles.safeArea}
@@ -35,6 +49,9 @@ function SignInScreen({navigator}) {
               style={styles.textInput}
               placeholder="Username"
               placeholderTextColor={color['greyscale.400']}
+              autoCapitalize="none"
+              value={username}
+              onChangeText={setUsername}
             />
           </View>
           <View style={styles.inputContainer}>
@@ -43,6 +60,10 @@ function SignInScreen({navigator}) {
               style={styles.textInput}
               placeholder="Password"
               placeholderTextColor={color['greyscale.400']}
+              secureTextEntry
+              autoCapitalize="none"
+              value={password}
+              onChangeText={setPassword}
             />
           </View>
           <Text
@@ -53,11 +74,19 @@ function SignInScreen({navigator}) {
             }}>
             Forgot Password?
           </Text>
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={signInButtonPressed}>
             <Text style={styles.buttonText}>Sign in</Text>
           </TouchableOpacity>
         </View>
       </View>
+      <SharedErrorModalComponent
+        error={error}
+        onClose={() => {
+          dispatch(dismissError())
+        }}
+      />
     </KeyboardAvoidingView>
   )
 }

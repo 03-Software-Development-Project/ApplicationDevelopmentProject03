@@ -75,7 +75,6 @@
 
 <p>Contributions are welcome! If you encounter any issues or have suggestions for improvements, please feel free to open an issue or submit a pull request.</p>
 
-
 <h1>Contact</h1>
 
 <p>If you have any questions or need further assistance, please feel free to reach out to [insert contact information].</p>

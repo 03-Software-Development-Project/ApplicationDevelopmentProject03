@@ -10,8 +10,11 @@ export const highlightText = {
   2: chalk.red.bold, // Level 3 highlighting
 }
 export const formatSourceCode = async (fileContents) => {
-  const configFile = prettier.resolveConfigFile.sync('...')
-  const options = prettier.resolveConfig.sync(configFile)
-  const formattedCode = prettier.format(fileContents, {...options, parser: 'babel'})
-  return formattedCode
+  const configFile = await prettier.resolveConfigFile('...')
+  const options = await prettier.resolveConfig(configFile)
+  const formattedCode = await prettier.format(fileContents, {
+    ...options,
+    parser: 'babel',
+  })
+  return formattedCode  
 }
