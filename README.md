@@ -9,13 +9,13 @@
   <li>Clone the repository using HTTPS by running the following command in your terminal:</li>
 </ol>
 
-<pre><code>git clone [repository URL]</code></pre>
+<pre><code>git clone https://github.com/03-Software-Development-Project/ApplicationDevelopmentProject03.git</code></pre>
 
 <ol start="2">
   <li>Change your current directory to the project folder:</li>
 </ol>
 
-<pre><code>cd [project folder]</code></pre>
+<pre><code>cd ApplicationDevelopmentProject03</code></pre>
 
 <ol start="3">
   <li>Install the project dependencies by running the following command:</li>
