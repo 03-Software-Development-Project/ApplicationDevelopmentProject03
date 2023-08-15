@@ -9,13 +9,12 @@ import {
 } from './SubjectDetailScreenViewModel'
 import img from '../../assets/img'
 import styles from './styles'
+import {SharedHeader} from '../../components/shared'
 
 function SubjectOverviewItem(props) {
-  const {key, text, iconName} = {...props}
+  const {text, iconName} = props
   return (
-    <View
-      key={key}
-      style={styles.bodySubjectOverviewItem}>
+    <View style={styles.bodySubjectOverviewItem}>
       <Ionicons
         name={iconName}
         style={styles.bodySubjectOverviewItemIcon}
@@ -26,10 +25,9 @@ function SubjectOverviewItem(props) {
 }
 
 function ChapterItem(props) {
-  const {key, chapterOrd, chapterName, chapterDesc, onPress} = {...props}
+  const {chapterOrd, chapterName, chapterDesc, onPress} = props
   return (
     <TouchableOpacity
-      key={key}
       onPress={onPress}
       style={styles.footerChapterItem}>
       <Ionicons
@@ -83,6 +81,10 @@ function SubjectDetailScreen({route, navigation}) {
     },
   ]
 
+  const backToPreviousScreen = () => {
+    navigation.goBack()
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       await dispatch(loadCurrentSubject(subjectIndex, subjectRefPath))
@@ -92,21 +94,16 @@ function SubjectDetailScreen({route, navigation}) {
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.content}>
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.headerBackButton}
-            onPress={() => {
-              navigation.goBack()
-            }}>
-            <Ionicons
-              name="chevron-back"
-              style={styles.headerBackButtonIcon}
-            />
-          </TouchableOpacity>
-          <View style={styles.headerTitleView}>
-            <Text style={styles.headerTitle}>{headerTitle}</Text>
-          </View>
-        </View>
+        <SharedHeader
+          title={headerTitle}
+          preset="simple"
+          btns={{
+            left: {
+              iconName: 'chevron-back',
+              onPress: backToPreviousScreen,
+            },
+          }}
+        />
 
         <View style={styles.body}>
           <View style={styles.bodyCard}>

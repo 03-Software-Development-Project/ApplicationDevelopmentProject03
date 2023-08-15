@@ -1,17 +1,15 @@
 import React, {useState} from 'react'
 import {
-  Image,
   KeyboardAvoidingView,
   Platform,
   Text,
-  TextInput,
-  TouchableOpacity,
   View,
+  TouchableOpacity,
 } from 'react-native'
 import {useDispatch, useSelector} from 'react-redux'
-import {SharedErrorModalComponent} from '../../components/shared'
-import {color} from '../../constants'
 import {dismissError, errorSelector, login} from './SignInScreenViewModel'
+import {SharedErrorModal} from '../../components/shared'
+import {CommonButton, CommonTextInput} from '../../components/common'
 import styles from './styles'
 
 function SignInScreen({navigation}) {
@@ -25,67 +23,61 @@ function SignInScreen({navigation}) {
   const signInButtonPressed = () => {
     dispatch(login(username, password))
   }
+  const closeErrorModal = () => {
+    dispatch(dismissError())
+  }
+
+  const navigateToRegisterScreen = () => {
+    navigation.navigate('Register')
+  }
 
   return (
     <KeyboardAvoidingView
-      style={styles.safeArea}
+      style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <View style={styles.container}>
-        <View style={styles.content}>
-          <Image
-            style={styles.logo}
-            // source={require('../assets/logo_horizontal.png')}
-            resizeMode="contain"
-          />
-          <Text style={styles.title}>Hi There 👋</Text>
-          <Text style={styles.subtitle}>
-            Welcome back, sign in to your account
-          </Text>
-        </View>
-        <View style={styles.formContainer}>
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Username</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Username"
-              placeholderTextColor={color['greyscale.400']}
-              autoCapitalize="none"
-              value={username}
-              onChangeText={setUsername}
-            />
-          </View>
-          <View style={styles.inputContainer}>
-            <Text style={styles.label}>Password</Text>
-            <TextInput
-              style={styles.textInput}
-              placeholder="Password"
-              placeholderTextColor={color['greyscale.400']}
-              secureTextEntry
-              autoCapitalize="none"
-              value={password}
-              onChangeText={setPassword}
-            />
-          </View>
-          <Text
-            style={{
-              ...styles.label,
-              paddingVertical: 12,
-              color: color['primary.700'],
-            }}>
-            Forgot Password?
-          </Text>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={signInButtonPressed}>
-            <Text style={styles.buttonText}>Sign in</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.header}>
+        <Text style={styles.title}>Hi There 👋</Text>
+        <Text style={styles.subtitle}>
+          Welcome back, sign in to your account
+        </Text>
       </View>
-      <SharedErrorModalComponent
+      <View style={styles.form}>
+        <Text style={styles.tfLabel}>Username</Text>
+        <CommonTextInput
+          preset="default"
+          state={[username, setUsername]}
+          placeholder={{text: 'Username'}}
+          autoCapitalize="none"
+        />
+        <Text style={styles.tfLabel}>Password</Text>
+        <CommonTextInput
+          preset="default"
+          state={[password, setPassword]}
+          placeholder={{text: 'Password'}}
+          autoCapitalize="none"
+          secureTextEntry
+        />
+      </View>
+
+      <View style={{flexDirection: 'row'}}>
+        <Text style={styles.signUplabel}>Don&apos;t have an account?</Text>
+        <TouchableOpacity
+          style={styles.signUpBtn}
+          onPress={navigateToRegisterScreen}>
+          <Text style={styles.signUpBtnText}> Sign Up</Text>
+        </TouchableOpacity>
+      </View>
+
+      <CommonButton
+        size="default"
+        text="Sign In"
+        margin="30 0 0 0"
+        onPress={signInButtonPressed}
+      />
+
+      <SharedErrorModal
         error={error}
-        onClose={() => {
-          dispatch(dismissError())
-        }}
+        onClose={closeErrorModal}
       />
     </KeyboardAvoidingView>
   )

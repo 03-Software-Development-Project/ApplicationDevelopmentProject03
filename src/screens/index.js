@@ -1,5 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 /* PLOP_INJECT_EXPORT */
+export {default as RegisterScreen} from './RegisterScreen'
 export {default as QuizResultScreen} from './QuizResultScreen'
 export {default as QuizStartingScreen} from './QuizStartingScreen'
 export {default as ChapterDetailScreen} from './ChapterDetailScreen'

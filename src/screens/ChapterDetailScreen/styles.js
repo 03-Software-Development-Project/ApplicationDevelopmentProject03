@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native'
-import {color, typography} from '../../constants'
+import {typos, colors} from '../../constants'
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -9,52 +9,17 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
   },
-  header: {
-    flex: 0,
-    flexDirection: 'row',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    paddingVertical: 20,
-  },
-  headerBackButton: {
-    flex: 0,
-    padding: 5,
-    marginHorizontal: 15,
-    zIndex: 1,
-    borderColor: color['greyscale.200'],
-    borderWidth: 2,
-    borderRadius: 10,
-  },
-  headerBackButtonIcon: {
-    fontSize: 25,
-    color: color['greyscale.900'],
-  },
-  headerTitleView: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    zIndex: 0,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerTitle: {
-    ...typography['heading.h5'],
-    textAlign: 'center',
-    color: color['greyscale.900'],
-  },
-
   body: {
     flex: 1,
     paddingHorizontal: 20,
   },
   bodyTitle: {
-    ...typography['heading.h4'],
-    color: color['greyscale.800'],
+    ...typos['heading.h4'],
+    color: colors['greyscale.800'],
   },
   bodySubtitle: {
-    ...typography['body.medium.regular'],
-    color: color['greyscale.500'],
+    ...typos['body.medium.regular'],
+    color: colors['greyscale.500'],
   },
 
   bodyChapterOverview: {
@@ -78,21 +43,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   bodyChapterOverviewItemUpperText: {
-    ...typography['heading.h5'],
-    color: color['success.500'],
+    ...typos['heading.h5'],
+    color: colors['success.500'],
   },
   bodyChapterOverviewItemLowerText: {
-    ...typography['body.large.medium'],
-    color: color['greyscale.7 00'],
+    ...typos['body.large.medium'],
+    color: colors['greyscale.7 00'],
   },
   bodyHeading: {
-    ...typography['heading.h6'],
-    color: color['greyscale.800'],
+    ...typos['heading.h6'],
+    color: colors['greyscale.800'],
     paddingVertical: 10,
   },
   bodyText: {
-    ...typography['body.medium.regular'],
-    color: color['greyscale.700'],
+    ...typos['body.medium.regular'],
+    color: colors['greyscale.700'],
     lineHeight: 25,
   },
 
@@ -106,14 +71,12 @@ const styles = StyleSheet.create({
   footerButton: {
     flex: 1,
     paddingVertical: 15,
-    backgroundColor: color['info.500'],
+    backgroundColor: colors['info.500'],
     borderRadius: 15,
   },
   footerButtonText: {
-    ...typography['body.large.bold'],
+    ...typos['body.large.bold'],
     textAlign: 'center',
     color: 'white',
   },
 })
-
-export default styles

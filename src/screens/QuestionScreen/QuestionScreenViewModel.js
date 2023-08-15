@@ -11,19 +11,19 @@ const stateSlice = createSlice({
     error: null,
     data: {
       currentQuestionIndex: null,
-      chosenAnswer: null,
+      chosenAnswerIndex: null,
     },
   },
   reducers: {
     setCurrentQuestionIndex: (state, action) => {
       state.data.currentQuestionIndex = action.payload
     },
-    setChosenAnswer: (state, action) => {
-      state.data.chosenAnswer = action.payload
+    setChosenAnswerIndex: (state, action) => {
+      state.data.chosenAnswerIndex = action.payload
     },
     resetState: (state) => {
       state.data.currentQuestionIndex = null
-      state.data.chosenAnswer = null
+      state.data.chosenAnswerIndex = null
     },
     handleError: (state, action) => {
       state.error = action.payload
@@ -43,25 +43,31 @@ const QuestionScreenViewModel = {
 export default QuestionScreenViewModel
 export const {
   setCurrentQuestionIndex,
-  setChosenAnswer,
+  setChosenAnswerIndex,
   resetState,
   handleError,
   dismissError,
 } = QuestionScreenViewModel.actions
 
 // THUNKS
-export function answerCurrentQuestion(chosenAnswer) {
+export function answerCurrentQuestion() {
   return async (dispatch, getState) => {
     try {
-      dispatch(setChosenAnswer(chosenAnswer))
-      const currentQuestion = currentQuestionSelector(getState())
+      const chosenAnswerIndex = chosenAnswerIndexSelector(getState())
+      if (chosenAnswerIndex === null) {
+        const err = new Error()
+        err.code = '[anwer-not-chosen]'
+        err.message = 'You must choose one answer before submitting.'
+        throw err
+      }
       const currentQuestionIndex = currentQuestionIndexSelector(getState())
+      const currentQuestion = currentQuestionSelector(getState())
       await dispatch(
         updateLatestExamAttemptQuestion(
           currentQuestionIndex,
           currentQuestion.refPath,
           {
-            isCorrect: chosenAnswer.id === currentQuestion.correctAnswer,
+            isCorrect: chosenAnswerIndex === currentQuestion.correctAnswer,
           }
         )
       )
@@ -80,14 +86,14 @@ export const currentQuestionIndexSelector = createSelector(
   QuestionScreenViewModel.selfSelector,
   (vm) => vm.data.currentQuestionIndex
 )
-export const chosenAnswerSelector = createSelector(
+export const chosenAnswerIndexSelector = createSelector(
   QuestionScreenViewModel.selfSelector,
-  (vm) => vm.data.chosenAnswer
+  (vm) => vm.data.chosenAnswerIndex
 )
 export const currentQuestionSelector = createSelector(
   latestExamAttemptSelector,
   currentQuestionIndexSelector,
-  (examAttempt, questionIndex) => examAttempt.questions[questionIndex] || {}
+  (examAttempt, questionIndex) => examAttempt.questions[questionIndex]
 )
 
 export const numberOfQuestionsSelector = createSelector(

@@ -1,5 +1,0 @@
-export {defaults} from './customButton'
-export {defaults} from './BtnGetStarted'
-export {defaults} from './BtnContinueCompleted'
-export {defaults} from './BtnContinueFailed'
-export {defaults} from './BtnAnswerError'

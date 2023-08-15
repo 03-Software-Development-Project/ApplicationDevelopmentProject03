@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import {View, Text, TouchableOpacity, Image} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import {useDispatch, useSelector} from 'react-redux'
 import {
   currentChapterSelector,
@@ -10,13 +9,12 @@ import {
 } from './ChapterDetailScreenViewModel'
 import img from '../../assets/img'
 import styles from './styles'
+import {SharedHeader} from '../../components/shared'
 
 function ChapterOverviewItem(props) {
-  const {key, image, upperText, lowerText} = {...props}
+  const {image, upperText, lowerText} = props
   return (
-    <View
-      key={key}
-      style={styles.bodyChapterOverviewItem}>
+    <View style={styles.bodyChapterOverviewItem}>
       <Image
         style={styles.bodyChapterOverviewItemImage}
         source={image}
@@ -47,6 +45,11 @@ function ChapterDetailScreen({route, navigation}) {
       lowerText: 'To pass this test',
     },
   ]
+
+  const backToPreviousScreen = () => {
+    navigation.goBack()
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       await dispatch(
@@ -58,21 +61,17 @@ function ChapterDetailScreen({route, navigation}) {
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.content}>
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.headerBackButton}
-            onPress={() => {
-              navigation.goBack()
-            }}>
-            <Ionicons
-              name="chevron-back"
-              style={styles.headerBackButtonIcon}
-            />
-          </TouchableOpacity>
-          <View style={styles.headerTitleView}>
-            <Text style={styles.headerTitle}>{headerTitle}</Text>
-          </View>
-        </View>
+        <SharedHeader
+          title={headerTitle}
+          preset="simple"
+          btns={{
+            left: {
+              iconName: 'chevron-back',
+              onPress: backToPreviousScreen,
+            },
+          }}
+        />
+
         <View style={styles.body}>
           <Text style={styles.bodyTitle}>{chapter.name}</Text>
           <Text style={styles.bodySubtitle}>12k student took this</Text>

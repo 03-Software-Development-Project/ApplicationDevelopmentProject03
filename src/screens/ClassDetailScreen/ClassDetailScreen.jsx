@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {View, Text, TouchableOpacity, Image, ScrollView} from 'react-native'
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context'
+import {SafeAreaView} from 'react-native-safe-area-context'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {useDispatch, useSelector} from 'react-redux'
 import {
@@ -9,12 +9,12 @@ import {
 } from './ClassDetailScreenViewModel'
 import img from '../../assets/img'
 import styles from './styles'
+import {SharedHeader} from '../../components/shared'
 
 function SubjectItem(props) {
-  const {key, subjectName, subjectDesc, onPress} = {...props}
+  const {subjectName, subjectDesc, onPress} = props
   return (
     <TouchableOpacity
-      key={key}
       onPress={onPress}
       style={styles.lowerBodySubjectItem}>
       <Ionicons
@@ -40,12 +40,14 @@ function SubjectItem(props) {
 function ClassDetailScreen({navigation}) {
   const dispatch = useDispatch()
   const studentClass = useSelector(studentClassSelector)
-  const insets = useSafeAreaInsets()
-  const bodyBottomInset = insets.bottom
+
+  const openSideDrawer = () => {
+    navigation.openDrawer()
+  }
 
   useEffect(() => {
     const fetchData = async () => {
-      await dispatch(loadStudentClass())
+      dispatch(loadStudentClass())
     }
     fetchData()
   }, [dispatch])
@@ -54,35 +56,29 @@ function ClassDetailScreen({navigation}) {
     <View style={styles.container}>
       <SafeAreaView
         edges={['left, right']}
-        style={styles.header}>
+        style={styles.outerTopSafeArea}>
         <Image
-          style={styles.headerBackgroundImage}
+          style={styles.backgroundImage}
           source={img.background}
         />
         <SafeAreaView
           edges={['top']}
-          style={styles.headerContent}>
-          <TouchableOpacity
-            style={styles.headerContentBackButton}
-            onPress={() => {
-              navigation.goBack()
-            }}>
-            <Ionicons
-              name="menu"
-              size={25}
-              color="white"
-            />
-          </TouchableOpacity>
+          style={styles.innerTopSafeArea}>
+          <SharedHeader
+            title=""
+            preset="transparent"
+            btns={{
+              left: {
+                iconName: 'menu',
+                onPress: openSideDrawer,
+              },
+            }}
+          />
         </SafeAreaView>
       </SafeAreaView>
       <SafeAreaView
         edges={['left', 'right']}
-        style={[
-          styles.body,
-          {
-            bottom: bodyBottomInset,
-          },
-        ]}>
+        style={styles.body}>
         <View style={styles.upperBody}>
           <Text style={styles.upperBodyTitle}>{studentClass.name}</Text>
           <Text style={styles.upperBodyText}>Mã lớp: {studentClass.id}</Text>
@@ -102,7 +98,7 @@ function ClassDetailScreen({navigation}) {
               {(studentClass.subjects || []).map((subject, index) => (
                 <SubjectItem
                   key={subject.id}
-                  subjectName={subject.name}
+                  subjectName={subject.idname}
                   subjectDesc={subject.description}
                   onPress={() => {
                     navigation.navigate('SubjectDetail', {

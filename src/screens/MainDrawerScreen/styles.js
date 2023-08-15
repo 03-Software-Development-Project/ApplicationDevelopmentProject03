@@ -5,7 +5,7 @@ const avatarWidth = windowWidth / 5
 const avatarHeight = avatarWidth
 const avatarBorderRadius = avatarWidth / 2
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   drawer: {flex: 1},
   drawerHeader: {
     flex: 8,
@@ -48,15 +48,15 @@ const styles = StyleSheet.create({
   },
   drawerFooter: {
     flex: 4,
-    marginHorizontal: 10,
-    marginBottom: 50,
+    paddingHorizontal: 10,
     paddingTop: 25,
     borderTopWidth: 1,
     borderTopColor: '#ccc',
   },
   drawerFooterItem: {
-    flex: 1,
+    flex: 0,
     marginVertical: 10,
+    padding: 5,
   },
   drawerFooterFirstItem: {
     marginTop: 0,
@@ -70,5 +70,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 })
-
-export default styles

@@ -3,7 +3,7 @@ import {View, Text, TextInput} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import {SafeAreaView} from 'react-native-safe-area-context'
 import styles from './styles'
-import {color} from '../../constants'
+import {colors} from '../../constants'
 
 function SearchScreen() {
   return (
@@ -19,10 +19,10 @@ function SearchScreen() {
           style={{
             flex: 1,
             marginLeft: 4,
-            color: color['Greyscale.600'],
+            color: colors['Greyscale.600'],
           }}
         />
-        <Text style={{color: color['info.500']}}>Cancel</Text>
+        <Text style={{color: colors['info.500']}}>Cancel</Text>
       </View>
       <Text style={styles.sectionTitle}>Top Searches </Text>
       <View

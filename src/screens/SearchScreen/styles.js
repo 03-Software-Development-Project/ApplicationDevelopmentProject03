@@ -1,7 +1,7 @@
 import {StyleSheet} from 'react-native'
-import {typography, color} from '../../constants'
+import {typos, colors} from '../../constants'
 
-const styles = StyleSheet.create({
+export default StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 60,
@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 16,
     borderBottomWidth: 1,
-    borderColor: color['Greyscale.200'],
+    borderColor: colors['Greyscale.200'],
   },
   sectionTitle: {
-    ...typography['heading.h6'],
-    color: color['Greyscale.800'],
+    ...typos['heading.h6'],
+    color: colors['Greyscale.800'],
     fontWeight: 700,
     marginTop: 16,
     marginBottom: 4,
@@ -27,11 +27,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 4,
     textAlign: 'center',
-    ...typography['body.medium.regular'],
-    backgroundColor: color['Greyscale.100'],
-    color: color['Greyscale.600'],
+    ...typos['body.medium.regular'],
+    backgroundColor: colors['Greyscale.100'],
+    color: colors['Greyscale.600'],
     borderRadius: 999,
   },
 })
-
-export default styles

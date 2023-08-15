@@ -16,7 +16,7 @@ import {
   setDebugMode,
 } from './AppViewModel'
 import {store} from './redux'
-import {SignInScreen} from './screens'
+import {SignInScreen, RegisterScreen} from './screens'
 import {MainDrawer} from './navigation'
 
 const Stack = createNativeStackNavigator()
@@ -31,14 +31,19 @@ function AppStack() {
     <Stack.Navigator screenOptions={{headerShown: false}}>
       {!isStudentSignedIn ? (
         // User isn't signed in
-        <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{
-            title: 'Sign in',
-            animationTypeForReplace: 'pop',
-          }}
-        />
+        <>
+          <Stack.Screen
+            name="SignIn"
+            component={SignInScreen}
+            options={{
+              animationTypeForReplace: 'pop',
+            }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={RegisterScreen}
+          />
+        </>
       ) : (
         // User is signed in
         <Stack.Screen

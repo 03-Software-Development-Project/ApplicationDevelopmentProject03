@@ -1,79 +1,67 @@
 import React, {useEffect} from 'react'
-import {View, Text, TouchableOpacity} from 'react-native'
+import {View, Text} from 'react-native'
 import {SafeAreaView} from 'react-native-safe-area-context'
-import Ionicons from 'react-native-vector-icons/Ionicons'
 import {useDispatch, useSelector} from 'react-redux'
 import {
   resetState,
+  errorSelector,
+  dismissError,
+  setChosenAnswerIndex,
+  chosenAnswerIndexSelector,
   setCurrentQuestionIndex,
   currentQuestionSelector,
-  chosenAnswerSelector,
-  numberOfQuestionsSelector,
   answerCurrentQuestion,
+  numberOfQuestionsSelector,
 } from './QuestionScreenViewModel'
 import styles from './styles'
-
-function AnswerItem(props) {
-  const {
-    key,
-    text,
-    isChosen,
-    isCorrect,
-    shouldDisplayCorrectStyle,
-    onPress,
-    isDisabled,
-  } = {
-    ...props,
-  }
-  const answerItemStyle = [styles.lowerBodyDefaultAnswerItem]
-  const answerTextStyle = [styles.lowerBodyDefaultAnswerText]
-  let answerIcon = null
-  if (
-    (isChosen && isCorrect !== null && isCorrect) ||
-    shouldDisplayCorrectStyle
-  ) {
-    answerItemStyle.push(styles.lowerBodyCorrectAnswerItem)
-    answerTextStyle.push(styles.lowerBodyCorrectAnswerText)
-    answerIcon = (
-      <Ionicons
-        name="checkmark-circle"
-        size={35}
-        color="green"
-      />
-    )
-  } else if (isChosen && isCorrect !== null && !isCorrect) {
-    answerItemStyle.push(styles.lowerBodyWrongAnswerItem)
-    answerTextStyle.push(styles.lowerBodyWrongAnswerText)
-    answerIcon = (
-      <Ionicons
-        name="close-circle"
-        size={35}
-        color="red"
-      />
-    )
-  }
-
-  return (
-    <TouchableOpacity
-      key={key}
-      disabled={isDisabled}
-      onPress={onPress}
-      style={answerItemStyle}>
-      <Text style={answerTextStyle}>{text}</Text>
-      {answerIcon}
-    </TouchableOpacity>
-  )
-}
+import {SharedErrorModal, SharedHeader} from '../../components/shared'
+import {Answer, QuestionHandlerButton} from './components'
 
 function QuestionScreen({route, navigation}) {
   const {currentQuestionIndex} = route.params
   const dispatch = useDispatch()
+  const error = useSelector(errorSelector)
+  const chosenAnswerIndex = useSelector(chosenAnswerIndexSelector)
   const currentQuestion = useSelector(currentQuestionSelector)
-  const chosenAnswer = useSelector(chosenAnswerSelector)
   const numberOfQuestions = useSelector(numberOfQuestionsSelector)
+
+  const moveToNextQuestion = () => {
+    dispatch(resetState())
+    const nextQuestionIndex = currentQuestionIndex + 1
+    if (nextQuestionIndex <= numberOfQuestions - 1) {
+      navigation.push('Question', {
+        currentQuestionIndex: nextQuestionIndex,
+      })
+    } else {
+      navigation.navigate('QuizResult', {headerTitle: 'Quiz Result'})
+    }
+  }
+
+  const backToPreviousQuestion = () => {
+    dispatch(resetState())
+    const previousQuestionIndex = currentQuestionIndex - 1
+    if (previousQuestionIndex >= 0) {
+      navigation.navigate({
+        name: 'Question',
+        params: {currentQuestionIndex: previousQuestionIndex},
+        merge: true,
+      })
+    } else {
+      navigation.navigate({
+        name: 'QuizStarting',
+        merge: true,
+      })
+    }
+  }
+
+  const respondCurrentQuestion = () => {
+    dispatch(answerCurrentQuestion())
+  }
+
   useEffect(() => {
     dispatch(setCurrentQuestionIndex(currentQuestionIndex))
   }, [currentQuestionIndex, dispatch])
+
   return (
     <View style={styles.container}>
       <SafeAreaView
@@ -82,64 +70,41 @@ function QuestionScreen({route, navigation}) {
       />
       <SafeAreaView
         edges={['left', 'right', 'bottom']}
-        style={styles.content}>
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.headerBackButton}
-            onPress={() => {
-              dispatch(resetState())
-              if (currentQuestionIndex === 0) {
-                navigation.navigate({
-                  name: 'QuizStarting',
-                  merge: true,
-                })
-              } else {
-                navigation.navigate({
-                  name: 'Question',
-                  params: {currentQuestionIndex: currentQuestionIndex - 1},
-                  merge: true,
-                })
-              }
-            }}>
-            <Ionicons
-              name="chevron-back"
-              size={25}
-              color="white"
-            />
-          </TouchableOpacity>
-          <View style={styles.headerTitleView}>
-            <Text style={styles.headerTitle}>
-              Question {currentQuestionIndex + 1}
-            </Text>
-          </View>
-        </View>
+        style={styles.mainContent}>
+        <SharedHeader
+          title={`Question ${currentQuestionIndex + 1}`}
+          preset="default"
+          btns={{
+            left: {
+              iconName: 'chevron-back',
+              onPress: backToPreviousQuestion,
+            },
+          }}
+        />
 
         <View style={styles.body}>
           <View style={styles.upperBody}>
             <Text style={styles.upperBodyQuestionText}>
-              {currentQuestion.question}
+              {currentQuestion?.question}
             </Text>
             <View style={styles.upperBodyDivider} />
             <Text style={styles.upperBodyQuestionGuide}>Choose 1 answer:</Text>
           </View>
           <View style={styles.lowerBody}>
             <View style={styles.lowerBodyAnswerList}>
-              {(currentQuestion.answers || []).map((answer) => (
-                <AnswerItem
+              {(currentQuestion?.answers || []).map((answer) => (
+                <Answer
                   key={answer.id}
-                  text={answer.text}
+                  answer={answer}
                   isChosen={
-                    chosenAnswer !== null && chosenAnswer.id === answer.id
+                    chosenAnswerIndex !== null &&
+                    chosenAnswerIndex === answer.id
                   }
-                  isCorrect={currentQuestion.correctAnswer === answer.id}
-                  shouldDisplayCorrectStyle={
-                    chosenAnswer !== null &&
-                    currentQuestion.correctAnswer === answer.id
-                  }
+                  isCorrect={currentQuestion?.correctAnswer === answer.id}
+                  isQuestionAnswered={currentQuestion?.isCorrect !== null}
                   onPress={() => {
-                    dispatch(answerCurrentQuestion(answer))
+                    dispatch(setChosenAnswerIndex(answer.id))
                   }}
-                  isDisabled={chosenAnswer !== null}
                 />
               ))}
             </View>
@@ -147,23 +112,19 @@ function QuestionScreen({route, navigation}) {
         </View>
 
         <View style={styles.footer}>
-          <TouchableOpacity
-            disabled={currentQuestion.isCorrect === null}
-            style={styles.footerContinueButton}
-            onPress={() => {
-              dispatch(resetState())
-              if (currentQuestionIndex + 1 >= numberOfQuestions) {
-                navigation.navigate('QuizResult', {headerTitle: 'Quiz Result'})
-              } else {
-                navigation.push('Question', {
-                  currentQuestionIndex: currentQuestionIndex + 1,
-                })
-              }
-            }}>
-            <Text style={styles.footerContinueButtonText}>Continue</Text>
-          </TouchableOpacity>
+          <QuestionHandlerButton
+            question={currentQuestion}
+            currentQuestionHandler={respondCurrentQuestion}
+            afterQuestionAnsweredHandler={moveToNextQuestion}
+          />
         </View>
       </SafeAreaView>
+      <SharedErrorModal
+        error={error}
+        onClose={() => {
+          dispatch(dismissError())
+        }}
+      />
     </View>
   )
 }

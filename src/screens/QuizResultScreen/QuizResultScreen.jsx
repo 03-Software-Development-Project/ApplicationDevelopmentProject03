@@ -11,6 +11,7 @@ import {
 } from './QuizResultScreenViewModel'
 import img from '../../assets/img'
 import styles from './styles'
+import {SharedHeader} from '../../components/shared'
 
 function QuizResultScreen({route, navigation}) {
   const {headerTitle} = route.params
@@ -18,24 +19,32 @@ function QuizResultScreen({route, navigation}) {
   const correctQuestions = useSelector(correctQuestionsSelector)
   const wrongQuestions = useSelector(wrongQuestionsSelector)
   const totalPoints = useSelector(totalPointsSelector)
+
+  const backToPreviousScreen = () => {
+    navigation.goBack()
+  }
+
+  const backToChapterDetailScreen = () => {
+    navigation.navigate({
+      name: 'ChapterDetail',
+      merge: true,
+    })
+  }
+
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.content}>
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.headerBackButton}
-            onPress={() => {
-              navigation.goBack()
-            }}>
-            <Ionicons
-              name="chevron-back"
-              style={styles.headerBackButtonIcon}
-            />
-          </TouchableOpacity>
-          <View style={styles.headerTitleView}>
-            <Text style={styles.headerTitle}>{headerTitle}</Text>
-          </View>
-        </View>
+        <SharedHeader
+          title={headerTitle}
+          preset="default"
+          btns={{
+            left: {
+              iconName: 'chevron-back',
+              onPress: backToPreviousScreen,
+            },
+          }}
+        />
+
         <View style={styles.body}>
           <Image
             style={styles.bodyHeaderImage}
@@ -65,12 +74,7 @@ function QuizResultScreen({route, navigation}) {
         <View style={styles.footer}>
           <TouchableOpacity
             style={styles.footerButton}
-            onPress={() => {
-              navigation.navigate({
-                name: 'ChapterDetail',
-                merge: true,
-              })
-            }}>
+            onPress={backToChapterDetailScreen}>
             <Text style={styles.footerButtonText}>Continue</Text>
           </TouchableOpacity>
         </View>

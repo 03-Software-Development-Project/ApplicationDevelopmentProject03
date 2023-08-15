@@ -5,29 +5,34 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import {useDispatch} from 'react-redux'
 import {quitExamAttempt} from './QuizStartingScreenViewModel'
 import styles from './styles'
+import {SharedHeader} from '../../components/shared'
 
 function QuizStartingScreen({route, navigation}) {
   const {headerTitle} = route.params
   const dispatch = useDispatch()
+
+  const stopDoingExam = async () => {
+    await dispatch(quitExamAttempt())
+    navigation.goBack()
+  }
+
+  const startDoingExam = () => {
+    navigation.navigate('Question', {currentQuestionIndex: 0})
+  }
+
   return (
     <View style={styles.container}>
       <SafeAreaView style={styles.content}>
-        <View style={styles.header}>
-          <TouchableOpacity
-            style={styles.headerBackButton}
-            onPress={async () => {
-              await dispatch(quitExamAttempt())
-              navigation.goBack()
-            }}>
-            <Ionicons
-              name="chevron-back"
-              style={styles.headerBackButtonIcon}
-            />
-          </TouchableOpacity>
-          <View style={styles.headerTitleView}>
-            <Text style={styles.headerTitle}>{headerTitle}</Text>
-          </View>
-        </View>
+        <SharedHeader
+          title={headerTitle}
+          preset="default"
+          btns={{
+            left: {
+              iconName: 'chevron-back',
+              onPress: stopDoingExam,
+            },
+          }}
+        />
         <View style={styles.body}>
           <Text style={styles.bodyTitle}>Time for a quiz?</Text>
           <Text style={styles.bodyText}>
@@ -47,9 +52,7 @@ function QuizStartingScreen({route, navigation}) {
         <View style={styles.footer}>
           <TouchableOpacity
             style={styles.footerButton}
-            onPress={() => {
-              navigation.navigate('Question', {currentQuestionIndex: 0})
-            }}>
+            onPress={startDoingExam}>
             <Text style={styles.footerButtonText}>Get Started</Text>
           </TouchableOpacity>
         </View>

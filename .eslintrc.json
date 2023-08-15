@@ -18,7 +18,7 @@
     "no-use-before-define": ["error", {"variables": false}],
     // ignore errors for the react-navigation package
     "react/prop-types": [
-      "error",
+      "off",
       {"ignore": ["navigation", "route", "navigation.navigate"]}
     ],
     // ignore errors for import directives

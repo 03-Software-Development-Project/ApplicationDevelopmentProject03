@@ -13,12 +13,12 @@ import {
   errorSelector,
   studentAccountSelector,
 } from './MainDrawerScreenViewModel'
-import {SharedErrorModalComponent} from '../../components/shared'
+import {SharedErrorModal} from '../../components/shared'
 import styles from './styles'
 
 function IconCreator(name) {
   return function Icon(props) {
-    const {color, size} = {...props}
+    const {color, size} = props
     return (
       <Ionicons
         name={name}
@@ -30,7 +30,7 @@ function IconCreator(name) {
 }
 
 function CustomDrawerItem(props) {
-  const {label, iconName, onPress} = {...props}
+  const {label, iconName, onPress} = props
   return (
     <DrawerItem
       style={[styles.drawerFooterItem, styles.drawerFooterFirstItem]}
@@ -46,7 +46,7 @@ function CustomDrawerItem(props) {
 }
 
 function MainDrawerScreen(props) {
-  const {state, navigation, descriptors} = {...props}
+  const {state, navigation, descriptors} = props
   const dispatch = useDispatch()
   const error = useSelector(errorSelector)
   const studentAccount = useSelector(studentAccountSelector)
@@ -95,11 +95,6 @@ function MainDrawerScreen(props) {
 
       <View style={styles.drawerFooter}>
         <CustomDrawerItem
-          label="Tell a Friend"
-          iconName="share-social-outline"
-          onPress={() => {}}
-        />
-        <CustomDrawerItem
           label="Sign out"
           iconName="log-out-outline"
           onPress={() => {
@@ -107,12 +102,12 @@ function MainDrawerScreen(props) {
           }}
         />
       </View>
-      <SharedErrorModalComponent
+      {/* <SharedErrorModal
         error={error}
         onClose={() => {
           dispatch(dismissError())
         }}
-      />
+      /> */}
     </View>
   )
 }

@@ -13,13 +13,10 @@ const db = {
       const doc = await firestore().doc(`students/${studentID}`).get()
       if (doc.exists) {
         const student = doc.data()
-        const studentClass = student.class
-        if (studentClass) {
-          const studentClassRef = studentClass.reference
-          student.class.refPath = studentClassRef.path
+        if (student.class) {
+          student.class.refPath = student.class.reference.path
           delete student.class.reference
         }
-
         return student
       }
       throw new CloudFirestoreError('No such student!', 'no-doc')
@@ -205,11 +202,16 @@ const db = {
         .limit(limit)
         .get()
       if (!querySnapshot.empty) {
-        return querySnapshot.docs.map((doc) => ({...doc.data(), id: doc.id}))
+        return querySnapshot.docs.map((doc) => {
+          const $class = doc.data()
+          $class.id = doc.id
+          $class.createdDate = $class.createdDate.toDate().toLocaleDateString()
+          return $class
+        })
       }
       throw new CloudFirestoreError(
         '"classes" collection is non-existent',
-        'no-docs'
+        'no-collection'
       )
     } catch (err) {
       throw new CloudFirestoreError(err)
@@ -270,6 +272,34 @@ const db = {
         return question
       }
       throw new CloudFirestoreError('No such exam attempt question!', 'no-doc')
+    } catch (err) {
+      throw new CloudFirestoreError(err)
+    }
+  },
+
+  async enrollClass(studentRefPath, classRefPath, joinCode) {
+    try {
+      const classRef = firestore().doc(classRefPath)
+      const query = await classRef
+        .collection('privateData')
+        .where('joinCode', '==', joinCode)
+        .count()
+        .get()
+      const queryReult = query.data()
+      if (queryReult.count) {
+        await firestore()
+          .doc(studentRefPath)
+          .update({
+            class: {
+              reference: classRef,
+            },
+          })
+        return classRef
+      }
+      throw new CloudFirestoreError({
+        message: 'Mã tham gia không đúng',
+        code: '[class-enrollment] wrong-join-code',
+      })
     } catch (err) {
       throw new CloudFirestoreError(err)
     }

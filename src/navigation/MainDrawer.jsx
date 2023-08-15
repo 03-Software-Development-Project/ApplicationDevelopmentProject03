@@ -9,7 +9,7 @@ const Drawer = createDrawerNavigator()
 
 function DrawerItemIconCreator(defaultIconName, focusedIconName) {
   return function DrawerItemIcon(props) {
-    const {color, size, focused} = {...props}
+    const {color, size, focused} = props
     if (focused) {
       return (
         <Ionicons
